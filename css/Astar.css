@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    background-color: rgb(33, 37, 41);
+    min-height: 100vh;
+    display: flex;
+}
+
+.parametrs {
+    width: 20vw;
+}
+.back {
+    width: 7vw;
+    height: 7vw;
+    border-radius:50%;
+    background-color:rgb(24, 26, 27);
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.back a {
+    width: 7vw;
+    height: 7vw;
+    border-radius:50%;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.back:hover {
+    background-color:rgb(31, 34, 35);
+}
+.back svg {
+    width: 5vw;
+    height: 5vw;
+    color: #64748b;;
+}
+
+.field {
+    width: 79vw;
+}
+.field canvas {
+    width: 600px;
+    height: 600px;
+}
