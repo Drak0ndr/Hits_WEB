@@ -6,18 +6,21 @@
 
 main {
     background-color: rgb(33, 37, 41);
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 a {
     text-decoration: none;
 }
 .card {
     width: 30vw;
+    min-width: 300px;
     height: 290px;
     background-color: #121212;
     overflow: hidden;
+    margin-top: 30px;
     position: relative;
     display: flex;
     align-items: center;
@@ -72,4 +75,20 @@ a {
     -webkit-transition: all .5s ease;
     -o-transition: all .5s ease;
     transition: all .5s ease;
-  }
+}
+
+.card:nth-child(2n) .card_bg{
+    background-color: #3ecd5e;
+}
+.card:nth-child(3n) .card_bg{
+    background-color: #e44002;
+}
+.card:nth-child(4n) .card_bg{
+    background-color: #952aff;
+}
+.card:nth-child(5n) .card_bg{
+    background-color: #cd3e94;
+}
+.card:nth-child(6n) .card_bg{
+    background-color: #4c49ea;
+}
