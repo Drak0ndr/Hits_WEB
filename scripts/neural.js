@@ -49,7 +49,7 @@ function drawGrid() {
     }
 }
 
-function calculate(draw = false) {
+function pixelization(draw = false) {
     const w = canvas.width
     const h = canvas.height
     const p = w / pixel
@@ -89,7 +89,6 @@ function calculate(draw = false) {
             drawCell(drawMatrix[i][0], drawMatrix[i][1], drawMatrix[i][2], drawMatrix[i][3])
         }
     }
-    console.log(arr)
     return arr
 }
 
@@ -101,7 +100,19 @@ clearBtn.addEventListener('click', e => {
 })
 
 pixelBtn.addEventListener('click', e => {
-    calculate(true)
+    let temp = pixelization(true)
+    let ans = prompt('какая это цифра?')
+    let outData = []
+    for (let i = 0; i < 10; i++) {
+        if (i == ans) {
+            outData.push(1)
+        }
+        else {
+            outData.push(0)
+        }
+    }
+    // train_data.push({input: temp, output: outData})
+    console.log(temp, outData)
 })
 
 canvas.addEventListener('mousedown', e => {
@@ -132,3 +143,152 @@ canvas.addEventListener('mousemove', e => {
 })
 console.log(canvas.offsetWidth, canvas.offsetHeight)
 console.log(canvas, pixel)
+
+function getRandom(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+function sigmoid(x) {
+    return 1 / (1 + Math.exp(-x))
+}
+
+function derSigmoid(x) {
+    return sigmoid(x) * (1 - sigmoid(x))
+}
+
+let train_data = []
+
+fetch('../scripts/traindb.json')
+    .then(response => {
+        return response.json()
+    })
+    .then(data => {
+        console.log(data)
+        train_data = data
+    })
+
+let neuralData = {
+    inputSlise: [],
+    inputSliseWeights: [],
+    firstHideSlise: [],
+    firstHideSliseSm: [],
+    firstHideSliseBias: [],
+    firstHideSliseWeights: [],
+    secondHideSlise: [],
+    secondHideSliseSm: [],
+    secondHideSliseBias: [],
+    secondHideSliseWeights: [],
+    outputSlise: [],
+    outputSliseBias: []
+}
+for (let i = 0; i < 2500; i++) {
+    let temp = []
+    for (let j = 0; j < 20; j++) {
+        temp.push(getRandom(-10, 10))
+    }
+    neuralData.inputSliseWeights.push(temp)
+}
+for (let i = 0; i < 20; i++) {
+    neuralData.firstHideSliseBias.push(0)
+    neuralData.secondHideSliseBias.push(0)
+    neuralData.firstHideSlise.push(0)
+    neuralData.secondHideSlise.push(0)
+}
+for (let i = 0; i < 20; i++) {
+    let temp = []
+    for (let j = 0; j < 20; j++) {
+        temp.push(getRandom(-10, 10))
+    }
+    neuralData.firstHideSliseWeights.push(temp)
+}
+for (let i = 0; i < 20; i++) {
+    let temp = []
+    for (let j = 0; j < 10; j++) {
+        temp.push(getRandom(-10, 10))
+    }
+    neuralData.secondHideSliseWeights.push(temp)
+}
+for (let i = 0; i < 10; i++) {
+    neuralData.outputSliseBias.push(0)
+    neuralData.outputSlise.push(0)
+}
+function neuralNetwork(data) {
+    for (let i = 0; i < neuralData.firstHideSlise.length; i++) {
+        neuralData.firstHideSlise[i] = 0
+        neuralData.firstHideSliseSm[i] = 0
+        neuralData.secondHideSliseSm[i] = 0
+        neuralData.secondHideSlise[i] = 0
+    }
+    for (let i = 0; i < neuralData.outputSlise.length; i++) {
+        neuralData.outputSlise[i] = 0
+    }
+    // console.log(data)
+    neuralData.inputSlise = data.input
+    for (let i = 0; i < neuralData.inputSliseWeights.length; i++) {
+        for (let j = 0; j < neuralData.inputSliseWeights[i].length; j++) {
+            neuralData.firstHideSlise[j] += neuralData.inputSlise[i] * neuralData.inputSliseWeights[i][j]
+            neuralData.firstHideSliseSm[j] += neuralData.inputSlise[i] * neuralData.inputSliseWeights[i][j]
+        }
+        // console.log(i, neuralData.inputSlise[i], neuralData.inputSliseWeights[i])
+    }
+    for (let j = 0; j < neuralData.firstHideSlise.length; j++) {
+        neuralData.firstHideSlise[j] += neuralData.firstHideSliseBias[j]
+        neuralData.firstHideSliseSm[j] += neuralData.firstHideSliseBias[j]
+        neuralData.firstHideSlise[j] = sigmoid(neuralData.firstHideSlise[j])
+    }
+    for (let i = 0; i < neuralData.firstHideSliseWeights.length; i++) {
+        for (let j = 0; j < neuralData.firstHideSliseWeights[i].length; j++) {
+            neuralData.secondHideSlise[j] += neuralData.firstHideSlise[i] * neuralData.firstHideSliseWeights[i][j]
+            neuralData.secondHideSliseSm[j] += neuralData.firstHideSlise[i] * neuralData.firstHideSliseWeights[i][j]
+        }
+    }
+    for (let j = 0; j < neuralData.secondHideSlise.length; j++) {
+        neuralData.secondHideSlise[j] += neuralData.secondHideSliseBias[j]
+        neuralData.secondHideSliseSm[j] += neuralData.secondHideSliseBias[j]
+        neuralData.secondHideSlise[j] = sigmoid(neuralData.secondHideSlise[j])
+    }
+    for (let i = 0; i < neuralData.secondHideSliseWeights.length; i++) {
+        for (let j = 0; j < neuralData.secondHideSliseWeights[i].length; j++) {
+            neuralData.outputSlise[j] += neuralData.secondHideSlise[i] * neuralData.secondHideSliseWeights[i][j]
+        }
+    }
+    for (let j = 0; j < neuralData.outputSlise.length; j++) {
+        neuralData.outputSlise[j] += neuralData.outputSliseBias[j]
+        neuralData.outputSlise[j] = sigmoid(neuralData.outputSlise[j])
+    }
+    // console.log(neuralData)
+    let errors = []
+    for (let i = 0; i < 10; i++) {
+        errors.push(neuralData.outputSlise[i] - data.output[i])
+    }
+    // console.log(errors)
+    return errors
+}
+
+function train(count) {
+    for (let i = 0; i < count; i++) {
+        train_data.forEach((item, ind) => {
+            let errors = neuralNetwork(item)
+            for (let j = 0; j < neuralData.outputSliseBias.length; j++) {
+                neuralData.outputSliseBias[j] += derSigmoid(neuralData.secondHideSliseSm[j]) / 10
+            }
+            for (let j = 0; j < neuralData.secondHideSliseWeights.length; j++) {
+                for (let p = 0; p < neuralData.secondHideSliseWeights[j].length; p++) {
+                    neuralData.secondHideSliseWeights[j][p] -= neuralData.secondHideSlise[j] * derSigmoid(neuralData.secondHideSliseSm[j])
+                }
+            }
+            for (let j = 0; j < neuralData.secondHideSliseBias.length; j++) {
+                neuralData.secondHideSliseBias[j] += derSigmoid(neuralData.firstHideSliseSm[j]) / 10
+            }
+            for (let j = 0; j < neuralData.firstHideSliseWeights.length; j++) {
+                for (let p = 0; p < neuralData.firstHideSliseWeights[j].length; p++) {
+                    neuralData.firstHideSliseWeights[j][p] -= neuralData.firstHideSlise[j] * derSigmoid(neuralData.firstHideSliseSm[j])
+                }
+            }
+        })
+        console.log(i, neuralData)
+    }
+}
+setTimeout(() => {
+    train(10000)
+}, 1000)
