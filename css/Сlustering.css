@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    background-color: rgb(33, 37, 41);
+    min-height: 100vh;
+    display: flex;
+}
+
+.parametrs {
+    width: 20vw;
+}
+.back_top{
+    height: 110px;
+    padding: 10px 10px;
+}
+.back {
+    width: 7vw;
+    height: 7vw;
+    border-radius:50%;
+    background-color:rgb(24, 26, 27);
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.back a {
+    width: 7vw;
+    height: 7vw;
+    border-radius:50%;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.back:hover {
+    background-color:rgb(31, 34, 35);
+}
+.back svg {
+    width: 5vw;
+    height: 5vw;
+    color: #64748b;;
+}
+
+.field {
+    width: 79vw;
+}
+.clustering_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 32px 0px;
+}
+.clustering_header > h2 {
+    font-size: 40px;
+}
+.wrapper_field{
+    display: flex;
+    justify-content: space-around;
+    height: 42vw;
+}
+.canvas_header {
+    display: flex;
+    color: white;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+}
+.canvas_div{
+    height: 42vw;
+    width: 25vw;
+}
+#canvas1, #canvas2, #canvas3 {
+    background-color: pink;
+    width: 100%;
+    height: 90%;
+    border-radius: 10%;
+    border: 5px solid white;
+}
+.wpapper_parametrs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    height: 42vw;
+}
+.clustering_settings{
+    background-color: white;
+    height: 100%;
+    width: 90%;
+    border-radius: 10%;
+    border: 5px solid grey;
+}
+.parametrs_header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    width: 100%;
+}
+.parametrs_descr{
+    color: white;
+    font-size: 20px;
+    margin: 0px 15px;
+}
+.parametrs_logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.clustering_settings{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
