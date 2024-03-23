@@ -3,6 +3,7 @@ const pixelBtn = document.querySelector('.pixelation')
 const recognizeBtn = document.querySelector('.recognize')
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d', { willReadFrequently: true })
+const ansSpan = document.querySelector('.ans span')
 canvas.width = canvas.offsetWidth
 canvas.height = canvas.offsetHeight
 const pixel = canvas.width / 28
@@ -116,9 +117,18 @@ pixelBtn.addEventListener('click', e => {
 })
 
 recognizeBtn.addEventListener('click', e => {
-    data = pixelization(true)
+    let data = pixelization(true)
     console.log(data)
-    ans = neuralNetwork(data)
+    let ans = neuralNetwork(data)
+    let bt = 0
+    let btInd = 0
+    ans.forEach((item, ind) => {
+        if (item > bt) {
+            bt = item
+            btInd = ind
+        }
+    })
+    ansSpan.innerHTML = btInd
     console.log(ans)
 })
 
