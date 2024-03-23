@@ -1,12 +1,14 @@
 import { Cell } from "./classes.js";
 let fieldPixelsSize = 7;
+let currButton = 0;
 const canvas = document.getElementById('astar_canvas');
 const ctx = canvas.getContext('2d');
 canvas.height = document.querySelector('#astar_canvas').clientHeight;
 canvas.width = document.querySelector('#astar_canvas').clientHeight;
 let cellSize = canvas.width / fieldPixelsSize;
 let markedCells = [];
-let visitedCells = [];
+let startСoordinates = [];
+let finishCoordinates = [];
 
 drawGrid();
 
@@ -54,6 +56,8 @@ document.getElementById('field_range').addEventListener('change', () => {
     cellSize = canvas.width / fieldPixelsSize;
     markedCells = [];
     drawGrid();
+    document.getElementById("add_start").disabled = false;
+    document.getElementById("add_finish").disabled = false;
 });
 
 
@@ -62,31 +66,121 @@ canvas.addEventListener('click', function(e){
     let y = Math.floor(e.offsetY / cellSize) * cellSize;
     let cell = new Cell(x, y, cellSize);
 
-    if(containsObject(cell, markedCells) != Infinity && containsObject(cell, visitedCells == Infinity)){
+    if(currButton === 1){
+        if(containsObject(cell, finishCoordinates) == Infinity && containsObject(cell, markedCells) == Infinity){
+            ctx.fillStyle = 'red';
+            ctx.fillRect(x + 0.5, y + 0.5, cellSize - 1, cellSize - 1); 
+            markedCells.push(cell);
+            startСoordinates.push(cell);
+            currButton = 0;
+        }
+    
+    }else if(currButton === 2){
+        if(containsObject(cell, startСoordinates) == Infinity && containsObject(cell, markedCells) == Infinity){
+            ctx.fillStyle = 'blue';
+            ctx.fillRect(x + 0.5, y + 0.5, cellSize - 1, cellSize - 1); 
+            markedCells.push(cell);
+            finishCoordinates.push(cell);
+            currButton = 0;
+        }
+
+    }else if(currButton === 3){
+        if(containsObject(cell, startСoordinates) == Infinity && containsObject(cell, finishCoordinates) == Infinity){
+            if(containsObject(cell, markedCells) == Infinity){
+                ctx.fillStyle = 'black';
+                ctx.fillRect(x, y, cellSize, cellSize);
+                markedCells.push(cell);
+    
+            }else{
+                ctx.fillStyle = '#00FF7F';
+                ctx.fillRect(x + 0.5, y + 0.5, cellSize - 1, cellSize - 1); 
+                markedCells.splice(containsObject(cell, markedCells), 1);
+            } 
+
+        }else if(containsObject(cell, startСoordinates) != Infinity){
+            ctx.fillStyle = '#00FF7F';
+            ctx.fillRect(x + 0.5, y + 0.5, cellSize - 1, cellSize - 1); 
+            markedCells.splice(containsObject(cell, markedCells), 1);
+            startСoordinates = [];
+            document.getElementById("add_start").disabled = false;
+
+        }else if(containsObject(cell, finishCoordinates) != Infinity){
+            ctx.fillStyle = 'black';
+            ctx.fillRect(x + 0.5, y + 0.5, cellSize - 1, cellSize - 1);
+            ctx.fillStyle = '#00FF7F';
+            ctx.fillRect(x + 0.5, y + 0.5, cellSize - 1, cellSize - 1); 
+            markedCells.splice(containsObject(cell, markedCells), 1);
+            finishCoordinates = [];
+            document.getElementById("add_finish").disabled = false;
+        }
+
+    }else if(currButton === 0 && (startСoordinates.length > 0 || finishCoordinates.length > 0)){
+        if(containsObject(cell, startСoordinates) != Infinity){
+            ctx.fillStyle = '#00FF7F';
+            ctx.fillRect(x + 0.5, y + 0.5, cellSize - 1, cellSize - 1); 
+            markedCells.splice(containsObject(cell, markedCells), 1);
+            startСoordinates = [];
+            document.getElementById("add_start").disabled = false;
+
+        }else if(containsObject(cell, finishCoordinates) != Infinity){
+            ctx.fillStyle = 'black';
+            ctx.fillRect(x + 0.5, y + 0.5, cellSize - 1, cellSize - 1);
+            ctx.fillStyle = '#00FF7F';
+            ctx.fillRect(x + 0.5, y + 0.5, cellSize - 1, cellSize - 1); 
+            markedCells.splice(containsObject(cell, markedCells), 1);
+            finishCoordinates = [];
+            document.getElementById("add_finish").disabled = false; 
+
+        }else if(containsObject(cell, markedCells) != Infinity){
+            ctx.fillStyle = '#00FF7F';
+            ctx.fillRect(x + 0.5, y + 0.5, cellSize - 1, cellSize - 1); 
+            markedCells.splice(containsObject(cell, markedCells), 1);
+        }
+
+    }else if(currButton === 0 && startСoordinates.length == 0 && finishCoordinates.length == 0 && markedCells.length > 0){
         ctx.fillStyle = '#00FF7F';
         ctx.fillRect(x + 0.5, y + 0.5, cellSize - 1, cellSize - 1); 
-        visitedCells.push(cell);
         markedCells.splice(containsObject(cell, markedCells), 1);
-        console.log(markedCells);
-        console.log(visitedCells);
-
-    }else if(containsObject(cell, markedCells) == Infinity && containsObject(cell, visitedCells) == Infinity){
-        ctx.fillStyle = 'black';
-        ctx.fillRect(x, y, cellSize, cellSize); 
-        markedCells.push(cell);
-        console.log(markedCells);
-        console.log(visitedCells);
-
-    }else{
-        ctx.fillStyle = 'black';
-        ctx.fillRect(x, y, cellSize, cellSize); 
-        markedCells.push(cell);
-        visitedCells.splice(containsObject(cell, markedCells), 1);
     }
 });
 
-document.getElementById('start').addEventListener('click', function(e){
-    console.log(markedCells);
+document.getElementById('add_start').addEventListener('click', function(e){
+    if(currButton === 3){
+        document.getElementById("add_wall").disabled = false;
+    }
+
+    currButton = 1;
+    document.getElementById("add_start").disabled = true;
 });
 
+document.getElementById('add_finish').addEventListener('click', function(e){
+    if(currButton === 3){
+        document.getElementById("add_wall").disabled = false;
+    }
+
+    currButton = 2;
+    document.getElementById("add_finish").disabled = true;
+});
+
+document.getElementById('add_wall').addEventListener('click', function(e){
+    currButton = 3;
+    document.getElementById("add_wall").disabled = true;
+});
+
+document.getElementById('remove_field').addEventListener('click', function(e){
+    ctx.reset();
+    drawGrid();
+    document.getElementById("add_start").disabled = false;
+    document.getElementById("add_finish").disabled = false;
+    document.getElementById("add_wall").disabled = false;
+    currButton = 0;
+    startСoordinates = [];
+    finishCoordinates = [];
+    markedCells = [];
+});
+
+/* document.getElementById('start').addEventListener('click', function(e){
+    console.log(currButton)
+});
+ */
 
