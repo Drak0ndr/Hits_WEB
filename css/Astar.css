@@ -11,7 +11,11 @@ main {
 }
 
 .parametrs {
-    width: 20vw;
+    width: 30vw;
+}
+.back_top{
+    height: 110px;
+    padding: 10px 10px;
 }
 .back {
     width: 7vw;
@@ -40,9 +44,61 @@ main {
 }
 
 .field {
-    width: 79vw;
+    width: 69vw;
 }
-.field canvas {
-    width: 600px;
-    height: 600px;
+.astar_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 20px 0px;
+}
+.astar_header > h2 {
+    font-size: 40px;
+}
+.wrapper_field{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 44vw;
+}
+.wpapper_parametrs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    height: 42vw;
+}
+.parametrs_header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    width: 100%;
+}
+.parametrs_descr{
+    color: white;
+    font-size: 20px;
+    margin: 0px 15px;
+}
+.astar_settings{
+    background-color: white;
+    height: 100%;
+    width: 90%;
+    border-radius: 10%;
+    border: 5px solid grey;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+#astar_canvas{
+    background-color: #00FF7F;
+    height: 100%;
+    cursor: pointer;
+}
+#field_settings{
+    display: flex;
+    flex-direction:column;
 }

@@ -94,6 +94,10 @@ main {
     width: 90%;
     border-radius: 10%;
     border: 5px solid grey;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
 }
 .parametrs_header{
     display: flex;
@@ -112,9 +116,4 @@ main {
     align-items: center;
     justify-content: center;
 }
-.clustering_settings{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
-}
+

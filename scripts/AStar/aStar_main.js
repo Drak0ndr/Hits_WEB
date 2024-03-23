@@ -1,0 +1,92 @@
+import { Cell } from "./classes.js";
+let fieldPixelsSize = 7;
+const canvas = document.getElementById('astar_canvas');
+const ctx = canvas.getContext('2d');
+canvas.height = document.querySelector('#astar_canvas').clientHeight;
+canvas.width = document.querySelector('#astar_canvas').clientHeight;
+let cellSize = canvas.width / fieldPixelsSize;
+let markedCells = [];
+let visitedCells = [];
+
+drawGrid();
+
+function containsObject(obj, list) {
+    for (let i = 0; i < list.length; ++i) {
+        if (JSON.stringify(list[i]) === JSON.stringify(obj)) {
+            return i;
+        }
+    }
+
+    return Infinity;
+}
+
+function drawLine(x1, y1, x2, y2) {
+    ctx.beginPath();
+    ctx.strokeStyle = 'black'
+    ctx.lineJoin = 'miter';
+    ctx.lineWidth = 1;
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+}
+
+function drawGrid() {
+    ctx.reset();
+    let pixel = canvas.width / fieldPixelsSize;
+    const w = canvas.width;
+    const h = canvas.height;
+    const p = w / pixel;
+
+    const xStep = w / p;
+    const yStep = h / p;
+
+    for (let x = 0; x < w; x += xStep) {
+        drawLine(x, 0, x, h);
+    }
+
+    for (let y = 0; y < h; y += yStep) {
+        drawLine(0, y, w, y);
+    }
+}
+
+document.getElementById('field_range').addEventListener('change', () => {
+    fieldPixelsSize = parseInt(document.getElementById('field_range').value);
+    cellSize = canvas.width / fieldPixelsSize;
+    markedCells = [];
+    drawGrid();
+});
+
+
+canvas.addEventListener('click', function(e){
+    let x = Math.floor(e.offsetX / cellSize) * cellSize;
+    let y = Math.floor(e.offsetY / cellSize) * cellSize;
+    let cell = new Cell(x, y, cellSize);
+
+    if(containsObject(cell, markedCells) != Infinity && containsObject(cell, visitedCells == Infinity)){
+        ctx.fillStyle = '#00FF7F';
+        ctx.fillRect(x + 0.5, y + 0.5, cellSize - 1, cellSize - 1); 
+        visitedCells.push(cell);
+        markedCells.splice(containsObject(cell, markedCells), 1);
+        console.log(markedCells);
+        console.log(visitedCells);
+
+    }else if(containsObject(cell, markedCells) == Infinity && containsObject(cell, visitedCells) == Infinity){
+        ctx.fillStyle = 'black';
+        ctx.fillRect(x, y, cellSize, cellSize); 
+        markedCells.push(cell);
+        console.log(markedCells);
+        console.log(visitedCells);
+
+    }else{
+        ctx.fillStyle = 'black';
+        ctx.fillRect(x, y, cellSize, cellSize); 
+        markedCells.push(cell);
+        visitedCells.splice(containsObject(cell, markedCells), 1);
+    }
+});
+
+document.getElementById('start').addEventListener('click', function(e){
+    console.log(markedCells);
+});
+
+

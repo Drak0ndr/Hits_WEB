@@ -8,11 +8,13 @@ export { drawer, startDrawing, stopDrawing, startDBSCAN, startKMeans, findNearby
 
 const RADIUS = 7;
 let algorithm = 1;
+let kmeans = { clusters: null, centroids: null};
+let checkCentroids = false;
 
 function addPoint(x, y) {
     let point = new Point(x, y, RADIUS);
     pointCoordinates.push(point);
-    pointCoordinates[pointCoordinates.length - 1].drawingPoints();
+    pointCoordinates[pointCoordinates.length - 1].drawingPoints([ctx, ctx2, ctx3]);
 }
 
 function findDistance(x1, y1, x2, y2) {
@@ -63,13 +65,13 @@ function drawingClusters(clusters){
             let index = pointCoordinates.indexOf(clusters[i][j]);
 
             if (algorithm === 1) {
-                pointCoordinates[index].kMeansDrawing(colors[colorIndex]);
+                pointCoordinates[index].drawingPoints([ctx], colors[colorIndex]);
 
             }else if (algorithm === 2) {
-                pointCoordinates[index].dbscanDrawing(colors[colorIndex]);
+                pointCoordinates[index].drawingPoints([ctx2], colors[colorIndex]);
 
             }else if (algorithm === 3){
-                pointCoordinates[index].hierarchicalDriwing(colors[colorIndex]);
+                pointCoordinates[index].drawingPoints([ctx3], colors[colorIndex]);
             }
         }
     }
@@ -88,7 +90,7 @@ function drawingCentroids(centroids) {
 
 function drawingDBSCANMargin() {
     for (let i = 0; i < pointCoordinates.length; ++i) {
-        pointCoordinates[i].dbscanDrawing('black');
+        pointCoordinates[i].drawingPoints([ctx2]);
     }
 }
 
@@ -105,9 +107,12 @@ function drawingDBSCANCentre(){
 function startKMeans () {
     resetClusters();
     algorithm = 1;
-    let kmeans = kMeans(currCountClusters);
+    kmeans = kMeans(currCountClusters);
     drawingClusters(kmeans.clusters);
-    drawingCentroids(kmeans.centroids);
+
+    if(document.getElementById('centroids_check').checked){
+        drawingCentroids(kmeans.centroids);
+    }
 }
 
 function startDBSCAN (){
@@ -149,7 +154,7 @@ export function resetClusters() {
 function clearClusters(){
     resetClusters();
     for (let i = 0; i < pointCoordinates.length; i++) {
-        pointCoordinates[i].drawingPoints();
+        pointCoordinates[i].drawingPoints([ctx, ctx2, ctx3]);
     }
 }
 
@@ -172,6 +177,19 @@ export function unlockingButton(){
 export function buttonLock(){
     document.getElementById("add_points").disabled = true;
 }
+
+document.getElementById('centroids_check').addEventListener('change', () => {
+    if(checkCentroids === false){
+        drawingCentroids(kmeans.centroids);
+        checkCentroids = true;
+
+    }else{
+        checkCentroids = false;
+    }
+});
+
+
+
 
 
 
