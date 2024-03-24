@@ -1,4 +1,5 @@
 import { markedCells, cellSize, ctx } from "./aStar_main.js";
+import { Cell } from "./classes.js";
 //https://thecode.media/maze/
 // строим карту нового лабиринта
 // строим карту нового лабиринта
@@ -148,16 +149,17 @@ export function generateMaze (columnsNumber, rowsNumber, tractorsNumber = 1) {
 	}
 }
 
-export function drawMaze(map, coordinates){
+export function drawMaze(map, coordinates, size){
 	for(let i = 0; i < coordinates.length; ++i){
 		for(let j = 0; j < coordinates.length; ++j){
 			if(map[i][j] == 'wall'){
 				ctx.fillStyle = 'black';
-                ctx.fillRect(coordinates[i][j].vertex1.x, coordinates[i][j].vertex1.y, cellSize, cellSize); 
-				markedCells.push(coordinates[i][j]);
+                ctx.fillRect(coordinates[i][j].vertex1.x, coordinates[i][j].vertex1.y, size, size); 
+				markedCells.push(new Cell(coordinates[i][j].vertex1.x, coordinates[i][j].vertex1.y, size));
 			}
 		}
 	}
+	
 	/* console.log(markedCells) */
 }
 

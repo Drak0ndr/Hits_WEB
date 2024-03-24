@@ -10,13 +10,14 @@ export let cellSize = canvas.width / fieldPixelsSize;
 export let markedCells = [];
 let startСoordinates = [];
 let finishCoordinates = [];
-let arrCoordinates = [];
+let arrCoordinates;
+arrCoordinates = fillCoordinates();
 let mapMaze = [];
 
 drawGrid();
-fillCoordinates(arrCoordinates);
-
-function fillCoordinates(arr){
+/* console.log(arrCoordinates); */
+function fillCoordinates(){
+    let arr = [];
     let size = canvas.width / fieldPixelsSize;
     let x = 0;
     let y = 0;
@@ -26,13 +27,14 @@ function fillCoordinates(arr){
 
         for(let j = 0; j < fieldPixelsSize; ++j){
             col.push(new Cell(x, y, size));
-            y += size;
+            x += size;
         }
 
         arr.push(col);
-        x += size;
-        y = 0;
+        y += size;
+        x = 0;
     }
+    return arr;
 }
 /* console.log(arrCoordinates); */
 function containsObject(obj, list) {
@@ -81,11 +83,11 @@ document.getElementById('field_range').addEventListener('change', () => {
     drawGrid();
     document.getElementById("add_start").disabled = false;
     document.getElementById("add_finish").disabled = false;
-    arrCoordinates = [];
-    fillCoordinates(arrCoordinates);
+    arrCoordinates = fillCoordinates();  
     mapMaze = [];
     startСoordinates = [];
     finishCoordinates = [];
+    /* console.log(arrCoordinates); */
 });
 
 
@@ -93,6 +95,8 @@ canvas.addEventListener('click', function(e){
     let x = Math.floor(e.offsetX / cellSize) * cellSize;
     let y = Math.floor(e.offsetY / cellSize) * cellSize;
     let cell = new Cell(x, y, cellSize);
+    /* console.log(cell) */
+    /* console.log(markedCells) */
 
     if(currButton === 1){
         if(containsObject(cell, finishCoordinates) == Infinity && containsObject(cell, markedCells) == Infinity){
@@ -100,6 +104,8 @@ canvas.addEventListener('click', function(e){
             ctx.fillRect(x + 0.5, y + 0.5, cellSize - 1, cellSize - 1); 
             markedCells.push(cell);
             startСoordinates.push(cell);
+            /* console.log(markedCells);
+            console.log(arrCoordinates); */
             currButton = 0;
         }
     
@@ -118,11 +124,15 @@ canvas.addEventListener('click', function(e){
                 ctx.fillStyle = 'black';
                 ctx.fillRect(x, y, cellSize, cellSize);
                 markedCells.push(cell);
+                /* console.log(arrCoordinates)
+                console.log(markedCells)
+                console.log('black') */
     
             }else{
                 ctx.fillStyle = '#00FF7F';
                 ctx.fillRect(x + 0.5, y + 0.5, cellSize - 1, cellSize - 1); 
                 markedCells.splice(containsObject(cell, markedCells), 1);
+                /* console.log('green') */
             } 
 
         }else if(containsObject(cell, startСoordinates) != Infinity){
@@ -208,11 +218,26 @@ document.getElementById('remove_field').addEventListener('click', function(e){
     mapMaze = [];
 });
 
-/* document.getElementById('start').addEventListener('click', function(e){
-    console.log(mapMaze)
-    console.log(arrCoordinates)
-    console.log(markedCells)
-});  */ 
+document.getElementById('start').addEventListener('click', function(e){
+/*     console.log(mapMaze)
+    console.log(arrCoordinates); */
+    console.log(markedCells);
+  /*   console.log(startСoordinates);
+    console.log(finishCoordinates);
+    console.log(currButton); */
+});  
+ 
+function arrValidation(arr){
+    let newArr = [];
+    for(let i = 0; i < arr.length - 1; ++i){
+        let col = []
+        for(let j = 0; j < arr.length - 1; ++j){
+            col.push(arr[i][j]);
+        }  
+        newArr.push(col) 
+    }
+    return newArr;
+}
 
 document.getElementById('generate_maze').addEventListener('click', function(e){
     ctx.reset();
@@ -225,16 +250,23 @@ document.getElementById('generate_maze').addEventListener('click', function(e){
     finishCoordinates = [];
     markedCells = [];
     mapMaze = [];
+
     if(fieldPixelsSize % 2 == 0){
         mapMaze = generateMaze(fieldPixelsSize + 1, fieldPixelsSize + 1);
-
+        mapMaze = arrValidation(mapMaze);
+        /* console.log(mapMaze) */
+ 
     }else{
         mapMaze = generateMaze(fieldPixelsSize, fieldPixelsSize);
+        /* console.log(mapMaze) */
     }
     /* console.log(arrCoordinates)
     console.log(mapMaze) */
-    drawMaze(mapMaze, arrCoordinates);
-    currButton = 0;
+    drawMaze(mapMaze, arrCoordinates, cellSize);
+    /* console.log(markedCells)
+    console.log(arrCoordinates) */
+    currButton = 3;
+    document.getElementById("add_wall").disabled = true;
 });
  
 
