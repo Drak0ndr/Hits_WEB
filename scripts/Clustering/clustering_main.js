@@ -1,4 +1,4 @@
-import { drawer, startDrawing, stopDrawing, clearClusters, unlockingButton, buttonLock, startAlgorithms} from "./drawing_functions.js";
+import { drawer, kmeans, startDrawing, stopDrawing, clearClusters, unlockingButton, buttonLock, startAlgorithms, checkCentroids, drawingCentroids} from "./drawing_functions.js";
 export { pointCoordinates, ctx, ctx2, ctx3, canvas1, canvas2, canvas3, currButton, currCountClusters, currRadius, currCountNeighbors, currCountClustersHierarchical };
 
 let currButton = 1;
@@ -89,12 +89,23 @@ document.getElementById('remove_points').addEventListener('click', () => {
     ctx2.reset();
     ctx3.reset();
     pointCoordinates = [];
+    kmeans = { clusters: null, centroids: null};
 });
 
 document.getElementById('start').addEventListener('click', () => {
     currButton = 0;
     unlockingButton();
     startAlgorithms();
+});
+
+document.getElementById('centroids_check').addEventListener('change', () => {
+    if(checkCentroids === false){
+        drawingCentroids(kmeans.centroids);
+        checkCentroids = true;
+
+    }else{
+        checkCentroids = false;
+    }
 });
 
 

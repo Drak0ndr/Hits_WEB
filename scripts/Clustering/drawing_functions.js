@@ -4,12 +4,12 @@ import { kMeans } from "./k_means.js";
 import { dbscan } from "./DBSCAN.js";
 import { hierarchicalClustering } from "./hierarchical.js";
 import {colors} from "./colors.js"
-export { drawer, startDrawing, stopDrawing, startDBSCAN, startKMeans, findNearbyPointIndex, clearClusters, startHierarchical, startAlgorithms};
+export { drawer, startDrawing, stopDrawing, startDBSCAN, startKMeans, findNearbyPointIndex, clearClusters, startHierarchical, startAlgorithms, drawingCentroids};
 
 const RADIUS = 7;
 let algorithm = 1;
-let kmeans = { clusters: null, centroids: null};
-let checkCentroids = false;
+export let kmeans = { clusters: null, centroids: null};
+export let checkCentroids = false;
 
 function addPoint(x, y) {
     let point = new Point(x, y, RADIUS);
@@ -153,9 +153,10 @@ export function resetClusters() {
 
 function clearClusters(){
     resetClusters();
-    for (let i = 0; i < pointCoordinates.length; i++) {
+    for (let i = 0; i < pointCoordinates.length; ++i) {
         pointCoordinates[i].drawingPoints([ctx, ctx2, ctx3]);
     }
+    kmeans.centroids = null;
 }
 
 function startDrawing() {
@@ -178,15 +179,7 @@ export function buttonLock(){
     document.getElementById("add_points").disabled = true;
 }
 
-document.getElementById('centroids_check').addEventListener('change', () => {
-    if(checkCentroids === false){
-        drawingCentroids(kmeans.centroids);
-        checkCentroids = true;
 
-    }else{
-        checkCentroids = false;
-    }
-});
 
 
 

@@ -79,6 +79,7 @@ main {
     height: 90%;
     border-radius: 10%;
     border: 5px solid white;
+    cursor: pointer;
 }
 .wpapper_parametrs{
     display: flex;

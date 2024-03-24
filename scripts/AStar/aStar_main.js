@@ -1,17 +1,40 @@
 import { Cell } from "./classes.js";
-let fieldPixelsSize = 7;
+import {generateMaze, drawMaze} from './maze.js';
+let fieldPixelsSize = 50;
 let currButton = 0;
 const canvas = document.getElementById('astar_canvas');
-const ctx = canvas.getContext('2d');
+export const ctx = canvas.getContext('2d');
 canvas.height = document.querySelector('#astar_canvas').clientHeight;
 canvas.width = document.querySelector('#astar_canvas').clientHeight;
-let cellSize = canvas.width / fieldPixelsSize;
-let markedCells = [];
+export let cellSize = canvas.width / fieldPixelsSize;
+export let markedCells = [];
 let startСoordinates = [];
 let finishCoordinates = [];
+let arrCoordinates = [];
+let mapMaze = [];
 
 drawGrid();
+fillCoordinates(arrCoordinates);
 
+function fillCoordinates(arr){
+    let size = canvas.width / fieldPixelsSize;
+    let x = 0;
+    let y = 0;
+
+    for(let i = 0; i < fieldPixelsSize; ++i){
+        let col = [];
+
+        for(let j = 0; j < fieldPixelsSize; ++j){
+            col.push(new Cell(x, y, size));
+            y += size;
+        }
+
+        arr.push(col);
+        x += size;
+        y = 0;
+    }
+}
+/* console.log(arrCoordinates); */
 function containsObject(obj, list) {
     for (let i = 0; i < list.length; ++i) {
         if (JSON.stringify(list[i]) === JSON.stringify(obj)) {
@@ -58,6 +81,11 @@ document.getElementById('field_range').addEventListener('change', () => {
     drawGrid();
     document.getElementById("add_start").disabled = false;
     document.getElementById("add_finish").disabled = false;
+    arrCoordinates = [];
+    fillCoordinates(arrCoordinates);
+    mapMaze = [];
+    startСoordinates = [];
+    finishCoordinates = [];
 });
 
 
@@ -177,10 +205,38 @@ document.getElementById('remove_field').addEventListener('click', function(e){
     startСoordinates = [];
     finishCoordinates = [];
     markedCells = [];
+    mapMaze = [];
 });
 
 /* document.getElementById('start').addEventListener('click', function(e){
-    console.log(currButton)
+    console.log(mapMaze)
+    console.log(arrCoordinates)
+    console.log(markedCells)
+});  */ 
+
+document.getElementById('generate_maze').addEventListener('click', function(e){
+    ctx.reset();
+    drawGrid();
+    document.getElementById("add_start").disabled = false;
+    document.getElementById("add_finish").disabled = false;
+    document.getElementById("add_wall").disabled = false;
+    currButton = 0;
+    startСoordinates = [];
+    finishCoordinates = [];
+    markedCells = [];
+    mapMaze = [];
+    if(fieldPixelsSize % 2 == 0){
+        mapMaze = generateMaze(fieldPixelsSize + 1, fieldPixelsSize + 1);
+
+    }else{
+        mapMaze = generateMaze(fieldPixelsSize, fieldPixelsSize);
+    }
+    /* console.log(arrCoordinates)
+    console.log(mapMaze) */
+    drawMaze(mapMaze, arrCoordinates);
+    currButton = 0;
 });
- */
+ 
+
+
 
