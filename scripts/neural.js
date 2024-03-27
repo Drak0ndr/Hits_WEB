@@ -17,7 +17,6 @@ function drawLine(x1, y1, x2, y2, color = 'gray') {
     ctx.moveTo(x1, y1)
     ctx.lineTo(x2, y2)
     ctx.stroke()
-
 }
 
 function drawCell(x, y, w, h) {
@@ -413,6 +412,6 @@ function train(count) {
     console.log(TA / check_data.length)
 }
 setTimeout(() => {
-    train(1)
+    train(5)
 
 }, 1000)
