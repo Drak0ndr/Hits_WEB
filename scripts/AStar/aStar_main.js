@@ -1,6 +1,8 @@
 import { Cell } from "./classes.js";
 import {generateMaze, drawMaze} from './maze.js';
-let fieldPixelsSize = 50;
+
+import { aStar } from "./astar_algorithm.js";
+export let fieldPixelsSize = 50;
 let currButton = 0;
 const canvas = document.getElementById('astar_canvas');
 export const ctx = canvas.getContext('2d');
@@ -8,9 +10,9 @@ canvas.height = document.querySelector('#astar_canvas').clientHeight;
 canvas.width = document.querySelector('#astar_canvas').clientHeight;
 export let cellSize = canvas.width / fieldPixelsSize;
 export let markedCells = [];
-let startСoordinates = [];
-let finishCoordinates = [];
-let arrCoordinates;
+export let startСoordinates = [];
+export let finishCoordinates = [];
+export let arrCoordinates;
 arrCoordinates = fillCoordinates();
 let mapMaze = [];
 
@@ -26,7 +28,7 @@ function fillCoordinates(){
         let col = [];
 
         for(let j = 0; j < fieldPixelsSize; ++j){
-            col.push(new Cell(x, y, size));
+            col.push(new Cell(x, y, size, i * fieldPixelsSize + j + 1));
             x += size;
         }
 
@@ -39,9 +41,12 @@ function fillCoordinates(){
 /* console.log(arrCoordinates); */
 function containsObject(obj, list) {
     for (let i = 0; i < list.length; ++i) {
-        if (JSON.stringify(list[i]) === JSON.stringify(obj)) {
+        if(Math.round(list[i].vertex1.x) == Math.round(obj.vertex1.x) && Math.round(list[i].vertex1.y) == Math.round(obj.vertex1.y) &&
+        Math.round(list[i].vertex2.x) == Math.round(obj.vertex2.x) && Math.round(list[i].vertex2.y) == Math.round(obj.vertex2.y) &&
+        Math.round(list[i].vertex3.x) == Math.round(obj.vertex3.x) && Math.round(list[i].vertex3.y) == Math.round(obj.vertex3.y) &&
+        Math.round(list[i].vertex4.x) == Math.round(obj.vertex4.x) && Math.round(list[i].vertex4.y) == Math.round(obj.vertex4.y))
+
             return i;
-        }
     }
 
     return Infinity;
@@ -51,7 +56,9 @@ function drawLine(x1, y1, x2, y2) {
     ctx.beginPath();
     ctx.strokeStyle = 'black'
     ctx.lineJoin = 'miter';
-    ctx.lineWidth = 1;
+    (fieldPixelsSize < 30) ? ctx.lineWidth = 1 : (fieldPixelsSize < 70) ? ctx.lineWidth = 0.8 : (fieldPixelsSize < 100) ?
+    ctx.lineWidth = 0.7 : (fieldPixelsSize < 170) ? ctx.lineWidth = 0.4 : (fieldPixelsSize < 200) ? ctx.lineWidth = 0.3 :
+    ctx.lineWidth = 0.2;  
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
     ctx.stroke();
@@ -94,25 +101,27 @@ document.getElementById('field_range').addEventListener('change', () => {
 canvas.addEventListener('click', function(e){
     let x = Math.floor(e.offsetX / cellSize) * cellSize;
     let y = Math.floor(e.offsetY / cellSize) * cellSize;
-    let cell = new Cell(x, y, cellSize);
+    let posX = Math.floor(e.offsetY / cellSize);
+	let posY = Math.floor(e.offsetX / cellSize);
+    let cell = new Cell(x, y, cellSize, (fieldPixelsSize * posX) + posY + 1);
     /* console.log(cell) */
     /* console.log(markedCells) */
 
     if(currButton === 1){
         if(containsObject(cell, finishCoordinates) == Infinity && containsObject(cell, markedCells) == Infinity){
             ctx.fillStyle = 'red';
-            ctx.fillRect(x + 0.5, y + 0.5, cellSize - 1, cellSize - 1); 
+            ctx.fillRect(x, y, cellSize, cellSize); 
             markedCells.push(cell);
             startСoordinates.push(cell);
-            /* console.log(markedCells);
-            console.log(arrCoordinates); */
+            /* console.log(markedCells); 
+            console.log(startСoordinates);  */
             currButton = 0;
         }
     
     }else if(currButton === 2){
         if(containsObject(cell, startСoordinates) == Infinity && containsObject(cell, markedCells) == Infinity){
             ctx.fillStyle = 'blue';
-            ctx.fillRect(x + 0.5, y + 0.5, cellSize - 1, cellSize - 1); 
+            ctx.fillRect(x, y, cellSize, cellSize); 
             markedCells.push(cell);
             finishCoordinates.push(cell);
             currButton = 0;
@@ -218,15 +227,15 @@ document.getElementById('remove_field').addEventListener('click', function(e){
     mapMaze = [];
 });
 
-document.getElementById('start').addEventListener('click', function(e){
-/*     console.log(mapMaze)
-    console.log(arrCoordinates); */
+/* document.getElementById('start').addEventListener('click', function(e){
+    console.log(mapMaze)
+    console.log(arrCoordinates); 
     console.log(markedCells);
-  /*   console.log(startСoordinates);
+    console.log(startСoordinates);
     console.log(finishCoordinates);
-    console.log(currButton); */
+    console.log(currButton); 
 });  
- 
+  */
 function arrValidation(arr){
     let newArr = [];
     for(let i = 0; i < arr.length - 1; ++i){
@@ -267,6 +276,30 @@ document.getElementById('generate_maze').addEventListener('click', function(e){
     console.log(arrCoordinates) */
     currButton = 3;
     document.getElementById("add_wall").disabled = true;
+});
+
+document.getElementById('start').addEventListener('click', function(e){
+    for(let i = 0; i < markedCells.length; ++i){
+        if(finishCoordinates[0].cellNumber == markedCells[i].cellNumber ){
+            markedCells.splice(i, 1);
+         }
+    }
+
+    for(let i = 0; i < markedCells.length; ++i){
+        if(startСoordinates[0].cellNumber == markedCells[i].cellNumber){
+            markedCells.splice(i, 1);
+         }
+    }
+    
+
+    let cellCoordinates = [];
+    
+    for(let i = 0; i < arrCoordinates.length; ++i){
+        for(let j = 0; j < arrCoordinates.length; ++j){
+            cellCoordinates.push(arrCoordinates[i][j]);
+        }
+    }
+    aStar();
 });
  
 

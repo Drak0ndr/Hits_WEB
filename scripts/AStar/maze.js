@@ -155,7 +155,7 @@ export function drawMaze(map, coordinates, size){
 			if(map[i][j] == 'wall'){
 				ctx.fillStyle = 'black';
                 ctx.fillRect(coordinates[i][j].vertex1.x, coordinates[i][j].vertex1.y, size, size); 
-				markedCells.push(new Cell(coordinates[i][j].vertex1.x, coordinates[i][j].vertex1.y, size));
+				markedCells.push(new Cell(coordinates[i][j].vertex1.x, coordinates[i][j].vertex1.y, size, coordinates[i][j].cellNumber));
 			}
 		}
 	}

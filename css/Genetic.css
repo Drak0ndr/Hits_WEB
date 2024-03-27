@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    background-color: rgb(33, 37, 41);
+    min-height: 100vh;
+    display: flex;
+}
+
+.parametrs {
+    width: 30vw;
+}
+.back_top{
+    height: 110px;
+    padding: 10px 10px;
+}
+.back {
+    width: 7vw;
+    height: 7vw;
+    border-radius:50%;
+    background-color:rgb(24, 26, 27);
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.back a {
+    width: 7vw;
+    height: 7vw;
+    border-radius:50%;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.back:hover {
+    background-color:rgb(31, 34, 35);
+}
+.back svg {
+    width: 5vw;
+    height: 5vw;
+    color: #64748b;;
+}
+
+.field {
+    width: 69vw;
+}
+.astar_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 20px 0px;
+}
+.astar_header > h2 {
+    font-size: 40px;
+}
+.wrapper_field{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 44vw;
+}
+.wpapper_parametrs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    height: 42vw;
+}
+.parametrs_header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    width: 100%;
+}
+.parametrs_descr{
+    color: white;
+    font-size: 20px;
+    margin: 0px 15px;
+}
+.astar_settings{
+    background-color: white;
+    height: 100%;
+    width: 90%;
+    border-radius: 10%;
+    border: 5px solid grey;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+#genetic_canvas{
+    background-color: white;
+    height: 580px;
+    width: 580px;
+    cursor: pointer;
+}
+#field_settings{
+    display: flex;
+    flex-direction:column;
+}
