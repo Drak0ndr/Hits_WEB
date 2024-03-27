@@ -248,6 +248,100 @@ for (let i = 0; i < 10; i++) {
     neuralData.outputSlise.push(0)
     neuralData.outputSliseSm.push(0)
 }
+function centralize(data) {
+    let left = 0
+    let right = 0
+    let flagLeft = false
+    let flagRight = false
+    let size = data.length ** 0.5
+    let ans = Array(data.length).fill(0)
+    while (flagLeft == false) {
+        for (let i = 0; i < size; i++) {
+            if (data[i * size + left] > 0) {
+                flagLeft = true
+                break
+            }
+        }
+        if (flagLeft == false) {
+            left++
+        }
+    }
+    while (flagRight == false) {
+        for (let i = 0; i < size; i++) {
+            if (data[i * size + size - 1 - right] > 0) {
+                flagRight = true
+                break
+            }
+        }
+        if (flagRight == false) {
+            right++
+        }
+    }
+    let delta = Math.floor(Math.abs(right - left) / 2)
+    if (right > left) {
+        for (let y = 0; y < size; y++) {
+            for (let x = delta; x < size; x++) {
+                ans[y * size + x] = data[y * size + x - delta]
+            }
+        }
+    }
+    if (left > right) {
+        for (let y = 0; y < size; y++) {
+            for (let x = 0; x < size - delta; x++) {
+                ans[y * size + x] = data[y * size + x + delta]
+            }
+        }
+    }
+    if (left == right) {
+        ans = data
+    }
+    let top = 0
+    let bottom = 0
+    let flagTop = false
+    let flagBottom = false
+    while (flagTop == false) {
+        for (let i = 0; i < size; i++) {
+            if (data[top * size + i] > 0) {
+                flagTop = true
+                break
+            }
+        }
+        if (flagTop == false) {
+            top++
+        }
+    }
+    while (flagBottom == false) {
+        for (let i = 0; i < size; i++) {
+            if (data[(size - 1 - bottom) * size + i] > 0) {
+                flagBottom = true
+                break
+            }
+        }
+        if (flagBottom == false) {
+            bottom++
+        }
+    }
+
+    delta = Math.floor(Math.abs(top - bottom) / 2)
+    if (top < bottom) {
+        let temp = Array(delta * size).fill(0)
+        ans = temp.concat(ans)
+        while (ans.length > size * size) {
+            ans.pop()
+        }
+    }
+    if (bottom < top) {
+        let temp = Array(delta * size).fill(0)
+        ans = ans.concat(temp)
+        while (ans.length > size * size) {
+            ans.shift()
+        }
+    }
+    // console.log(data)
+    // console.log(left, right, top, bottom)
+    // console.log(ans)
+    return ans
+}
 function neuralNetwork(data) {
     for (let i = 0; i < neuralData.firstHideSlise.length; i++) {
         neuralData.firstHideSlise[i] = 0
@@ -260,7 +354,7 @@ function neuralNetwork(data) {
         neuralData.outputSliseSm[i] = 0
     }
     // console.log(data)
-    neuralData.inputSlise = data
+    neuralData.inputSlise = centralize(data)
     for (let i = 0; i < neuralData.inputSliseWeights.length; i++) {
         for (let j = 0; j < neuralData.inputSliseWeights[i].length; j++) {
             neuralData.firstHideSliseSm[j] += neuralData.inputSlise[i] * neuralData.inputSliseWeights[i][j]
@@ -294,7 +388,8 @@ function neuralNetwork(data) {
 }
 
 function train(count) {
-    let trainSpeed = 0.3
+    console.log(centralize([0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]))
+    let trainSpeed = 0.4
     for (let i = 0; i < count; i++) {
         let TA = 0
         train_data.forEach((item, ind) => {
@@ -412,6 +507,6 @@ function train(count) {
     console.log(TA / check_data.length)
 }
 setTimeout(() => {
-    train(5)
+    train(20)
 
 }, 1000)
