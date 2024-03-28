@@ -248,6 +248,14 @@ for (let i = 0; i < 10; i++) {
     neuralData.outputSlise.push(0)
     neuralData.outputSliseSm.push(0)
 }
+fetch('../scripts/neuralData.json')
+    .then(response => {
+        return response.json()
+    })
+    .then(data => {
+        console.log(data)
+        neuralData = data
+    })
 function centralize(data) {
     let left = 0
     let right = 0
@@ -507,6 +515,6 @@ function train(count) {
     console.log(TA / check_data.length)
 }
 setTimeout(() => {
-    train(20)
+    train(0)
 
 }, 1000)
