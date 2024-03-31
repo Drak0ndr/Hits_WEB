@@ -10,6 +10,9 @@ const RADIUS = 7;
 let algorithm = 1;
 export let kmeans = { clusters: null, centroids: null};
 export let checkCentroids = false;
+let spikes = 5;
+let innerRadius = 4;
+let outerRadius = 2;
 
 function addPoint(x, y) {
     let point = new Point(x, y, RADIUS);
@@ -79,13 +82,34 @@ function drawingClusters(clusters){
 
 function drawingCentroids(centroids) { 
     for (let i = 0; i < centroids.length; ++i) {
+        let cx = centroids[i].x;
+        let cy = centroids[i].y;
+        let rot = Math.PI / 2 * 3;
+        let step = Math.PI / spikes;
+
         ctx.beginPath();
-        ctx.moveTo(centroids[i].x, centroids[i].y - Math.sqrt(16) / 3);
-        ctx.lineTo(centroids[i].x - 8, centroids[i].y - Math.sqrt(16) / 3 + Math.sqrt(192));
-        ctx.lineTo(centroids[i].x + 8, centroids[i].y - Math.sqrt(16) / 3 + Math.sqrt(192));
-        ctx.fillStyle = 'black';
-        ctx.fill();
+        ctx.moveTo(cx, cy - outerRadius)
+
+        for(let j = 0; j < spikes; ++j){
+            let x = cx + Math.cos(rot) * outerRadius;
+            let y = cy + Math.sin(rot) * outerRadius;
+            ctx.lineTo(x, y)
+            rot += step
+
+            x = cx + Math.cos(rot) * innerRadius;
+            y = cy+Math.sin(rot) * innerRadius;
+            ctx.lineTo(x, y)
+            rot += step
+        }
+            ctx.lineTo(cx, cy - outerRadius);
+            ctx.closePath();
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+            ctx.fillStyle = 'white';
+            ctx.fill();
     }
+     
 }
 
 function drawingDBSCANMargin() {

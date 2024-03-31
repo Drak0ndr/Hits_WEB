@@ -94,10 +94,13 @@ main {
     flex-direction: column;
 }
 #genetic_canvas{
-    background-color: white;
-    height: 580px;
-    width: 580px;
-    cursor: pointer;
+    background-color: #057840;
+    height: 100%;
+    cursor: url('data:image/x-icon;base64,AAACAAEAICACAAAAAAAwAQAAFgAAACgAAAAgAAAAQAAAAAEAAQAAAAAAgAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAuenrAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAAAAPAAAAH4AAAD/AAAB/4AAA/+AAAf/AAAP/gAAH/wAAD/4AAB/8AAA/+AAAf/AAAP/gAAH/wAAD/4AAB/8AAA/+AAAP/AAAD/gAAA/wAAAP4AAAD8AAAA//////////////////////////////////////////////////+f////D////gf///wD///4Af//8AH//+AD///AB///gA///wAf//4AP//8AH//+AD///AB///gA///wAf//4AP//8AH///AD///wB///8A////Af///wP///8='), pointer;
+    width: 90%;
+    border-radius: 10px;
+    border:20px solid #BA8E4A;
+    box-shadow: inset -10px 10px 15px #404040 , 16px 19px 11px rgba(0, 0, 0, 0.1);
 }
 #field_settings{
     display: flex;

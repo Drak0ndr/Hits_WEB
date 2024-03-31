@@ -11,7 +11,7 @@ document.getElementById('distance_select').addEventListener('change', (event) =>
 
 
 function isInside(x, y){
-    return (x >= 0 && x < fieldPixelsSize && y >= 0 && y < fieldPixelsSize) ? true : false;
+    return (x >= 0 && x <= fieldPixelsSize && y >= 0 && y <= fieldPixelsSize) ? true : false;
 }
 
 
@@ -47,8 +47,9 @@ export async function aStar() {
             let j = markedCells[i].cellNumber;
             map[j - 1] = 2; 
         }
+        
 
-
+        console.log(map)
 
        
 
@@ -147,9 +148,9 @@ export async function aStar() {
 
                 /* console.log(newNeighbour) */
                 
-                if((current.vertex1.x + directions[dir][0] * cellSize) >= 0 && (current.vertex1.y + directions[dir][1] * cellSize) >= 0 &&
-                (current.vertex1.x + directions[dir][0] * cellSize) < fieldPixelsSize * cellSize && 
-                (current.vertex1.y + directions[dir][1] * cellSize) < fieldPixelsSize * cellSize){
+                if((Math.round(current.vertex1.x) + Math.round(directions[dir][0] * cellSize)) >= 0 && (Math.round(current.vertex1.y) + Math.round(directions[dir][1] * cellSize)) >= 0 &&
+                (Math.round(current.vertex1.x) + Math.round(directions[dir][0] * cellSize)) <= Math.round(fieldPixelsSize * cellSize) && 
+                (Math.round(current.vertex1.y) + Math.round(directions[dir][1] * cellSize)) <= Math.round(fieldPixelsSize * cellSize)){
                     
                     let isUsed = usedList.find(node => (node.posX == newNeighbour.posX && node.posY == newNeighbour.posY));
                     let neighbour = openList.find(node => (node.posX == newNeighbour.posX && node.posY == newNeighbour.posY));
