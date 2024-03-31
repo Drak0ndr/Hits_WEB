@@ -124,8 +124,47 @@ export function showPath(path) {
     for (let i = 0; i < path.length - 1; ++i) {
         ctx.moveTo(arrVertexes[path[i]].x, arrVertexes[path[i]].y);
         ctx.lineTo(arrVertexes[path[i + 1]].x, arrVertexes[path[i + 1]].y);
-        
-        if (counter < document.getElementById("speed_range").value) {
+
+        if(document.getElementById("speed_range").value <= 20){
+            if (counter < 90) {
+                ctx.strokeStyle = "white";
+    
+            }else {
+                ctx.strokeStyle = "#fe019a";
+            }
+    
+            ctx.lineWidth = "5";
+            ctx.stroke(); 
+
+        }else{
+            if (counter < document.getElementById("speed_range").value * 4) {
+                ctx.strokeStyle = "white";
+    
+            }else {
+                ctx.strokeStyle = "#fe019a";
+            }
+    
+            ctx.lineWidth = "5";
+            ctx.stroke();
+        } 
+    }
+
+    ctx.moveTo(arrVertexes[path[path.length - 1]].x, arrVertexes[path[path.length - 1]].y);
+    ctx.lineTo(arrVertexes[path[0]].x, arrVertexes[path[0]].y);
+
+    if(document.getElementById("speed_range").value <= 20){
+        if (counter < 90) {
+            ctx.strokeStyle = "white";
+
+        }else {
+            ctx.strokeStyle = "#fe019a";
+        }
+
+        ctx.lineWidth = "5";
+        ctx.stroke(); 
+
+    }else{
+        if (counter < document.getElementById("speed_range").value * 4) {
             ctx.strokeStyle = "white";
 
         }else {
@@ -134,32 +173,17 @@ export function showPath(path) {
 
         ctx.lineWidth = "5";
         ctx.stroke();
-    }
-
-    ctx.moveTo(arrVertexes[path[path.length - 1]].x, arrVertexes[path[path.length - 1]].y);
-    ctx.lineTo(arrVertexes[path[0]].x, arrVertexes[path[0]].y);
-
-    if (counter < document.getElementById("speed_range").value) {
-        ctx.strokeStyle = "white";
-
-    }else {
-        ctx.strokeStyle = "#fe019a";
-        clearInterval(intervalId);
-        
-    }
-
-    ctx.lineWidth = "5";
-    ctx.stroke();
+    } 
     
     drawVertexes();
 }
 
 function geneticAlgorithm() {
     clearInterval(intervalId);
-
+    
     function geneticAlgorithmAnimation(){
         ctx.reset();
-        /* console.log(arrPaths) */
+        console.log(arrPaths)
         drawVertexes();
 
         if (edgeMapping) {
