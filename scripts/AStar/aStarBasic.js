@@ -13,8 +13,8 @@ export let markedCells = []; // закрашенные ячейки
 export let startСoordinates = [];
 export let finishCoordinates = [];
 export let arrCoordinates = fillCoordinates(); //координаты всех ячеек (левый верхний угол)
+export let currButton = 1;
 
-let currButton = 1;
 let mapMaze = []; // карта лабиринта
 
 drawGrid();
@@ -76,10 +76,10 @@ function fillCoordinates(){
 
 function containsObject(obj, list) {
     for (let i = 0; i < list.length; ++i) {
-        if(Math.round(list[i].vertex1.x) == Math.round(obj.vertex1.x) && Math.round(list[i].vertex1.y) == Math.round(obj.vertex1.y) &&
-        Math.round(list[i].vertex2.x) == Math.round(obj.vertex2.x) && Math.round(list[i].vertex2.y) == Math.round(obj.vertex2.y) &&
-        Math.round(list[i].vertex3.x) == Math.round(obj.vertex3.x) && Math.round(list[i].vertex3.y) == Math.round(obj.vertex3.y) &&
-        Math.round(list[i].vertex4.x) == Math.round(obj.vertex4.x) && Math.round(list[i].vertex4.y) == Math.round(obj.vertex4.y))
+        if(Math.trunc(list[i].vertex1.x) == Math.trunc(obj.vertex1.x) && Math.trunc(list[i].vertex1.y) == Math.trunc(obj.vertex1.y) &&
+        Math.trunc(list[i].vertex2.x) == Math.trunc(obj.vertex2.x) && Math.trunc(list[i].vertex2.y) == Math.trunc(obj.vertex2.y) &&
+        Math.trunc(list[i].vertex3.x) == Math.trunc(obj.vertex3.x) && Math.trunc(list[i].vertex3.y) == Math.trunc(obj.vertex3.y) &&
+        Math.trunc(list[i].vertex4.x) == Math.trunc(obj.vertex4.x) && Math.trunc(list[i].vertex4.y) == Math.trunc(obj.vertex4.y))
 
             return i;
     }
@@ -100,6 +100,16 @@ function arrValidation(arr){
     }
 
     return newArr;
+}
+
+function resettingVariables(){
+    startСoordinates = [];
+    finishCoordinates = [];
+    markedCells = [];
+    mapMaze = [];
+    currButton = 1;
+    document.getElementById("add_start").disabled = false;
+    document.getElementById("add_finish").disabled = false;
 }
 
 canvas.addEventListener('click', function(e){
@@ -179,37 +189,19 @@ document.getElementById('field_range').addEventListener('change', () => {
     cellSize = canvas.width / fieldPixelsSize;
     drawGrid();
     arrCoordinates = fillCoordinates();  
-    mapMaze = [];
-    startСoordinates = [];
-    finishCoordinates = []; 
-    markedCells = [];
-    currButton = 1;
-    document.getElementById("add_start").disabled = false;
-    document.getElementById("add_finish").disabled = false;
+    resettingVariables();
 });
 
 document.getElementById('remove_field').addEventListener('click', () => {
     ctx.reset();
     drawGrid();
-    startСoordinates = [];
-    finishCoordinates = [];
-    markedCells = [];
-    mapMaze = [];
-    currButton = 1;
-    document.getElementById("add_start").disabled = false;
-    document.getElementById("add_finish").disabled = false;
+    resettingVariables();
 });
 
 document.getElementById('generate_maze').addEventListener('click',  () => {
     ctx.reset();
     drawGrid();  
-    startСoordinates = [];
-    finishCoordinates = [];
-    markedCells = [];
-    mapMaze = [];
-    currButton = 1;
-    document.getElementById("add_start").disabled = false;
-    document.getElementById("add_finish").disabled = false;
+    resettingVariables();
 
     if(fieldPixelsSize % 2 == 0){
         mapMaze = generateMaze(fieldPixelsSize + 1, fieldPixelsSize + 1);
@@ -248,7 +240,9 @@ document.getElementById('start').addEventListener('click',  () => {
                 markedCells.splice(i, 1);
              }
         }
-        
+
+        currButton = 4;
+
         aStar();
     }  
 });
@@ -270,6 +264,7 @@ document.getElementById('add_finish').addEventListener('click', () =>{
     currButton = 3;
     document.getElementById("add_finish").disabled = true;
 });
+
 
 
 

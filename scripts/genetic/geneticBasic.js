@@ -21,7 +21,7 @@ let deleteVertexes = false;
 
 let intervalId;
 let counter = 0; 
-let animation = 10;
+let animation = 1;
 
 function deleteInterval(){
     counter = 0;
@@ -125,11 +125,11 @@ function deleteVertex(e) {
 
 export function showPath(path) {
     let numberIterations;
-    document.getElementById("speed_range").value <= 20 ? numberIterations = 100 :  
-    document.getElementById("speed_range").value <= 40 ? numberIterations = 200 :
-    document.getElementById("speed_range").value <= 60 ? numberIterations = 300 :
-    document.getElementById("speed_range").value <= 80 ? numberIterations = 400 :
-    numberIterations = 500;
+    document.getElementById("speed_range").value <= 20 ? numberIterations = 80 :  
+    document.getElementById("speed_range").value <= 40 ? numberIterations = 180 :
+    document.getElementById("speed_range").value <= 60 ? numberIterations = 280 :
+    document.getElementById("speed_range").value <= 80 ? numberIterations = 380 :
+    numberIterations = 480;
     
     for (let i = 0; i < path.length - 1; ++i) {
         ctx.moveTo(arrVertexes[path[i]].x, arrVertexes[path[i]].y);
@@ -188,7 +188,7 @@ function geneticAlgorithm() {
     }
     
     intervalId = setInterval(geneticAlgorithmAnimation, animation);
-
+    
     geneticAlgorithmAnimation();
 }
 
@@ -207,11 +207,6 @@ canvas.addEventListener('mouseup', () => {
 
 document.getElementById("speed_range").addEventListener('input', () => {
     animation = 101 - document.getElementById("speed_range").value;
-
-    if (intervalId) {
-        clearInterval(intervalId);
-        geneticAlgorithm();
-    }
 });
 
 document.getElementById("сhange_graph").addEventListener('change', () => {
