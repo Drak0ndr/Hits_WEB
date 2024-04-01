@@ -1,4 +1,4 @@
-import {arrPaths, showPath, arrVertexes, deletePath, ctx} from './genetic_main.js'
+import {arrPaths, showPath, arrVertexes, deletePath, ctx} from './geneticBasic.js'
 
 export let numberGenerations = 500;       
 export let populationSize = 500;           

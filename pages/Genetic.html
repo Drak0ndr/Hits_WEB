@@ -31,28 +31,34 @@
                       </svg></div>
                     <div class="parametrs_descr">Настройки</div>
                 </div>
-                <div class="astar_settings">
-                    <div>
+                <div class="genetic_settings">
+                    <div id = "div1">
                         <span>Выберите количество поколений</span>
-                        <input type="range" id="count_generations" min="10" max="2000" step="1" value ="500">
+                        <div>
+                            <input type="range" id="count_generations" min="10" max="2000" step="1" value ="500">
+                            <label for="count_generations">500</label>
+                        </div>
                     </div>
-                    <div>
+                    <div id = "div2">
                         <span>Выберите размер популяции</span>
                         <input type="range" id="count_children" min="10" max="2000" step="1" value ="500">
                     </div>
-                    <div>
+                    <div id = "div3">
                         <span>Выберите вероятность мутации</span>
                         <input type="range" id="probability" min="5" max="100" step="1" value ="50">
                     </div>
-                    <div id = "field_settings">
-                        <span>Выберите скорость анимации</span>
+                    <div id = "div4">
+                        <span>Выберите скорость анимации в %</span>
                         <input type="number" id="speed_range" min="1" max="100" step="1" value ="100" name="field_range">
                     </div>
-                    <div>
+                    <div id = "div5">
                         <span>Показать ребра графа</span>
                         <input type="checkbox" id="ribs_check"/>
                     </div>
-                    <input type="button" class="settings_button" id="сhange_graph" value="Удалить вершины"> 
+                    <div id = "div6">
+                        <span>Удалить вершины</span>
+                        <input type="checkbox" id="сhange_graph"/>
+                    </div>
                     <input type="button" class="settings_button" id="remove_field" value="Очистить поле">
                     <input type="button" class="settings_button" id="start" value="Запустить алгоритм">
                     
@@ -60,7 +66,7 @@
             </div>
         </div>     
         <div class="field">
-            <div class="astar_header">
+            <div class="genetic_header">
                 <h2>Генетический алгоритм</h2>
             </div>
             <div class="wrapper_field">
@@ -68,6 +74,7 @@
             </div>
         </div>  
     </main>
-    <script type='module' src="../scripts/genetic/genetic_main.js"></script>
+    <script type='module' src="../scripts/genetic/geneticBasic.js"></script>
+    <script type='module' src="../scripts/genetic/geneticSettings.js"></script>
 </body>
 </html>

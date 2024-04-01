@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>A*</title>
+    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC+ElEQVR4nO2Zy3LTMBSG+1IMUGji+JJaVqjVZ2JY9CVycZlAk9pZMcMenqBQ2LBqWHHbsuthjmKbU9W2bMdxs/A/809SOYr/Tz1H1kwODjp16tRpL+WFp3wUie+jlYAytmcMEuF7vhIN2V+zSLDKAKOVvy4TPLnR7gAEeJG4qQGgD81bAuArAVsD6G6wlwC8gvcOgHcAovsP8KZKyAt9GJ5zcALvjnEMr2X1QN6crLk8b/sk3goAb/bl11dQ9fnntbyWBZA3J2suzwndGAANpyrZcVSAojlZu5WncWMA1tiVrgKAn0/G1LleifCNAtgTV5r+jTV9Z0wBoCt9r1dWLQOUURZAEuRBAIbnXDZdGX2Km3OvALx4S8yqY1rfaOecAwv9/QLgReeeuAdUqz2xDQDbJUAZ1QFgihsDwC93KvYEfl4H4C5OwMYn9MXoTnAXHW3bA+rqhL4MRWs/z0lPFAEwHA88+P33D7z6eAb2mxG44SY4+rgOQNnmyoPLOwPR3rDwmYJjgQdmPH4LtxBczcF+zWEY+jJ8qwAY/rrgDFRW7769BwshIiHdGkDVBi8CMB8awKRnIPSUwYA8QwZjF8wpk07GsYRmV3MZ3sZyjIR0KwCyGekhbsbSRkyMYVPAKUtXeDDbNPHLD2dgzkfghJvg+GqHOwRQ92uLAkw3AMfEFGBAAKyLEzBmHMy3L9LQ1I0CqKHpfm0pK0zDy5Um140pS0skKzTait0IQF5oul/nlUhigwJMWGZwi9iMXRtAF7qoRIyxK2vbIO6TJu5PWGHoAfpSgHFZA+Be6IzVVstDLRGdehOWHfzyf3B0vy6ALjQNnpZIwOX5R6erH9fQC3jmaieh0b3YlQGqhE4bMRJgL30JgeVB3SM+wteAg7H0C0MfLTd+vqwBUCV03i6iq2tDExr9LHYtgKEuuCa0rq77JYIfohc1AJzIX5cN3fRqH8ahn8Z+sqjxA4cTCWZH/joJ7bQfGtCPF+Lm0eLUrQzQqVOnTgdt6B867OsZSuRTpwAAAABJRU5ErkJggg==">
     <link rel="stylesheet" href="../css/aStar.css">
 </head>
 
@@ -49,7 +50,6 @@
                     </div>
                     <input type="button" class="settings_button" id="add_start" value="Поставить точку старта">
                     <input type="button" class="settings_button" id="add_finish" value="Поставить точку финиша">
-                    <input type="button" class="settings_button" id="add_wall" value="Поставить препятствия"> 
                     <input type="button" class="settings_button" id="remove_field" value="Очистить поле">
                     <input type="button" class="settings_button" id="generate_maze" value="Сгенерировать лабиринт">    
                     <input type="button" class="settings_button" id="start" value="Запустить алгоритм">
@@ -65,6 +65,6 @@
             </div>
         </div>  
     </main>
-    <script type='module' src="../scripts/aStar/aStar_main.js"></script>
+    <script type='module' src="../scripts/aStar/aStarBasic.js"></script>
 </body>
 </html>

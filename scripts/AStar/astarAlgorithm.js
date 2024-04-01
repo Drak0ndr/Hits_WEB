@@ -1,4 +1,4 @@
-import { fieldPixelsSize, startСoordinates, finishCoordinates, arrCoordinates, ctx, cellSize, markedCells } from "./aStar_main.js";
+import { fieldPixelsSize, startСoordinates, finishCoordinates, arrCoordinates, ctx, cellSize, markedCells } from "./aStarBasic.js";
 import { Cell } from "./classes.js";
 
 let currDistance = 1;
@@ -21,19 +21,8 @@ function sleep(milliseconds) {
 }
 
 export async function aStar() {
-    if(startСoordinates.length == 0 && finishCoordinates.length == 0){
-		alert("Установите старт и финиш и попробуйте заново");
-        return 0;
-	}
-	else if(finishCoordinates.length == 0){
-		alert("Установите финиш и попробуйте заново");
-        return 0;
-
-	}else if(startСoordinates.length == 0){
-		alert("Установите старт и попробуйте заново");
-        return 0;
-
-    }else{
+   
+    
         /* 1 - empty
 	    2 - wall*/
 
@@ -211,5 +200,5 @@ export async function aStar() {
             }
             
         }
-    }
+    
 }

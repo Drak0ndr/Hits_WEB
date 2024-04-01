@@ -3,13 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 main {
     background-color: rgb(33, 37, 41);
     min-height: 100vh;
     display: flex;
 }
-
 .parametrs {
     width: 30vw;
 }
@@ -42,18 +40,17 @@ main {
     height: 5vw;
     color: #64748b;;
 }
-
 .field {
     width: 69vw;
 }
-.astar_header {
+.genetic_header {
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     margin: 20px 0px;
 }
-.astar_header > h2 {
+.genetic_header > h2 {
     font-size: 40px;
 }
 .wrapper_field{
@@ -79,10 +76,10 @@ main {
 }
 .parametrs_descr{
     color: white;
-    font-size: 20px;
+    font-size: 30px;
     margin: 0px 15px;
 }
-.astar_settings{
+.genetic_settings{
     background-color: white;
     height: 100%;
     width: 90%;
@@ -102,7 +99,13 @@ main {
     border:20px solid #BA8E4A;
     box-shadow: inset -10px 10px 15px #404040 , 16px 19px 11px rgba(0, 0, 0, 0.1);
 }
-#field_settings{
+#div1, #div2, #div3, #div4{
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+#count_generations, #count_children, #probability, #speed_range,
+#ribs_check, #сhange_graph, #remove_field, #start{
+    cursor: pointer;
 }

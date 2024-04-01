@@ -1,5 +1,5 @@
 import {findMinPath} from './geneticAlgorithm.js';
-import {edgeMapping, drawEdges, drawVertexes, radius} from './driwing_genetic.js'
+import {edgeMapping, drawEdges, drawVertexes, radius} from './driwingGenetic.js'
 
 class Vertex {
     constructor(x, y) {
@@ -22,13 +22,18 @@ let deleteVertexes = false;
 let intervalId;
 let counter = 0; 
 let animation = 10;
+
+function deleteInterval(){
+    counter = 0;
+    clearInterval(intervalId);
+}
      
 function findDistance(firstVertex, secondVertex) {
     return Math.sqrt((secondVertex.x - firstVertex.x)**2 + (secondVertex.y - firstVertex.y)**2);
 }
 
 export function deletePath() {
-    counter = 0;
+    deleteInterval();
     arrPaths = [];
     ctx.reset(); 
     drawVertexes();
@@ -68,8 +73,7 @@ canvas.addEventListener('click', (e) => {
         return;
     }
 
-    counter = 0;
-    clearInterval(intervalId);
+    deleteInterval();
     
     let posX =  e.offsetX;
     let posY =  e.offsetY;
@@ -109,8 +113,7 @@ function deleteVertex(e) {
         Math.abs(arrVertexes[neighbor].y - posY) <= radius) {
         arrVertexes.splice(neighbor, 1);
 
-        counter = 0;
-        clearInterval(intervalId);
+        deleteInterval();
         
         deletePath();
 
@@ -121,39 +124,18 @@ function deleteVertex(e) {
 }
 
 export function showPath(path) {
+    let numberIterations;
+    document.getElementById("speed_range").value <= 20 ? numberIterations = 100 :  
+    document.getElementById("speed_range").value <= 40 ? numberIterations = 200 :
+    document.getElementById("speed_range").value <= 60 ? numberIterations = 300 :
+    document.getElementById("speed_range").value <= 80 ? numberIterations = 400 :
+    numberIterations = 500;
+    
     for (let i = 0; i < path.length - 1; ++i) {
         ctx.moveTo(arrVertexes[path[i]].x, arrVertexes[path[i]].y);
         ctx.lineTo(arrVertexes[path[i + 1]].x, arrVertexes[path[i + 1]].y);
 
-        if(document.getElementById("speed_range").value <= 20){
-            if (counter < 90) {
-                ctx.strokeStyle = "white";
-    
-            }else {
-                ctx.strokeStyle = "#fe019a";
-            }
-    
-            ctx.lineWidth = "5";
-            ctx.stroke(); 
-
-        }else{
-            if (counter < document.getElementById("speed_range").value * 4) {
-                ctx.strokeStyle = "white";
-    
-            }else {
-                ctx.strokeStyle = "#fe019a";
-            }
-    
-            ctx.lineWidth = "5";
-            ctx.stroke();
-        } 
-    }
-
-    ctx.moveTo(arrVertexes[path[path.length - 1]].x, arrVertexes[path[path.length - 1]].y);
-    ctx.lineTo(arrVertexes[path[0]].x, arrVertexes[path[0]].y);
-
-    if(document.getElementById("speed_range").value <= 20){
-        if (counter < 90) {
+        if (counter < numberIterations) {
             ctx.strokeStyle = "white";
 
         }else {
@@ -162,18 +144,20 @@ export function showPath(path) {
 
         ctx.lineWidth = "5";
         ctx.stroke(); 
+    }
 
-    }else{
-        if (counter < document.getElementById("speed_range").value * 4) {
-            ctx.strokeStyle = "white";
+    ctx.moveTo(arrVertexes[path[path.length - 1]].x, arrVertexes[path[path.length - 1]].y);
+    ctx.lineTo(arrVertexes[path[0]].x, arrVertexes[path[0]].y);
 
-        }else {
-            ctx.strokeStyle = "#fe019a";
-        }
+    if (counter < numberIterations) {
+        ctx.strokeStyle = "white";
 
-        ctx.lineWidth = "5";
-        ctx.stroke();
-    } 
+    }else {
+        ctx.strokeStyle = "#fe019a";
+    }
+
+    ctx.lineWidth = "5";
+    ctx.stroke();  
     
     drawVertexes();
 }
@@ -183,7 +167,7 @@ function geneticAlgorithm() {
     
     function geneticAlgorithmAnimation(){
         ctx.reset();
-        console.log(arrPaths)
+
         drawVertexes();
 
         if (edgeMapping) {
@@ -191,8 +175,7 @@ function geneticAlgorithm() {
         }
        
         let previousPath = arrPaths[0];
-        /* console.log(previousPath) */
-        /* console.log(arrPaths[0]); */
+
         arrPaths = findMinPath(arrVertexes, arrPaths);
 
         showPath(arrPaths[0]);
@@ -231,7 +214,7 @@ document.getElementById("speed_range").addEventListener('input', () => {
     }
 });
 
-document.getElementById("сhange_graph").addEventListener('click', () => {
+document.getElementById("сhange_graph").addEventListener('change', () => {
     if (!deleteVertexCheck) {
         deleteVertexCheck = true;
 
@@ -244,13 +227,12 @@ document.getElementById("remove_field").addEventListener('click', () => {
     ctx.reset();
     arrVertexes = [];
     arrPaths = [];
-    counter = 0;
-    clearInterval(intervalId);   
+    deleteInterval();   
 });
 
 document.getElementById("start").addEventListener('click', () => {
     arrPaths = [];
-    counter = 0;
+    deleteInterval(); 
     geneticAlgorithm();
 }); 
 

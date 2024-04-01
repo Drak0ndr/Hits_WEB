@@ -1,4 +1,4 @@
-import { numberGenerations, populationSize, probabilityMutation } from "./driwing_genetic.js";
+import { numberGenerations, populationSize, probabilityMutation } from "./driwingGenetic.js";
 
 let arrVertexes = [];       
 let arrPaths = []; 
@@ -19,7 +19,7 @@ function pathGeneration() {
 
         [path[j], path[pos]] = [path[pos], path[j]];  
     }
-    /* console.log(path); */
+   
     return path;
 }
 
@@ -33,7 +33,7 @@ function findPathDistance(path) {
     for (let i = 0; i < path.length - 1; ++i) {
         distance += findDistance(arrVertexes[path[i]], arrVertexes[path[i + 1]]);
     }
-    /* console.log(distance); */
+
     return distance;
 }
 
@@ -56,24 +56,24 @@ function crossing(firstParent, secondParent) {
             child.push(secondParent[i]);
         }
     }
-    /* console.log(child); */
+ 
     if (getRandomNumber(1, 100) < probabilityMutation) {
         child = mutation(child);
     }
-    /* console.log(child); */
+   
     return child;
 }
 
 function mutation(child) {
     let firstGen = getRandomNumber(0, child.length); 
     let secondGen = getRandomNumber(0, child.length);
-    /* console,log(child); */
+
     while (firstGen == secondGen) {
         secondGen = getRandomNumber(0, child.length);
     }
 
     [child[firstGen], child[secondGen]] = [child[secondGen], child[firstGen]]
-    /* console,log(child); */
+
     return child;
 }
 
@@ -98,7 +98,7 @@ export function findMinPath(vertexes, paths) {
     if (vertexes.length < 2) {
         return;
     }
-    /* console.log(arrPaths) */
+
     if (arrPaths.length == 0) {
         for (let i = 0; i < numberGenerations; ++i) {
             arrPaths.push(pathGeneration());

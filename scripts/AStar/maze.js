@@ -1,9 +1,6 @@
-import { markedCells, cellSize, ctx } from "./aStar_main.js";
+import { markedCells, cellSize, ctx } from "./aStarBasic.js";
 import { Cell } from "./classes.js";
-//https://thecode.media/maze/
-// строим карту нового лабиринта
-// строим карту нового лабиринта
-// функция построит лабиринт (процесс построения на экране виден не будет)
+
 export function generateMaze (columnsNumber, rowsNumber, tractorsNumber = 1) {
 	const map = []
 	// Тракторы, которые будут очищать дорожки в лабиринте
