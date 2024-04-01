@@ -16,8 +16,17 @@ main {
 
 nav {
     padding: 10px 10px;
+    display: flex;
+    justify-content: space-between;
 }
-
+.alg_name {
+    width: 79vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    font-size: 40px;
+}
 .parametrs {
     width: 20vw;
     display: flex;
@@ -65,7 +74,7 @@ nav {
 .field canvas {
     width: 600px;
     height: 600px;
-    background-color: white;
+    background-color: whitesmoke;
 }
 
 .clear, .start, .pixelation {
