@@ -68,8 +68,8 @@ export async function aStar() {
 
         closedList.push(current);
 
-        if (!(current.posX == startСoordinates[0].posX && current.posY == startСoordinates[0].posY) && 
-            !(current.posX == finishCoordinates[0].posX  && current.posY == finishCoordinates[0].posY)) {
+        if (!(current.posX === startСoordinates[0].posX && current.posY === startСoordinates[0].posY) && 
+            !(current.posX === finishCoordinates[0].posX  && current.posY === finishCoordinates[0].posY)) {
 
             ctx.fillStyle = 'yellow';
             ctx.fillRect(current.vertex1.x, current.vertex1.y, cellSize, cellSize); 
@@ -82,7 +82,7 @@ export async function aStar() {
             ++count; 
         }
 
-        if (current.posX == finishCoordinates[0].posX  && current.posY == finishCoordinates[0].posY) {
+        if (current.posX === finishCoordinates[0].posX  && current.posY === finishCoordinates[0].posY) {
             break;
         }
 
@@ -118,11 +118,11 @@ export async function aStar() {
                 return cell.posX === newNeighbour.posX && cell.posY === newNeighbour.posY;
             });
 
-            if (usedCell == undefined && map[newNeighbour.posY * fieldPixelsSize + newNeighbour.posX] == 1) {
+            if (usedCell === undefined && map[newNeighbour.posY * fieldPixelsSize + newNeighbour.posX] === 1) {
 
-                if (neighbour == undefined) {
+                if (neighbour === undefined) {
 
-                    if(!(newNeighbour.posX == finishCoordinates[0].posX && newNeighbour.posY == finishCoordinates[0].posY))
+                    if(!(newNeighbour.posX === finishCoordinates[0].posX && newNeighbour.posY === finishCoordinates[0].posY))
                         ctx.fillStyle = 'white';
                         ctx.fillRect(newNeighbour.vertex1.x, newNeighbour.vertex1.y, cellSize, cellSize);
 
@@ -151,7 +151,7 @@ export async function aStar() {
     }
 
     
-    if (!(current.posX == finishCoordinates[0].posX && current.posY == finishCoordinates[0].posY)) {
+    if (!(current.posX === finishCoordinates[0].posX && current.posY === finishCoordinates[0].posY)) {
         alert(`Очень жаль, но пути нет 🤷`);
     
     } else {
@@ -160,7 +160,7 @@ export async function aStar() {
     
         for(;current.parent != null; current = current.parent) {
             
-            if (!(current.posX == finishCoordinates[0].posX && current.posY == finishCoordinates[0].posY)){
+            if (!(current.posX === finishCoordinates[0].posX && current.posY === finishCoordinates[0].posY)){
                 ctx.fillStyle = 'pink';
                 ctx.fillRect(current.vertex1.x, current.vertex1.y, cellSize, cellSize);
 

@@ -53,11 +53,11 @@
                         <label>Настройки DBSCAN:</label>
                         <div>
                             <span>Выберите радиус поиска точек</span>
-                            <input type="range" id="radius_range" min="5" max="100" step="1" value ="50">
+                            <input type="range" id="radius_range" min="50" max="160" step="1" value ="80">
                         </div>
                         <div>
                             <span>Выберите количество соседей</span>
-                            <input type="range" id="neighbors_range" min="2" max="8" step="1" value ="5">
+                            <input type="range" id="neighbors_range" min="2" max="20" step="1" value ="9">
                         </div>
                     </div>
                     <div class="hierarchical_div">
@@ -67,12 +67,8 @@
                             <input type="range" id="hierarchical_range" min="1" max="20" step="1" value ="3">
                         </div>
                     </div>
-                    <div class = "button_div">
-                        <input type="button" class="settings_button" id="add_points" value="Добавить точки">
-                        <input type="button" class="settings_button" id="clear_clusters" value="Сбросить кластеры">
-                        <input type="button" class="settings_button" id="remove_points" value="Очистить поле">  
-                        <input type="button" class="settings_button" id="start" value="Запустить алгоритм">
-                    </div>
+                    <input type="button" class="settings_button" id="remove_points" value="Очистить поле">  
+                    <input type="button" class="settings_button" id="start" value="Запустить алгоритм">
                 </div>
             </div>
         </div>
@@ -101,6 +97,6 @@
         
     </main>
 
-    <script type='module' src="../scripts/clustering/clustering_main.js"></script>
+    <script type='module' src="../scripts/clustering/clusteringBasic.js"></script>
 </body>
 </html>

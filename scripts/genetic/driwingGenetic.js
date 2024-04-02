@@ -12,7 +12,7 @@ export function drawVertexes() {
     for(let i = 0; i < arrVertexes.length; ++i){
         ctx.fillStyle = "white";
 
-        if(i == arrVertexes.length - 1){
+        if(i === arrVertexes.length - 1){
             ctx.fillStyle = "#fe019a"; 
         }
 
