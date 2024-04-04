@@ -150,9 +150,19 @@ span, #label_dist{
     box-shadow:  #42AAFF 0 -0.3rem 0.2rem inset;
     font-weight: 700;
 }
+#add_start:disabled{
+    background-color: #ff0d00;
+    box-shadow:  none;
+    transform: scale(1.05);
+}
 #add_finish:hover, #add_finish:active {
     background-color: #42AAFF;
     box-shadow:#007FFF 0 -0.8rem 0.2rem inset;
+    transform: scale(1.05);
+}
+#add_finish:disabled{
+    background-color: #007FFF;
+    box-shadow:  none;
     transform: scale(1.05);
 }
 #remove_field, #generate_maze{
