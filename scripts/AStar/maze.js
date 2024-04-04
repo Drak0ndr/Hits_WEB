@@ -142,7 +142,7 @@ export function drawMaze(map, coordinates, size){
 	for(let i = 0; i < coordinates.length; ++i){
 		for(let j = 0; j < coordinates.length; ++j){
 
-			if(map[i][j] == 'wall'){
+			if(map[i][j] === 'wall'){
 				ctx.fillStyle = 'black';
                 ctx.fillRect(coordinates[i][j].vertex1.x, coordinates[i][j].vertex1.y, size, size); 
 				markedCells.push(new Cell(coordinates[i][j].vertex1.x, coordinates[i][j].vertex1.y, size, coordinates[i][j].cellNumber));

@@ -12,7 +12,7 @@ export function drawVertexes() {
     for(let i = 0; i < arrVertexes.length; ++i){
         ctx.fillStyle = "white";
 
-        if(i == arrVertexes.length - 1){
+        if(i === arrVertexes.length - 1){
             ctx.fillStyle = "#fe019a"; 
         }
 
@@ -50,17 +50,23 @@ document.getElementById("ribs_check").addEventListener('click', () => {
     showPath(arrPaths[0]);
 });
 
-document.getElementById("count_generations").addEventListener('input', () => {
+document.getElementById("count_generations").addEventListener('input', (e) => {
     numberGenerations = Number(document.getElementById("count_generations").value);
+    document.getElementById('count_generations_descr').textContent = "Количество поколений: " + numberGenerations; 
+    count_generations.style.backgroundSize = 100 * (e.target.value - e.target.min) / (e.target.max - e.target.min) + '% 100%';
     deletePath();
 });
 
-document.getElementById("count_children").addEventListener('input', () => { 
+document.getElementById("count_children").addEventListener('input', (e) => { 
     populationSize = Number(document.getElementById("count_children").value);
+    document.getElementById('count_children_descr').textContent = "Размер популяции: " + populationSize;
+    count_children.style.backgroundSize = 100 * (e.target.value - e.target.min) / (e.target.max - e.target.min) + '% 100%';
     deletePath();  
 });
 
-document.getElementById("probability").addEventListener('input', () => {
+document.getElementById("probability").addEventListener('input', (e) => {
     probabilityMutation = Number(document.getElementById("probability").value);
+    document.getElementById('probability_descr').textContent = "Вероятность мутации: " + probabilityMutation + "%";
+    probability.style.backgroundSize = 100 * (e.target.value - e.target.min) / (e.target.max - e.target.min) + '% 100%';
     deletePath();
 });

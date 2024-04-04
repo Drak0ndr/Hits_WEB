@@ -83,18 +83,18 @@ main {
     margin: 0px 15px;
 }
 .astar_settings{
-    background-color: white;
+    background-image: linear-gradient(315deg, #c77dff, #e7c6ff);
     height: 100%;
     width: 90%;
     border-radius: 10%;
-    border: 5px solid grey;
+    border: 5px solid #7209b7;
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
 }
 #astar_canvas{
-    background-color: #00FF7F;
+    background-color: #c77dff;
     height: 100%;
     cursor: pointer;
 }
@@ -102,3 +102,99 @@ main {
     display: flex;
     flex-direction:column;
 }
+span, #label_dist{
+    font-size: 1rem;
+    font-weight: 500;
+}
+#field_settings, #animation_settings, #distance{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 0.35rem;
+}
+#start, #remove_field, #add_start, #add_finish,#generate_maze {
+    text-transform: uppercase;
+    background-color: #ffbf00;
+    border-radius: 40em;
+    border-style: none;
+    box-shadow: #FBEC5D 0 -0.3rem 0.2rem inset;
+    color: white;
+    cursor: pointer;
+    font-size: 0.6rem;
+    font-weight: 900;
+    margin: 0;
+    padding: 0.3rem 0.6rem;
+    text-align: center;
+    transition: all 0.15s;
+    height: 25px;
+    width: 50%;
+}
+#start:hover, #start:active {
+    background-color: #FBEC5D;
+    box-shadow: #ffbf00 0 -0.8rem 0.2rem inset;
+    transform: scale(1.05);
+}
+#add_start{
+    background-color: #ff0d00;
+    box-shadow:  #FF97BB 0 -0.3rem 0.2rem inset;
+    font-weight: 700;
+}
+#add_start:hover, #add_start:active {
+    background-color: #FF97BB;
+    box-shadow:#ff0d00 0 -0.8rem 0.2rem inset;
+    transform: scale(1.05);
+}
+#add_finish{
+    background-color: #007FFF;
+    box-shadow:  #42AAFF 0 -0.3rem 0.2rem inset;
+    font-weight: 700;
+}
+#add_finish:hover, #add_finish:active {
+    background-color: #42AAFF;
+    box-shadow:#007FFF 0 -0.8rem 0.2rem inset;
+    transform: scale(1.05);
+}
+#remove_field, #generate_maze{
+    background-color: #7209b7;
+    box-shadow:   #9966CC 0 -0.3rem 0.2rem inset;
+    font-weight: 700;
+}
+#generate_maze:hover, #generate_maze:active, #remove_field:hover, #remove_field:hover {
+    background-color:  #9966CC;
+    box-shadow:#7209b7 0 -0.8rem 0.2rem inset;
+    transform: scale(1.05);
+}
+input[type="number"] {
+    background-image: linear-gradient(315deg, #D18CE0, #FFFFFF);
+    color: black;
+    outline:none;
+    border: 0.15rem solid #7209b7;
+    border-radius:5px;
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+}
+input[id="field_range"] {
+    width: 80%;
+}
+select {
+    appearance: none;
+    border: 0.15rem solid #7209b7;
+    outline: 0;
+    height: 25px;
+    width: 100%;
+    padding: 0.2rem 0.6rem;
+    background: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg)
+    no-repeat right 0.8em center / 1.4em,
+    linear-gradient(to left, rgba(255, 255, 255, 0.05) 2em, rgba(255, 255, 255, 0.5) 4em);
+    color: black;
+    border-radius: 0.25em;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+select option {
+    background-color:#c77dff;
+}
+

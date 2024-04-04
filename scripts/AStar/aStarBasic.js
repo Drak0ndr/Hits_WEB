@@ -76,10 +76,10 @@ function fillCoordinates(){
 
 function containsObject(obj, list) {
     for (let i = 0; i < list.length; ++i) {
-        if(Math.trunc(list[i].vertex1.x) == Math.trunc(obj.vertex1.x) && Math.trunc(list[i].vertex1.y) == Math.trunc(obj.vertex1.y) &&
-        Math.trunc(list[i].vertex2.x) == Math.trunc(obj.vertex2.x) && Math.trunc(list[i].vertex2.y) == Math.trunc(obj.vertex2.y) &&
-        Math.trunc(list[i].vertex3.x) == Math.trunc(obj.vertex3.x) && Math.trunc(list[i].vertex3.y) == Math.trunc(obj.vertex3.y) &&
-        Math.trunc(list[i].vertex4.x) == Math.trunc(obj.vertex4.x) && Math.trunc(list[i].vertex4.y) == Math.trunc(obj.vertex4.y))
+        if(Math.trunc(list[i].vertex1.x) === Math.trunc(obj.vertex1.x) && Math.trunc(list[i].vertex1.y) === Math.trunc(obj.vertex1.y) &&
+        Math.trunc(list[i].vertex2.x) === Math.trunc(obj.vertex2.x) && Math.trunc(list[i].vertex2.y) === Math.trunc(obj.vertex2.y) &&
+        Math.trunc(list[i].vertex3.x) === Math.trunc(obj.vertex3.x) && Math.trunc(list[i].vertex3.y) === Math.trunc(obj.vertex3.y) &&
+        Math.trunc(list[i].vertex4.x) === Math.trunc(obj.vertex4.x) && Math.trunc(list[i].vertex4.y) === Math.trunc(obj.vertex4.y))
 
             return i;
     }
@@ -119,14 +119,14 @@ canvas.addEventListener('click', function(e){
 	let posY = Math.floor(e.offsetX / cellSize);
     let cell = new Cell(x, y, cellSize, (fieldPixelsSize * posX) + posY + 1);
  
-    if (currButton == 1){
-        if(containsObject(cell, markedCells) == Infinity){
+    if (currButton === 1){
+        if(containsObject(cell, markedCells) === Infinity){
             ctx.fillStyle = 'black';
             ctx.fillRect(x, y, cellSize, cellSize);
             markedCells.push(cell);
 
         }else{
-            ctx.fillStyle = '#00FF7F';
+            ctx.fillStyle = '#c77dff';
             (fieldPixelsSize < 30) ? ctx.lineWidth = 1 : (fieldPixelsSize < 70) ? ctx.lineWidth = 0.8 : (fieldPixelsSize < 100) ?
             ctx.lineWidth = 0.7 : (fieldPixelsSize < 170) ? ctx.lineWidth = 0.4 : (fieldPixelsSize < 200) ? ctx.lineWidth = 0.3 :
             ctx.lineWidth = 0.2; 
@@ -163,9 +163,9 @@ canvas.addEventListener('click', function(e){
         }
     }
 
-    if (currButton == 2){
-        if(containsObject(cell, markedCells) == Infinity){
-            ctx.fillStyle = 'red';
+    if (currButton === 2){
+        if(containsObject(cell, markedCells) === Infinity){
+            ctx.fillStyle = '#ff0d00';
             ctx.fillRect(x, y, cellSize, cellSize);
             markedCells.push(cell);
             startСoordinates.push(cell);
@@ -173,9 +173,9 @@ canvas.addEventListener('click', function(e){
         }
     }
 
-    if (currButton == 3){
-        if(containsObject(cell, markedCells) == Infinity){
-            ctx.fillStyle = 'blue';
+    if (currButton === 3){
+        if(containsObject(cell, markedCells) === Infinity){
+            ctx.fillStyle = '#007FFF';
             ctx.fillRect(x, y, cellSize, cellSize);
             markedCells.push(cell);
             finishCoordinates.push(cell);
@@ -190,6 +190,12 @@ document.getElementById('field_range').addEventListener('change', () => {
     drawGrid();
     arrCoordinates = fillCoordinates();  
     resettingVariables();
+    document.getElementById('field_range_descr').textContent = "Размер поля: " + fieldPixelsSize + "x" + fieldPixelsSize;
+});
+
+document.getElementById('animation_range').addEventListener('click', () => {
+    document.getElementById('animation_range_descr').textContent = "Cкорость анимации: " + 
+    document.getElementById('animation_range').value + "%";
 });
 
 document.getElementById('remove_field').addEventListener('click', () => {
@@ -203,7 +209,7 @@ document.getElementById('generate_maze').addEventListener('click',  () => {
     drawGrid();  
     resettingVariables();
 
-    if(fieldPixelsSize % 2 == 0){
+    if(fieldPixelsSize % 2 === 0){
         mapMaze = generateMaze(fieldPixelsSize + 1, fieldPixelsSize + 1);
         mapMaze = arrValidation(mapMaze);
      
@@ -216,35 +222,37 @@ document.getElementById('generate_maze').addEventListener('click',  () => {
 
 
 document.getElementById('start').addEventListener('click',  () => {
-    if(startСoordinates.length == 0 && finishCoordinates.length == 0){
+    if(startСoordinates.length === 0 && finishCoordinates.length === 0){
 		alert("Установите старт и финиш и попробуйте заново");
         return 0;
 	}
-	else if(finishCoordinates.length == 0){
+	else if(finishCoordinates.length === 0){
 		alert("Установите финиш и попробуйте заново");
         return 0;
 
-	}else if(startСoordinates.length == 0){
+	}else if(startСoordinates.length === 0){
 		alert("Установите старт и попробуйте заново");
         return 0;
 
     }else{
-        for(let i = 0; i < markedCells.length; ++i){
-            if(finishCoordinates[0].cellNumber == markedCells[i].cellNumber ){
-                markedCells.splice(i, 1);
-             }
-        }
+        if(currButton === 1){
+            for(let i = 0; i < markedCells.length; ++i){
+                if(finishCoordinates[0].cellNumber === markedCells[i].cellNumber ){
+                    markedCells.splice(i, 1);
+                 }
+            }
+        
+            for(let i = 0; i < markedCells.length; ++i){
+                if(startСoordinates[0].cellNumber === markedCells[i].cellNumber){
+                    markedCells.splice(i, 1);
+                 }
+            }
     
-        for(let i = 0; i < markedCells.length; ++i){
-            if(startСoordinates[0].cellNumber == markedCells[i].cellNumber){
-                markedCells.splice(i, 1);
-             }
-        }
-
-        currButton = 4;
-
-        aStar();
-    }  
+            currButton = 4;
+    
+            aStar();
+        } 
+    }       
 });
 
 document.getElementById('add_start').addEventListener('click', () =>{
@@ -264,6 +272,9 @@ document.getElementById('add_finish').addEventListener('click', () =>{
     currButton = 3;
     document.getElementById("add_finish").disabled = true;
 });
+
+
+
 
 
 

@@ -207,6 +207,8 @@ canvas.addEventListener('mouseup', () => {
 
 document.getElementById("speed_range").addEventListener('input', () => {
     animation = 101 - document.getElementById("speed_range").value;
+    document.getElementById('speed_range_descr').textContent = "Скорость анимации: " + 
+    document.getElementById("speed_range").value + "%"; 
 });
 
 document.getElementById("сhange_graph").addEventListener('change', () => {

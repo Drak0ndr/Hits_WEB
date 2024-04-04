@@ -46,13 +46,13 @@ function crossing(firstParent, secondParent) {
     }
 
     for (let i = breakIndex; i < secondParent.length; ++i) {
-        if (child.includes(secondParent[i]) == false) {
+        if (child.includes(secondParent[i]) === false) {
             child.push(secondParent[i]);
         }
     }
 
     for (let i = 0; i < secondParent.length; ++i) {
-        if (child.includes(secondParent[i]) == false) {
+        if (child.includes(secondParent[i]) === false) {
             child.push(secondParent[i]);
         }
     }
@@ -68,7 +68,7 @@ function mutation(child) {
     let firstGen = getRandomNumber(0, child.length); 
     let secondGen = getRandomNumber(0, child.length);
 
-    while (firstGen == secondGen) {
+    while (firstGen === secondGen) {
         secondGen = getRandomNumber(0, child.length);
     }
 
@@ -99,7 +99,7 @@ export function findMinPath(vertexes, paths) {
         return;
     }
 
-    if (arrPaths.length == 0) {
+    if (arrPaths.length === 0) {
         for (let i = 0; i < numberGenerations; ++i) {
             arrPaths.push(pathGeneration());
         }
@@ -109,7 +109,7 @@ export function findMinPath(vertexes, paths) {
         let firstParent = getRandomNumber(0, numberGenerations);
         let secondParent = getRandomNumber(0, numberGenerations);
 
-        while (firstParent == secondParent){
+        while (firstParent === secondParent){
             secondParent = getRandomNumber(0, numberGenerations);
         }
 

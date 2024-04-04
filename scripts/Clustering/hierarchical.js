@@ -1,5 +1,4 @@
-export { hierarchicalClustering };
-import {findDistance} from "./distance.js"
+import {heuristics} from "./drawingFunctions.js"
 
 function  getDistanceBetweenClusters (clusters) {
     let distances = [];
@@ -9,7 +8,7 @@ function  getDistanceBetweenClusters (clusters) {
 
             for (let x of clusters[i]) {
                 for (let y of clusters[j]) {
-                    distance += findDistance(x, y);
+                    distance += heuristics(x, y);
                 }           
             }
             
@@ -21,7 +20,7 @@ function  getDistanceBetweenClusters (clusters) {
     return distances;
 }
 
-function hierarchicalClustering(pointCoordinates, countClusters) {
+export function hierarchicalClustering(pointCoordinates, countClusters) {
     let clusters = pointCoordinates.map(coord => [coord]);
 
     while (clusters.length >  countClusters) {
