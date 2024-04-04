@@ -1,0 +1,146 @@
+nav {
+    display: flex;
+    padding: 10px 10px 0px 10px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(35, 40, 44);
+    position: sticky;
+    top: 0px;
+    z-index: 1000;
+}
+.logo svg{
+    width: 100px;
+    height: 100px;
+    fill: whitesmoke;
+}
+
+nav a {
+    color: whitesmoke;
+    font-size: 1.75vw;
+    margin: 0 10px 0 10px;
+}
+
+nav a svg {
+    width: 50px;
+    height: 50px;
+    fill: whitesmoke;
+    color: whitesmoke;
+    margin-right: 5px;
+    
+}
+
+.links {
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    display: flex;
+    align-items:center;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 2px;
+    transition: all 0.2s ease-in;
+    
+}
+.link:hover {
+    background-color: rgb(44, 49, 54);;
+}
+
+/* a:nth-child(2n) .link:hover {
+    background-color: #3ecd5e;
+}
+
+a:nth-child(3n) .link:hover{
+    background-color: #e44002;
+}
+a:nth-child(4n) .link:hover{
+    background-color: #952aff;
+}
+a:nth-child(5n) .link:hover{
+    background-color: #cd3e94;
+}
+a:nth-child(6n) .link:hover{
+    background-color: #4c49ea;
+} */
+@media (max-width: 1400px) {
+    nav a {
+        font-size: 1.5vw;
+    }
+    nav a svg {
+        width: 40px;
+        height: 40px;
+        fill: whitesmoke;
+        color: whitesmoke;
+        margin-right: 5px;
+        
+    }
+    .logo svg{
+        width: 90px;
+        height: 90px;
+        fill: whitesmoke;
+    }
+}
+
+
+@media (max-width: 1100px) {
+
+    nav a svg {
+        width: 50px;
+        height: 50px;
+        fill: whitesmoke;
+        color: whitesmoke;
+        margin-right: 0px;
+        
+    }
+    nav a {
+        font-size: 1.7vw;
+    }
+}
+
+@media (max-width: 710px) {
+    .link span {
+        display: none;
+    }
+    .logo svg{
+        width: 60px;
+        height: 60px;
+        fill: whitesmoke;
+    }
+    .logo {
+        margin: 0 5px 0 5px;
+    }
+    nav a svg {
+        width: 60px;
+        height: 60px;
+    }
+    nav {
+        justify-content: center;
+    }
+
+    nav a {
+        margin: 0 5px 0 5px;
+    }
+}
+
+@media (max-width: 600px) {
+    .logo svg{
+        width: 10vw;
+        height: 10vw;
+        max-width: 60px;
+        max-height: 60px;
+    }
+    .logo {
+        margin: 0 5px 0 5px;
+    }
+    nav a svg {
+        width: 10vw;
+        max-width: 60px;
+        height: 10vw;
+        max-height: 60px;
+    }
+
+    nav a {
+        margin: 0 2px 0 2px;
+    }
+}
