@@ -60,20 +60,28 @@ document.getElementById('centroids_check').addEventListener('change', () => {
     }
 });
 
-document.getElementById('k_means_range').addEventListener('input', () => {
+document.getElementById('k_means_range').addEventListener('input', (e) => {
     currCountClusters = parseInt(document.getElementById('k_means_range').value);
+    document.getElementById('k_means_range_descr').textContent = "Количество кластеров: " + currCountClusters;
+    k_means_range.style.backgroundSize = 100 * (e.target.value - e.target.min) / (e.target.max - e.target.min) + '% 100%';
 });
 
-document.getElementById('radius_range').addEventListener('input', () => {
-    currRadius = parseInt(document.getElementById('radius_range').value);  
+document.getElementById('radius_range').addEventListener('input', (e) => {
+    currRadius = parseInt(document.getElementById('radius_range').value); 
+    document.getElementById('radius_range_descr').textContent = "Pадиус поиска точек: " + currRadius; 
+    radius_range.style.backgroundSize = 100 * (e.target.value - e.target.min) / (e.target.max - e.target.min) + '% 100%';
 });
 
-document.getElementById('neighbors_range').addEventListener('input', () => {
+document.getElementById('neighbors_range').addEventListener('input', (e) => {
     currCountNeighbors = parseInt(document.getElementById('neighbors_range').value); 
+    document.getElementById('neighbors_range_descr').textContent = "Количество соседей: " + currCountNeighbors;
+    neighbors_range.style.backgroundSize = 100 * (e.target.value - e.target.min) / (e.target.max - e.target.min) + '% 100%';
 });
 
-document.getElementById('hierarchical_range').addEventListener('input', () => {
+document.getElementById('hierarchical_range').addEventListener('input', (e) => {
     currCountClustersHierarchical = parseInt(document.getElementById('hierarchical_range').value);
+    document.getElementById('hierarchical_range_descr').textContent = "Количество кластеров: " + currCountClustersHierarchical;
+    hierarchical_range.style.backgroundSize = 100 * (e.target.value - e.target.min) / (e.target.max - e.target.min) + '% 100%';
 });
 
 document.getElementById('canvas1').addEventListener('mousedown', () => {

@@ -126,7 +126,7 @@ canvas.addEventListener('click', function(e){
             markedCells.push(cell);
 
         }else{
-            ctx.fillStyle = '#00FF7F';
+            ctx.fillStyle = '#c77dff';
             (fieldPixelsSize < 30) ? ctx.lineWidth = 1 : (fieldPixelsSize < 70) ? ctx.lineWidth = 0.8 : (fieldPixelsSize < 100) ?
             ctx.lineWidth = 0.7 : (fieldPixelsSize < 170) ? ctx.lineWidth = 0.4 : (fieldPixelsSize < 200) ? ctx.lineWidth = 0.3 :
             ctx.lineWidth = 0.2; 
@@ -165,7 +165,7 @@ canvas.addEventListener('click', function(e){
 
     if (currButton === 2){
         if(containsObject(cell, markedCells) === Infinity){
-            ctx.fillStyle = 'red';
+            ctx.fillStyle = '#ff0d00';
             ctx.fillRect(x, y, cellSize, cellSize);
             markedCells.push(cell);
             startСoordinates.push(cell);
@@ -175,7 +175,7 @@ canvas.addEventListener('click', function(e){
 
     if (currButton === 3){
         if(containsObject(cell, markedCells) === Infinity){
-            ctx.fillStyle = 'blue';
+            ctx.fillStyle = '#007FFF';
             ctx.fillRect(x, y, cellSize, cellSize);
             markedCells.push(cell);
             finishCoordinates.push(cell);
@@ -190,6 +190,12 @@ document.getElementById('field_range').addEventListener('change', () => {
     drawGrid();
     arrCoordinates = fillCoordinates();  
     resettingVariables();
+    document.getElementById('field_range_descr').textContent = "Размер поля: " + fieldPixelsSize + "x" + fieldPixelsSize;
+});
+
+document.getElementById('animation_range').addEventListener('click', () => {
+    document.getElementById('animation_range_descr').textContent = "Cкорость анимации: " + 
+    document.getElementById('animation_range').value + "%";
 });
 
 document.getElementById('remove_field').addEventListener('click', () => {
@@ -266,6 +272,9 @@ document.getElementById('add_finish').addEventListener('click', () =>{
     currButton = 3;
     document.getElementById("add_finish").disabled = true;
 });
+
+
+
 
 
 

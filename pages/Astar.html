@@ -33,26 +33,26 @@
                 </div>
                 <div class="astar_settings">
                     <div id = "field_settings">
-                        <span>Выберите размер поля</span>
+                        <span id="field_range_descr">Размер поля: 50x50</span>
                         <input type="number" id="field_range" min="3" max="250" step="1" value ="50" name="field_range">
                     </div>
-                    <div class="distance">
-                        <label>Выберите расстояние:</label>
+                    <div id="distance">
+                        <label id="label_dist">Выберите расстояние:</label>
                         <select id="distance_select">
                             <option value="1">Евклидово</option>
                             <option value="2">Манхэттенское</option>
                             <option value="3">Чебышева</option>
                         </select>
                     </div>
-                    <div id = "field_settings">
-                        <span>Выберите скорость анимации</span>
+                    <div id = "animation_settings">
+                        <span id="animation_range_descr">Cкорость анимации: 50%</span>
                         <input type="number" id="animation_range" min="50" max="100" step="1" value ="50" name="animation_range">
                     </div>
-                    <input type="button" class="settings_button" id="add_start" value="Поставить точку старта">
-                    <input type="button" class="settings_button" id="add_finish" value="Поставить точку финиша">
-                    <input type="button" class="settings_button" id="remove_field" value="Очистить поле">
-                    <input type="button" class="settings_button" id="generate_maze" value="Сгенерировать лабиринт">    
-                    <input type="button" class="settings_button" id="start" value="Запустить алгоритм">
+                    <button type="button" class="settings_button" id="add_start">Поставить точку старта</button>
+                    <button type="button" class="settings_button" id="add_finish">Поставить точку финиша</button>
+                    <button type="button" class="settings_button" id="remove_field">Очистить поле</button>
+                    <button type="button" class="settings_button" id="generate_maze">Сгенерировать лабиринт</button>
+                    <button type="button" class="settings_button" id="start">Запустить алгоритм</button>
                 </div>
             </div>
         </div>     

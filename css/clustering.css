@@ -59,6 +59,7 @@ main {
 .wrapper_field{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     height: 42vw;
 }
 .canvas_header {
@@ -74,11 +75,11 @@ main {
     width: 25vw;
 }
 #canvas1, #canvas2, #canvas3 {
-    background-color: #7FC7FF;
+    background-color: #FCB4D5;
     width: 100%;
     height: 90%;
     border-radius: 10%;
-    border: 5px solid white;
+    border: 4px solid #F400A1;
     cursor: url('data:image/x-icon;base64,AAACAAEAICAQAAAAAADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAAAIAAAAAAAAAAAAAEAAAAAAAAAAAAAAA1GizAEW4/wC4iqoA1ni5AJyXkgBZv/8ABQUFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHcAAAAAAAAAAAAAAAAAAAczcAAAAAAAAAAAAAAAAAB3MzcAAAAAAAAAAAAAAAAHVXMzcAAAAAAAAAAAAAAAcXVXMzcAAAAAAAAAAAAABxEXVXMzcAAAAAAAAAAAAHEREXVXMzcAAAAAAAAAAAcREREXVXM3AAAAAAAAAABxEREREXVXcAAAAAAAAAAHERERERRHVwAAAAAAAAAAcRERERFERHAAAAAAAAAABxEREREUREcAAAAAAAAAAHcRERERRERwAAAAAAAAAAcicRERFERHAAAAAAAAAAAHIicREUREcAAAAAAAAAAAByIicRRERwAAAAAAAAAAAAciJmdERHAAAAAAAAAAAAAHIiZmdEcAAAAAAAAAAAAAB3JmZmdwAAAAAAAAAAAAAAd3ZmZnAAAAAAAAAAAAAAAHd3d3cAAAAAAAAAAAAAAAD////////////////////////////////////////////////////////////5////8P///+B////AP///gB///wAP//4AB//8AAf/+AAP//AAH//gAD//wAB//4AA//8AAf//AAP//wAH//8AD///AB///wA///8Af///AP///w=='), pointer;
 }
 .wpapper_parametrs{
@@ -90,11 +91,11 @@ main {
     height: 42vw;
 }
 .clustering_settings{
-    background-color: white;
+    background-color: #ABCDEF;
     height: 100%;
     width: 90%;
     border-radius: 10%;
-    border: 5px solid grey;
+    border: 3.5px solid #007FFF;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -117,4 +118,157 @@ main {
     align-items: center;
     justify-content: center;
 }
+.distance, .k_means_div, .dbscan_div, .hierarchical_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.alg_label{
+    text-align: center;
+}
+#start, #remove_points {
+    text-transform: uppercase;
+    background-color: #FF1493;
+    border-radius: 40em;
+    border-style: none;
+    box-shadow: #FCB4D5 0 -0.3rem 0.2rem inset;
+    color: white;
+    cursor: pointer;
+    font-size: 0.6rem;
+    font-weight: 900;
+    margin: 0;
+    padding: 0.3rem 0.6rem;
+    text-align: center;
+    transition: all 0.15s;
+    height: 25px;
+    width: 70%;
+}
+#start:hover, #start:active {
+    background-color: #FCB4D5;
+    box-shadow: #FF1493 0 -0.8rem 0.2rem inset;
+    transform: scale(1.05);
+}
+#remove_points{
+    background-color: #007FFF;
+    box-shadow:#42AAFF 0 -0.3rem 0.2rem inset;
+}
+#remove_points:hover, #remove_points:active {
+    background-color: #42AAFF;
+    box-shadow:#007FFF 0 -0.8rem 0.2rem inset;
+    transform: scale(1.05);
+}
+.alg_label{
+    font-size: 1.05rem;
+    font-weight: 900;
+}
+.choose_set{
+    font-size: 0.94rem;
+    font-weight: 500;
+}
+.dbscan_div, .k_means_div, .hierarchical_div{
+    text-align: center;
+}
+input{
+    width: 80%;
+    margin-top: 6px;
+}
+#centroids_check{
+    height: 0.9rem;
+    width: 0.9rem;
+    margin: 0 0.5rem;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: 1em;
+    box-shadow: none;
+    
+}
+.centroids_div{
+    width: 100%;
+}
+input[type='checkbox']{
+    position: absolute;
+    background-color: white;
+    text-align: center;
+    margin: 0 0.5rem;
+    vertical-align: middle;
+    width: 1rem !important;
+    height: 1rem !important;
+    appearance:none;
+    border-radius:10%;
+    border: 0.2rem solid #007FFF;
+    box-shadow: none;
+    font-size: 1em;
+}
+input[type='checkbox']:checked {
+    background-color: #FCB4D5;
+    border: 0.2rem solid #FF1493;
+}
+input[type='checkbox']:checked:after {
+    color:white;
+    content: '\2714';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -70%);  
+}
+select {
+    appearance: none;
+    border: 0.05rem solid #007FFF;
+    outline: 0;
+    height: 25px;
+    width: 100%;
+    padding: 0.2rem 0.6rem;
+    background: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg)
+    no-repeat right 0.8em center / 1.4em,
+    linear-gradient(to left, rgba(255, 255, 255, 0.05) 2em, rgba(255, 255, 255, 0.5) 4em);
+    color: black;
+    border-radius: 0.25em;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+select option {
+    background-color:#ABCDEF;
+}
+#k_means_range, #radius_range, #neighbors_range, #hierarchical_range {
+    -webkit-appearance: none;
+    width: 70%;
+    height: 0.55rem;
+    background-image: linear-gradient(#007FFF, #42AAFF);
+    background-repeat: no-repeat;
+    border-radius: 40em;
+    outline: none;
+    background-size: 100% 100%;
+}
+#k_means_range::-webkit-slider-thumb, #radius_range::-webkit-slider-thumb,
+#neighbors_range::-webkit-slider-thumb, #hierarchical_range::-webkit-slider-thumb {
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    border: 0.1em solid #007FFF;
+    background-color: #42AAFF;  
+}
+#k_means_range {
+    background-size: 15% 100%;
+}
+ #radius_range {
+    background-size: 20% 100%;
+ }
+ #neighbors_range {
+    background-size: 54% 100%;
+ }
+ #hierarchical_range {
+    background-size: 15% 100%;
+ }
+ 
+  
+
+
+
+
 

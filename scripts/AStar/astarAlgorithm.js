@@ -21,14 +21,6 @@ function findDistance(firstPoint, secondPoint) {
     return distance;
 }
 
-function isInside(x, y){
-    if(x >= 0 && x < fieldPixelsSize && y >= 0 && y < fieldPixelsSize){
-        return true;
-    }
-
-    return false;
-}
-
 function comparisonDistances(firstCell, secondCell) {
     if (firstCell.sumDistances > secondCell.sumDistances){
         return 1;
@@ -41,6 +33,7 @@ function comparisonDistances(firstCell, secondCell) {
 }
 
 export async function aStar() {
+    let count = 0;
     // 1 - empty, 2 - wall
     let map = [];
 
@@ -52,8 +45,14 @@ export async function aStar() {
         let j = markedCells[i].cellNumber;
         map[j - 1] = 2; 
     }
+
+    if(count >= Math.floor(fieldPixelsSize / 8)){
+        await new Promise((resolve, reject) => setTimeout(resolve, 101 - document.getElementById('animation_range').value));
+        count = 0;
+    }
+
+    ++count; 
     
-    let count = 0;
     let openList = [startСoordinates[0]]; // Клетки, которые предстоит проверить.
     let closedList = []; // Клетки, которые больше не нужно проверять.
 
@@ -71,10 +70,10 @@ export async function aStar() {
         if (!(current.posX === startСoordinates[0].posX && current.posY === startСoordinates[0].posY) && 
             !(current.posX === finishCoordinates[0].posX  && current.posY === finishCoordinates[0].posY)) {
 
-            ctx.fillStyle = 'yellow';
+            ctx.fillStyle = '#ffbf00';
             ctx.fillRect(current.vertex1.x, current.vertex1.y, cellSize, cellSize); 
 
-            if(count >= Math.floor(fieldPixelsSize / 10)){
+            if(count >= Math.floor(fieldPixelsSize / 8)){
                 await new Promise((resolve, reject) => setTimeout(resolve, 101 - document.getElementById('animation_range').value));
                 count = 0;
             }
@@ -123,10 +122,10 @@ export async function aStar() {
                 if (neighbour === undefined) {
 
                     if(!(newNeighbour.posX === finishCoordinates[0].posX && newNeighbour.posY === finishCoordinates[0].posY))
-                        ctx.fillStyle = 'white';
+                        ctx.fillStyle = '#FBEC5D';
                         ctx.fillRect(newNeighbour.vertex1.x, newNeighbour.vertex1.y, cellSize, cellSize);
 
-                        if(count >= Math.floor(fieldPixelsSize / 10)){
+                        if(count >= Math.floor(fieldPixelsSize / 8)){
                             await new Promise((resolve, reject) => setTimeout(resolve, 101 - document.getElementById('animation_range').value));
                             count = 0;
                         }
@@ -155,16 +154,16 @@ export async function aStar() {
         alert(`Очень жаль, но пути нет 🤷`);
     
     } else {
-        ctx.fillStyle = 'blue';
+        ctx.fillStyle = '#007FFF';
         ctx.fillRect(finishCoordinates[0].vertex1.x, finishCoordinates[0].vertex1.y, cellSize, cellSize);
     
         for(;current.parent != null; current = current.parent) {
             
             if (!(current.posX === finishCoordinates[0].posX && current.posY === finishCoordinates[0].posY)){
-                ctx.fillStyle = 'pink';
+                ctx.fillStyle = 'white';
                 ctx.fillRect(current.vertex1.x, current.vertex1.y, cellSize, cellSize);
 
-                if(count >= Math.floor(fieldPixelsSize / 10)){
+                if(count >= Math.floor(fieldPixelsSize / 8)){
                     await new Promise((resolve, reject) => setTimeout(resolve, 101 - document.getElementById('animation_range').value));
                     count = 0;
                 }

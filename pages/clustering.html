@@ -32,43 +32,45 @@
                     <div class="parametrs_descr">Настройки</div>
                 </div>
                 <div class="clustering_settings">
-                        <div class="distance">
-                            <label>Выберите расстояние:</label>
-                            <select id="distance_select">
-                                <option value="1">Евклидово</option>
-                                <option value="2">Манхэттенское</option>
-                                <option value="3">Чебышева</option>
-                            </select>
-                        </div>
                     <div class="k_means_div">
-                        <label>Настройки K-Means:</label>
+                        <span class="alg_label">Настройки K-Means</span>
                         <div>
-                            <span>Выберите количество кластеров</span>
+                            <span class="choose_set" id="k_means_range_descr">Количество кластеров: 3</span>
                             <input type="range" id="k_means_range" min="1" max="20" step="1" value ="3">
                         </div>
-                        <span>Показать центроиды</span>
-                        <input type="checkbox" id="centroids_check"/>
+                        <div class="centroids_div">
+                            <span class="choose_set">Показать центроиды</span>
+                            <input type="checkbox" id="centroids_check">
+                        </div>  
                     </div>
                     <div class="dbscan_div">
-                        <label>Настройки DBSCAN:</label>
+                        <span class="alg_label">Настройки DBSCAN</span>
                         <div>
-                            <span>Выберите радиус поиска точек</span>
-                            <input type="range" id="radius_range" min="50" max="160" step="1" value ="80">
+                            <span class="choose_set" id="radius_range_descr">Pадиус поиска точек: 80</span>
+                            <input type="range" id="radius_range" min="50" max="200" step="1" value ="80">
                         </div>
                         <div>
-                            <span>Выберите количество соседей</span>
-                            <input type="range" id="neighbors_range" min="2" max="20" step="1" value ="9">
+                            <span class="choose_set" id="neighbors_range_descr">Количество соседей: 8</span>
+                            <input type="range" id="neighbors_range" min="1" max="15" step="1" value ="8">
                         </div>
                     </div>
                     <div class="hierarchical_div">
-                        <label>Настройки Иерархического алгоритма:</label>
+                        <span class="alg_label">Настройки Иерархического алгоритма</span>
                         <div>
-                            <span>Выберите количество кластеров</span>
+                            <span class="choose_set" id="hierarchical_range_descr">Количество кластеров: 3</span>
                             <input type="range" id="hierarchical_range" min="1" max="20" step="1" value ="3">
                         </div>
                     </div>
-                    <input type="button" class="settings_button" id="remove_points" value="Очистить поле">  
-                    <input type="button" class="settings_button" id="start" value="Запустить алгоритм">
+                    <div class="distance">
+                        <label>Выберите расстояние:</label>
+                        <select id="distance_select">
+                            <option value="1">Евклидово</option>
+                            <option value="2">Манхэттенское</option>
+                            <option value="3">Чебышева</option>
+                        </select>
+                    </div>
+                    <button id="remove_points" type="button">Очистить поле</button>
+                    <button id="start" type="button"><span>Запустить алгоритм</span></button>
                 </div>
             </div>
         </div>
@@ -93,10 +95,7 @@
                 </div>
             </div>
         </div>
-
-        
     </main>
-
     <script type='module' src="../scripts/clustering/clusteringBasic.js"></script>
 </body>
 </html>
