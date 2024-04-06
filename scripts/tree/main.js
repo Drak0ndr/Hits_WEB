@@ -5,9 +5,10 @@ const label = document.querySelector('.load_data label')
 const inputTest = document.querySelector('.inputTest')
 const startBtn = document.querySelector('.start')
 const ansSpan = document.querySelector('.ans span')
-const canvas = document.querySelector('canvas')
+const field = document.querySelector('.field')
+const firstUl = document.querySelector('.field ul')
 let decisionTree = new DecisionTree()
-let drawCanvas = new Draw(canvas)
+let drawTree= new Draw(field, firstUl)
 inputFile.addEventListener('change', (e) => {
     let data = []
     let decoder = new TextDecoder('utf-8');
@@ -23,7 +24,7 @@ inputFile.addEventListener('change', (e) => {
         }
         console.log(data)
         decisionTree.train(data)
-        drawCanvas.drawGraph(decisionTree.tree, -1)
+        drawTree.drawGraph(decisionTree.tree, -1)
     }
     
 })
@@ -33,6 +34,6 @@ startBtn.addEventListener('click', (e) => {
     console.log(testData)
     let data = decisionTree.predict(testData)
     ansSpan.innerHTML = data[0]
-    drawCanvas.clear()
-    drawCanvas.drawGraph(decisionTree.tree, data[1])
+    drawTree.clear()
+    drawTree.drawGraph(decisionTree.tree, data[1])
 })
