@@ -18,7 +18,7 @@ export class Draw {
         this.vertex.push([x, y])
     }
 
-    drawLine(x1, y1, x2, y2, color = 'gray', width = 0.4) {
+    drawLine(x1, y1, x2, y2, color = 'gray', width = 0.1) {
         this.ctx.beginPath()
         this.ctx.strokeStyle = color
         this.ctx.lineJoin = 'miter'

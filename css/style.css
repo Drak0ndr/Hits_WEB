@@ -5,10 +5,11 @@
 }
 body {
     background-color: rgb(33, 37, 41);
+    min-height: 100vh;
+
 }
 main {
     
-    min-height: 100vh;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -22,7 +23,7 @@ a {
     height: 290px;
     background-color: #121212;
     overflow: hidden;
-    margin-top: 30px;
+    margin-top: 20px;
     position: relative;
     display: flex;
     align-items: center;
