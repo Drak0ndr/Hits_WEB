@@ -1,109 +1,83 @@
+@import url("./navigate.css");
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 main {
     background-color: rgb(33, 37, 41);
-    min-height: 100vh;
     display: flex;
-}
-
-.parametrs {
-    width: 30vw;
-}
-.back_top{
-    height: 110px;
-    padding: 10px 10px;
-}
-.back {
-    width: 7vw;
-    height: 7vw;
-    border-radius:50%;
-    background-color:rgb(24, 26, 27);
-    display: flex;
-    justify-content: center;
     align-items:center;
-}
-.back a {
-    width: 7vw;
-    height: 7vw;
-    border-radius:50%;
-    display: flex;
-    justify-content: center;
-    align-items:center;
-}
-.back:hover {
-    background-color:rgb(31, 34, 35);
-}
-.back svg {
-    width: 5vw;
-    height: 5vw;
-    color: #64748b;;
-}
-
-.field {
-    width: 69vw;
-}
-.astar_header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    margin: 20px 0px;
-}
-.astar_header > h2 {
-    font-size: 40px;
-}
-.wrapper_field{
-    display: flex;
     justify-content: space-around;
-    align-items: center;
-    height: 44vw;
+    min-height: 100vh;
+    padding: 80px 0;
 }
-.wpapper_parametrs{
+nav{
+    position: relative;
+    text-decoration: none; 
+}
+#wrapper{
     display: flex;
-    flex-direction: column;
+    align-items:center;
     justify-content: center;
+    flex-direction: row;
+    width: 100%;
+}
+.parametrs, .field{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction: column;
+}
+.field {
+    width: 70%;
     align-items: center;
-    width: 30vw;
-    height: 42vw;
+    justify-content: center;
+}
+.parametrs{
+    height: 100%;
 }
 .parametrs_header{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 10%;
+    height: 94px;
     width: 100%;
+}
+.parametrs_logo{
+    width: 50px;
+    height: 50px;
 }
 .parametrs_descr{
     color: white;
-    font-size: 30px;
-    margin: 0px 15px;
+    font-size: 45px;
+    margin: 0px 20px;
 }
 .astar_settings{
-    background-image: linear-gradient(315deg, #c77dff, #e7c6ff);
-    height: 100%;
+    background: #e7c6ff;
+    height: 806px;
     width: 90%;
-    border-radius: 10%;
-    border: 5px solid #7209b7;
+    border-radius: 30px;
+    border: 5px solid #AC92EC;
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
 }
 #astar_canvas{
-    background-color: #c77dff;
-    height: 100%;
+    background-color: #AC92EC;
+    height: 900px;
+    width: 900px;
     cursor: pointer;
 }
 #field_settings{
     display: flex;
     flex-direction:column;
 }
-span, #label_dist{
-    font-size: 1rem;
+#field_range_descr, #animation_range_descr, #ansver, #label_dist{
+    font-size: 1.8rem;
     font-weight: 500;
 }
 #field_settings, #animation_settings, #distance{
@@ -111,90 +85,88 @@ span, #label_dist{
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    gap: 0.35rem;
+    gap: 0.2rem;
 }
 #start, #remove_field, #add_start, #add_finish,#generate_maze {
     text-transform: uppercase;
-    background-color: #ffbf00;
-    border-radius: 40em;
+    background-color: #FFCE54;
+    border-radius: 12px;
     border-style: none;
-    box-shadow: #FBEC5D 0 -0.3rem 0.2rem inset;
     color: white;
     cursor: pointer;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     font-weight: 900;
     margin: 0;
     padding: 0.3rem 0.6rem;
     text-align: center;
     transition: all 0.15s;
-    height: 25px;
-    width: 50%;
+    height: 50px;
+    width: 150px;
 }
 #start:hover, #start:active {
-    background-color: #FBEC5D;
-    box-shadow: #ffbf00 0 -0.8rem 0.2rem inset;
+    background-color: #FCBB42;
     transform: scale(1.05);
 }
 #add_start{
-    background-color: #ff0d00;
-    box-shadow:  #FF97BB 0 -0.3rem 0.2rem inset;
-    font-weight: 700;
+    background-color: #ED5565;
+    font-weight: 900;
 }
 #add_start:hover, #add_start:active {
-    background-color: #FF97BB;
-    box-shadow:#ff0d00 0 -0.8rem 0.2rem inset;
+    background-color: #DA4453;
     transform: scale(1.05);
 }
 #add_finish{
-    background-color: #007FFF;
-    box-shadow:  #42AAFF 0 -0.3rem 0.2rem inset;
-    font-weight: 700;
+    background-color: #4FC1E9;
+    font-weight: 900;
 }
 #add_start:disabled{
-    background-color: #ff0d00;
+    background-color: #DA4453;
     box-shadow:  none;
     transform: scale(1.05);
+    filter: contrast(80%);
 }
 #add_finish:hover, #add_finish:active {
-    background-color: #42AAFF;
-    box-shadow:#007FFF 0 -0.8rem 0.2rem inset;
+    background-color: #3BAFDA;
     transform: scale(1.05);
 }
 #add_finish:disabled{
-    background-color: #007FFF;
+    background-color: #3BAFDA;
     box-shadow:  none;
     transform: scale(1.05);
+    filter: contrast(80%);
 }
 #remove_field, #generate_maze{
-    background-color: #7209b7;
-    box-shadow:   #9966CC 0 -0.3rem 0.2rem inset;
-    font-weight: 700;
+    background-color: #AC92EC;
+    font-weight: 900;
 }
 #generate_maze:hover, #generate_maze:active, #remove_field:hover, #remove_field:hover {
-    background-color:  #9966CC;
-    box-shadow:#7209b7 0 -0.8rem 0.2rem inset;
+    background-color:  #967ADC;
     transform: scale(1.05);
 }
 input[type="number"] {
     background-image: linear-gradient(315deg, #D18CE0, #FFFFFF);
     color: black;
     outline:none;
-    border: 0.15rem solid #7209b7;
+    border: 0.25rem solid #AC92EC;
     border-radius:5px;
-    width: 60%;
+    width: 200px;
+    height: 36px;
+    font-size:24px;
     display: block;
-    margin: 0 auto;
+    margin: 10px auto;
     cursor: pointer;
 }
 input[id="field_range"] {
-    width: 80%;
+    width: 200px;
+    height: 36px;
+    font-size:24px;
 }
 select {
     appearance: none;
-    border: 0.15rem solid #7209b7;
+    border: 0.25rem solid #AC92EC;
     outline: 0;
-    height: 25px;
-    width: 100%;
+    height: 40px;
+    width: 230px;
     padding: 0.2rem 0.6rem;
     background: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg)
     no-repeat right 0.8em center / 1.4em,
@@ -203,8 +175,34 @@ select {
     border-radius: 0.25em;
     box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
     cursor: pointer;
+    font-size:22px;
+    margin: 10px auto;
 }
 select option {
-    background-color:#c77dff;
+    background-color:#e7c6ff;
+    font-size:22px;
+    height: 40px !important;
+    width: 200px !important;
+}
+#div_btn2, #div_btn1{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    gap: 20px;
+}
+#div_btn2{
+    justify-content: space-between;
+}
+#ansver{
+    height: 55px;
+    font-weight: 500;
+    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+a{
+    text-decoration: none;
 }
 

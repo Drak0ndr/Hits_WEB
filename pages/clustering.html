@@ -12,17 +12,6 @@
 <body>
     <main>
         <div class="parametrs">
-            <div class="back_top">
-                <div class="back">
-                    <a href="../index.html">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-arrow-left" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
             <div class="wpapper_parametrs">
                 <div class="parametrs_header">
                     <div class="parametrs_logo"><svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" fill="white" class="bi bi-gear" viewBox="0 0 16 16">
@@ -69,15 +58,14 @@
                             <option value="3">Чебышева</option>
                         </select>
                     </div>
-                    <button id="remove_points" type="button">Очистить поле</button>
-                    <button id="start" type="button"><span>Запустить алгоритм</span></button>
+                    <div id ="div_btn">
+                        <button id="remove_points" type="button">Очистить поле</button>
+                        <button id="start" type="button"><span>Запустить алгоритм</span></button>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="field">
-            <div class="clustering_header">
-                <h2>Кластеризация</h2>
-            </div>
             <div class="wrapper_field">
                 <div class = "canvas_div">
                     <div class = "canvas_header">Алгоритм K-Means</div>

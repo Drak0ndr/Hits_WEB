@@ -9,52 +9,11 @@ main {
     min-height: 100vh;
     display: flex;
 }
-
 .parametrs {
     width: 20vw;
 }
-.back_top{
-    height: 110px;
-    padding: 10px 10px;
-}
-.back {
-    width: 7vw;
-    height: 7vw;
-    border-radius:50%;
-    background-color:rgb(24, 26, 27);
-    display: flex;
-    justify-content: center;
-    align-items:center;
-}
-.back a {
-    width: 7vw;
-    height: 7vw;
-    border-radius:50%;
-    display: flex;
-    justify-content: center;
-    align-items:center;
-}
-.back:hover {
-    background-color:rgb(31, 34, 35);
-}
-.back svg {
-    width: 5vw;
-    height: 5vw;
-    color: #64748b;;
-}
-
 .field {
     width: 79vw;
-}
-.clustering_header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    margin: 32px 0px;
-}
-.clustering_header > h2 {
-    font-size: 40px;
 }
 .wrapper_field{
     display: flex;
@@ -78,8 +37,8 @@ main {
     background-color: #FCB4D5;
     width: 100%;
     height: 90%;
-    border-radius: 10%;
-    border: 4px solid #F400A1;
+    border-radius: 30px;
+    border: 4px solid #EC87C0;
     cursor: url('data:image/x-icon;base64,AAACAAEAICAQAAAAAADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAAAIAAAAAAAAAAAAAEAAAAAAAAAAAAAAA1GizAEW4/wC4iqoA1ni5AJyXkgBZv/8ABQUFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHcAAAAAAAAAAAAAAAAAAAczcAAAAAAAAAAAAAAAAAB3MzcAAAAAAAAAAAAAAAAHVXMzcAAAAAAAAAAAAAAAcXVXMzcAAAAAAAAAAAAABxEXVXMzcAAAAAAAAAAAAHEREXVXMzcAAAAAAAAAAAcREREXVXM3AAAAAAAAAABxEREREXVXcAAAAAAAAAAHERERERRHVwAAAAAAAAAAcRERERFERHAAAAAAAAAABxEREREUREcAAAAAAAAAAHcRERERRERwAAAAAAAAAAcicRERFERHAAAAAAAAAAAHIicREUREcAAAAAAAAAAAByIicRRERwAAAAAAAAAAAAciJmdERHAAAAAAAAAAAAAHIiZmdEcAAAAAAAAAAAAAB3JmZmdwAAAAAAAAAAAAAAd3ZmZnAAAAAAAAAAAAAAAHd3d3cAAAAAAAAAAAAAAAD////////////////////////////////////////////////////////////5////8P///+B////AP///gB///wAP//4AB//8AAf/+AAP//AAH//gAD//wAB//4AA//8AAf//AAP//wAH//8AD///AB///wA///8Af///AP///w=='), pointer;
 }
 .wpapper_parametrs{
@@ -94,8 +53,8 @@ main {
     background-color: #ABCDEF;
     height: 100%;
     width: 90%;
-    border-radius: 10%;
-    border: 3.5px solid #007FFF;
+    border-radius: 20px;
+    border: 3.5px solid #3BAFDA;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -130,10 +89,9 @@ main {
 }
 #start, #remove_points {
     text-transform: uppercase;
-    background-color: #FF1493;
-    border-radius: 40em;
+    background-color: #FCB4D5;
+    border-radius: 12px;
     border-style: none;
-    box-shadow: #FCB4D5 0 -0.3rem 0.2rem inset;
     color: white;
     cursor: pointer;
     font-size: 0.6rem;
@@ -142,21 +100,18 @@ main {
     padding: 0.3rem 0.6rem;
     text-align: center;
     transition: all 0.15s;
-    height: 25px;
-    width: 70%;
+    height: 35px;
+    width: 42%;
 }
 #start:hover, #start:active {
-    background-color: #FCB4D5;
-    box-shadow: #FF1493 0 -0.8rem 0.2rem inset;
+    background-color: #EC87C0;
     transform: scale(1.05);
 }
 #remove_points{
-    background-color: #007FFF;
-    box-shadow:#42AAFF 0 -0.3rem 0.2rem inset;
+    background-color: #4FC1E9 ;
 }
 #remove_points:hover, #remove_points:active {
-    background-color: #42AAFF;
-    box-shadow:#007FFF 0 -0.8rem 0.2rem inset;
+    background-color: #3BAFDA;
     transform: scale(1.05);
 }
 .alg_label{
@@ -198,13 +153,13 @@ input[type='checkbox']{
     height: 1rem !important;
     appearance:none;
     border-radius:10%;
-    border: 0.2rem solid #007FFF;
+    border: 0.2rem solid #4FC1E9;
     box-shadow: none;
     font-size: 1em;
 }
 input[type='checkbox']:checked {
     background-color: #FCB4D5;
-    border: 0.2rem solid #FF1493;
+    border: 0.2rem solid #EC87C0;
 }
 input[type='checkbox']:checked:after {
     color:white;
@@ -236,7 +191,7 @@ select option {
     -webkit-appearance: none;
     width: 70%;
     height: 0.55rem;
-    background-image: linear-gradient(#007FFF, #42AAFF);
+    background-image: linear-gradient(#3BAFDA, #4FC1E9);
     background-repeat: no-repeat;
     border-radius: 40em;
     outline: none;
@@ -250,8 +205,8 @@ select option {
     width: 1em;
     height: 1em;
     border-radius: 50%;
-    border: 0.1em solid #007FFF;
-    background-color: #42AAFF;  
+    border: 0.1em solid #3BAFDA;
+    background-color: #4FC1E9;  
 }
 #k_means_range {
     background-size: 15% 100%;
@@ -265,7 +220,12 @@ select option {
  #hierarchical_range {
     background-size: 15% 100%;
  }
- 
+ #div_btn{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    gap: 10px;
+}
   
 
 

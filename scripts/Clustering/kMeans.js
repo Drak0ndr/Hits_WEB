@@ -4,37 +4,39 @@ import { Point, heuristics} from "./drawingFunctions.js";
 function chooseCentroids(countClusters) {
     let centroids = [pointCoordinates[Math.floor(Math.random() * pointCoordinates.length)]]; // Выбираем случайный центоид из набора данных
 
-    for (let i = 0; i < countClusters - 1; ++i) { // Выбираем оставшиеся центроиды
-        let arrDistances = new Array(pointCoordinates.length);
+    for (let i = 1; i < countClusters; ++i) { // Выбираем оставшиеся центроиды
+        let arrDistances = [];
         let sumDistances = 0;
 
-        for (let j = 0; j < pointCoordinates.length; ++j) {
-            let point = pointCoordinates[j];
+        pointCoordinates.forEach(point => {
             let minDistance = Infinity;
 
-            for (let k = 0; k < centroids.length; ++k) {
-                let distance = heuristics(point, centroids[k]);
-                minDistance = Math.min(minDistance, distance);
-            }
+            centroids.forEach(centroid => {
+                let dist = heuristics(point, centroid);
 
-            arrDistances[j] = minDistance;
+                if (dist < minDistance) {
+                    minDistance = dist;
+                }
+
+            });
+
+            arrDistances.push(minDistance);
             sumDistances += minDistance;
-        }
+        });
 
-        let randomNumber = Math.random() * sumDistances;
-        sumDistances = 0;
-        let nextCentroid;
 
-        for (let n = 0; n < pointCoordinates.length; ++n) {
-            sumDistances += arrDistances[n];
+        let pick = Math.random() * sumDistances;
+        let total = 0;
 
-            if (sumDistances >= randomNumber) {
-                nextCentroid = pointCoordinates[n];
+        for (let j = 0; j <  arrDistances.length; j++) {
+            total +=  arrDistances[j];
+
+            if (total >= pick) {
+                centroids.push(pointCoordinates[j]);
                 break;
             }
-        }
 
-        centroids.push(nextCentroid);
+        }  
     }
 
     return centroids;
@@ -54,18 +56,18 @@ export function kMeans(countClusters) {
 
             let point = pointCoordinates[i];
             let minDistance = Infinity;
-            let nearbyCentroid;
+            let neighbor;
     
             for (let j = 0; j < centroids.length; j++) {
                 let distance = heuristics(point, centroids[j]);
     
                 if (distance < minDistance) {
                     minDistance = distance;
-                    nearbyCentroid = centroids[j];
+                    neighbor = centroids[j];
                 }
             }
     
-            arrClusters[centroids.indexOf(nearbyCentroid)].push(point);
+            arrClusters[centroids.indexOf(neighbor)].push(point);
         }
  
         let newCentroids = [];
@@ -85,20 +87,19 @@ export function kMeans(countClusters) {
                     sumY += cluster[j].y;
                 }
 
-                let newX = sumX / cluster.length;
-                let newY = sumY / cluster.length;
-
-                newCentroids.push(new Point(newX, newY));
+                newCentroids.push(new Point(sumX / cluster.length, sumY / cluster.length));
             }
         }
 
         converge = true;
         
         for (let i = 0; i < centroids.length; i++) {
+
             if (heuristics(centroids[i], newCentroids[i]) > 0.01) {
                 converge = false;
                 break;
             }
+            
         }
   
         centroids = newCentroids;

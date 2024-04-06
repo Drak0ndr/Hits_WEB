@@ -33,6 +33,7 @@ export function dbscan(pointCoordinates, radius, minCountNeighbors) {
 
         if (neighbors.length < minCountNeighbors) { 
             wastes.add(currPoint);
+
             continue;
         }
 
@@ -66,5 +67,6 @@ export function dbscan(pointCoordinates, radius, minCountNeighbors) {
             possiblePoints.delete(possiblePoint);
         }
     }
+    
     return clusters;
 }

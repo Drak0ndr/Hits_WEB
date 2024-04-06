@@ -1,0 +1,209 @@
+@media (max-width: 1399px) {
+    #astar_canvas{
+        height: 740px;
+        width: 740px;
+    }
+    .parametrs_header{
+        height: 80px;
+    }
+    .parametrs_logo{
+        width: 45px;
+        height: 45px;
+    }
+    .parametrs_descr{
+        font-size: 40px;
+    }
+    .astar_settings{
+        height: 660px;
+        width: 80%;
+   }
+   #field_range_descr, #animation_range_descr, #ansver, #label_dist{
+    font-size: 1.6rem;
+    }
+    #start, #remove_field, #add_start, #add_finish,#generate_maze {
+        font-size: 0.5rem;
+        font-weight: 900;
+        height: 50px;
+        width: 110px;
+    }
+}
+@media (max-width: 1099px) {
+    nav{
+        justify-content: space-around;
+    }
+    .links {
+        width: 86%;
+        justify-content: space-around;
+    }
+    nav a {
+        margin: 0 5px 0 5px;
+    }
+    .link span {
+        display: none;
+    }
+    .logo svg{
+        width: 60px;
+        height: 60px;
+        fill: whitesmoke;
+    }
+    .logo {
+        margin: 0 5px 0 5px;
+    }
+    main{
+        justify-content: center;
+        align-items:center;
+    }
+    nav a svg {
+        width: 60px;
+        height: 60px;
+    }
+    #wrapper{
+        gap: 40px;
+        flex-direction: column;
+        align-items:center;
+    }
+    .astar_settings{
+        width: 60%;
+   }
+    .parametrs{
+        width: 100%;
+    }
+    .field {
+        width: 100%;
+        order: -1;
+    }  
+    #start, #remove_field, #add_start, #add_finish,#generate_maze {
+        font-size: 0.8rem;
+        width: 150px;
+    }
+}
+@media (max-width: 767px) {
+    .logo svg{
+        width: 10vw;
+        height: 10vw;
+        max-width: 60px;
+        max-height: 60px;
+    }
+    .logo {
+        margin: 0 5px 0 5px;
+    }
+    nav a svg {
+        width: 10vw;
+        max-width: 60px;
+        height: 10vw;
+        max-height: 60px;
+    }
+    nav a {
+        margin: 0 2px 0 2px;
+    }
+    main{
+        padding: 30px 0;
+    }
+    #wrapper{
+        gap: 30px;
+        flex-direction: column;
+    }
+    .parametrs{
+        width: 100vw;
+    }
+    .field {
+        width: 100vw;
+        order: -1;
+    }  
+    #astar_canvas{
+        height: 460px;
+        width: 460px;
+    }
+    .astar_settings{
+        height: 460px;
+        width: 60%;
+   }
+   .parametrs_header{
+    height: 60px;
+    }
+    .parametrs_logo{
+        width: 30px;
+        height: 30px;
+    }
+    .parametrs_descr{
+        font-size: 30px;
+    }
+    #field_range_descr, #animation_range_descr, #ansver, #label_dist{
+        font-size: 1.1rem;
+    }
+    #start, #remove_field, #add_start, #add_finish,#generate_maze {
+        font-size: 0.6rem;
+        height: 42px;
+        width: 112px;
+    }
+    input[type="number"], input[id="field_range"] {
+        width: 150px;
+        height: 28px;
+        font-size:16px;
+        border: 0.2rem solid #AC92EC
+    }
+    select {
+        border: 0.2rem solid #AC92EC;
+        height: 30px;
+        width: 180px;
+        font-size:16px;
+    }
+    #div_btn2, #div_btn1{
+        gap: 24px;
+    }
+    #ansver{
+        height: 35px;
+    }
+}
+@media (max-width: 477px) { 
+    #astar_canvas{
+        height: 334px;
+        width: 334px;
+    }
+    .astar_settings{
+        height: 360px;
+        width: 310px;
+   }
+   .parametrs_header{
+    height: 40px;
+    }
+    .parametrs_logo{
+        width: 28px;
+        height: 28px;
+    }
+    .parametrs_descr{
+        font-size: 28px;
+    }
+    #field_range_descr, #animation_range_descr, #ansver, #label_dist{
+        font-size: 0.8rem;
+    }
+    #start, #remove_field, #add_start, #add_finish,#generate_maze {
+        font-size: 0.5rem;
+        height: 34px;
+        width: 96px;
+    }
+    input[type="number"], input[id="field_range"] {
+        width: 90px;
+        height: 20px;
+        font-size:14px;
+        border: 0.15rem solid #AC92EC
+    }
+    select {
+        border: 0.15rem solid #AC92EC;
+        height: 24px;
+        width: 140px;
+        font-size:12px;
+    }
+    select option {
+        background-color:#e7c6ff;
+        font-size:12px;
+        height: 20px !important;
+        width: 140px !important;
+    }
+    #div_btn2, #div_btn1{
+        gap: 16px;
+    }
+    #ansver{
+        height: 28px;
+    }
+}

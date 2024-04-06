@@ -126,7 +126,7 @@ canvas.addEventListener('click', function(e){
             markedCells.push(cell);
 
         }else{
-            ctx.fillStyle = '#c77dff';
+            ctx.fillStyle = '#AC92EC';
             (fieldPixelsSize < 30) ? ctx.lineWidth = 1 : (fieldPixelsSize < 70) ? ctx.lineWidth = 0.8 : (fieldPixelsSize < 100) ?
             ctx.lineWidth = 0.7 : (fieldPixelsSize < 170) ? ctx.lineWidth = 0.4 : (fieldPixelsSize < 200) ? ctx.lineWidth = 0.3 :
             ctx.lineWidth = 0.2; 
@@ -175,7 +175,7 @@ canvas.addEventListener('click', function(e){
 
     if (currButton === 3){
         if(containsObject(cell, markedCells) === Infinity){
-            ctx.fillStyle = '#007FFF';
+            ctx.fillStyle = '#0000FF';
             ctx.fillRect(x, y, cellSize, cellSize);
             markedCells.push(cell);
             finishCoordinates.push(cell);
@@ -199,12 +199,16 @@ document.getElementById('animation_range').addEventListener('click', () => {
 });
 
 document.getElementById('remove_field').addEventListener('click', () => {
+    document.getElementById("ansver").textContent = "Минимальная длина пути: ";
+
     ctx.reset();
     drawGrid();
     resettingVariables();
 });
 
 document.getElementById('generate_maze').addEventListener('click',  () => {
+    document.getElementById("ansver").textContent = "Минимальная длина пути: ";
+    
     ctx.reset();
     drawGrid();  
     resettingVariables();
@@ -222,6 +226,8 @@ document.getElementById('generate_maze').addEventListener('click',  () => {
 
 
 document.getElementById('start').addEventListener('click',  () => {
+    document.getElementById("ansver").textContent = "Минимальная длина пути: ";
+
     if(startСoordinates.length === 0 && finishCoordinates.length === 0){
 		alert("Установите старт и финиш и попробуйте заново");
         return 0;
@@ -272,9 +278,6 @@ document.getElementById('add_finish').addEventListener('click', () =>{
     currButton = 3;
     document.getElementById("add_finish").disabled = true;
 });
-
-
-
 
 
 

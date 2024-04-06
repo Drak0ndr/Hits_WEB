@@ -2,6 +2,7 @@ import {heuristics} from "./drawingFunctions.js"
 
 function  getDistanceBetweenClusters (clusters) {
     let distances = [];
+    
     for (let i = 0; i < clusters.length - 1; i++) {
         for (let j = i + 1; j < clusters.length; j++) {
             let distance = 0;

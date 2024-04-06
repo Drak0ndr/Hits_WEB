@@ -36,6 +36,11 @@ export function deletePath() {
     deleteInterval();
     arrPaths = [];
     ctx.reset(); 
+
+    if (edgeMapping) {
+        drawEdges();
+    }
+    
     drawVertexes();
 }
 
@@ -58,9 +63,11 @@ function findNeighbor(vertex) {
 function drawAbility(vertex) {
     let numberVertex = findNeighbor(vertex);
 
-    if(numberVertex === Infinity || (vertex.x > radius + 2 && vertex.x < canvas.clientWidth - radius - 4) &&
-        (vertex.y > radius + 2 && vertex.y < canvas.clientHeight - radius - 4) &&
-        findDistance(arrVertexes[numberVertex], vertex) > 2 * radius + 2){
+    if((numberVertex === Infinity && (vertex.x > radius + 2 && vertex.x < canvas.clientWidth - radius - 2) &&
+        (vertex.y > radius + 2 && vertex.y < canvas.clientHeight - radius - 2)) || 
+        ((vertex.x > radius + 2 && vertex.x < canvas.clientWidth - radius - 2) &&
+        (vertex.y > radius + 2 && vertex.y < canvas.clientHeight - radius - 2) &&
+        findDistance(arrVertexes[numberVertex], vertex) >  radius * 2 + 2)){
         return 1;
 
     }else{
@@ -116,15 +123,13 @@ function deleteVertex(e) {
         deleteInterval();
         
         deletePath();
-
-        if (edgeMapping) {
-            drawEdges();
-        }
     }
 }
 
 export function showPath(path) {
     let numberIterations;
+    let sumDist = 0;
+    
     document.getElementById("speed_range").value <= 20 ? numberIterations = 80 :  
     document.getElementById("speed_range").value <= 40 ? numberIterations = 180 :
     document.getElementById("speed_range").value <= 60 ? numberIterations = 280 :
@@ -134,6 +139,8 @@ export function showPath(path) {
     for (let i = 0; i < path.length - 1; ++i) {
         ctx.moveTo(arrVertexes[path[i]].x, arrVertexes[path[i]].y);
         ctx.lineTo(arrVertexes[path[i + 1]].x, arrVertexes[path[i + 1]].y);
+
+        sumDist += findDistance(arrVertexes[path[i]], arrVertexes[path[i+1]]);
 
         if (counter < numberIterations) {
             ctx.strokeStyle = "white";
@@ -149,17 +156,22 @@ export function showPath(path) {
     ctx.moveTo(arrVertexes[path[path.length - 1]].x, arrVertexes[path[path.length - 1]].y);
     ctx.lineTo(arrVertexes[path[0]].x, arrVertexes[path[0]].y);
 
+    sumDist += findDistance(arrVertexes[path[path.length - 1]], arrVertexes[path[0]]);
+
     if (counter < numberIterations) {
         ctx.strokeStyle = "white";
 
     }else {
         ctx.strokeStyle = "#fe019a";
+        clearInterval(intervalId);
     }
 
     ctx.lineWidth = "5";
     ctx.stroke();  
     
     drawVertexes();
+
+    document.getElementById("ansver").textContent = "Минимальная длина пути: " + Math.round(sumDist * 100) / 100;
 }
 
 function geneticAlgorithm() {
@@ -221,6 +233,8 @@ document.getElementById("сhange_graph").addEventListener('change', () => {
 });
 
 document.getElementById("remove_field").addEventListener('click', () => {
+    document.getElementById("ansver").textContent = "Минимальная длина пути: ";
+
     ctx.reset();
     arrVertexes = [];
     arrPaths = [];
@@ -228,6 +242,8 @@ document.getElementById("remove_field").addEventListener('click', () => {
 });
 
 document.getElementById("start").addEventListener('click', () => {
+    document.getElementById("ansver").textContent = "Минимальная длина пути: ";
+
     arrPaths = [];
     deleteInterval(); 
     geneticAlgorithm();

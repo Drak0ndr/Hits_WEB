@@ -70,7 +70,7 @@ export async function aStar() {
         if (!(current.posX === startСoordinates[0].posX && current.posY === startСoordinates[0].posY) && 
             !(current.posX === finishCoordinates[0].posX  && current.posY === finishCoordinates[0].posY)) {
 
-            ctx.fillStyle = '#ffbf00';
+            ctx.fillStyle = '#FCBB42';
             ctx.fillRect(current.vertex1.x, current.vertex1.y, cellSize, cellSize); 
 
             if(count >= Math.floor(fieldPixelsSize / 8)){
@@ -122,7 +122,7 @@ export async function aStar() {
                 if (neighbour === undefined) {
 
                     if(!(newNeighbour.posX === finishCoordinates[0].posX && newNeighbour.posY === finishCoordinates[0].posY))
-                        ctx.fillStyle = '#FBEC5D';
+                        ctx.fillStyle = '#FFCE54';
                         ctx.fillRect(newNeighbour.vertex1.x, newNeighbour.vertex1.y, cellSize, cellSize);
 
                         if(count >= Math.floor(fieldPixelsSize / 8)){
@@ -154,14 +154,17 @@ export async function aStar() {
         alert(`Очень жаль, но пути нет 🤷`);
     
     } else {
-        ctx.fillStyle = '#007FFF';
+        ctx.fillStyle = '#0000FF';
         ctx.fillRect(finishCoordinates[0].vertex1.x, finishCoordinates[0].vertex1.y, cellSize, cellSize);
     
+        let k = 0;
         for(;current.parent != null; current = current.parent) {
             
             if (!(current.posX === finishCoordinates[0].posX && current.posY === finishCoordinates[0].posY)){
                 ctx.fillStyle = 'white';
                 ctx.fillRect(current.vertex1.x, current.vertex1.y, cellSize, cellSize);
+
+                ++k;
 
                 if(count >= Math.floor(fieldPixelsSize / 8)){
                     await new Promise((resolve, reject) => setTimeout(resolve, 101 - document.getElementById('animation_range').value));
@@ -171,6 +174,8 @@ export async function aStar() {
                 count++;
             }
         }
+
+        document.getElementById("ansver").textContent = "Минимальная длина пути: " + k; 
     }   
 }
 
