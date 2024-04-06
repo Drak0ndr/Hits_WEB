@@ -21,7 +21,7 @@
         width: 80%;
    }
    #field_range_descr, #animation_range_descr, #ansver, #label_dist{
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     }
     #start, #remove_field, #add_start, #add_finish,#generate_maze {
         font-size: 0.55rem;
@@ -71,9 +71,6 @@
         flex-direction: column;
         align-items:center;
     }
-    .astar_settings{
-        width: 60%;
-   }
     .parametrs{
         width: 100%;
     }
@@ -91,7 +88,7 @@
     }
     .astar_settings{
         height: 500px;
-        width: 66%;
+        width: 50%;
    }
 }
 @media (max-width: 767px) {
