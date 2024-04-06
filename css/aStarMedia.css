@@ -1,10 +1,13 @@
-@media (max-width: 1399px) {
+@media (max-width: 1440px) {
+    main {
+        min-height: calc(100vh - 114px);
+    }
     #astar_canvas{
-        height: 740px;
-        width: 740px;
+        height: 600px;
+        width: 600px;
     }
     .parametrs_header{
-        height: 80px;
+        height: 60px;
     }
     .parametrs_logo{
         width: 45px;
@@ -14,17 +17,23 @@
         font-size: 40px;
     }
     .astar_settings{
-        height: 660px;
+        height: 540px;
         width: 80%;
    }
    #field_range_descr, #animation_range_descr, #ansver, #label_dist{
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     }
     #start, #remove_field, #add_start, #add_finish,#generate_maze {
-        font-size: 0.5rem;
+        font-size: 0.55rem;
         font-weight: 900;
         height: 50px;
         width: 110px;
+    }
+    select {
+        font-size:20px;
+    }
+    input[type="number"], input[id="field_range"]  {
+        font-size:20px;
     }
 }
 @media (max-width: 1099px) {
@@ -76,6 +85,14 @@
         font-size: 0.8rem;
         width: 150px;
     }
+    #astar_canvas{
+        height: 560px;
+        width: 560px;
+    }
+    .astar_settings{
+        height: 500px;
+        width: 66%;
+   }
 }
 @media (max-width: 767px) {
     .logo svg{
@@ -96,11 +113,8 @@
     nav a {
         margin: 0 2px 0 2px;
     }
-    main{
-        padding: 30px 0;
-    }
     #wrapper{
-        gap: 30px;
+        gap: 10px;
         flex-direction: column;
     }
     .parametrs{
@@ -111,11 +125,11 @@
         order: -1;
     }  
     #astar_canvas{
-        height: 460px;
-        width: 460px;
+        height: 430px;
+        width: 430px;
     }
     .astar_settings{
-        height: 460px;
+        height: 400px;
         width: 60%;
    }
    .parametrs_header{
@@ -133,20 +147,22 @@
     }
     #start, #remove_field, #add_start, #add_finish,#generate_maze {
         font-size: 0.6rem;
-        height: 42px;
+        height: 40px;
         width: 112px;
     }
     input[type="number"], input[id="field_range"] {
         width: 150px;
         height: 28px;
         font-size:16px;
-        border: 0.2rem solid #AC92EC
+        border: 0.2rem solid #AC92EC;
+        margin: 5px auto;
     }
     select {
         border: 0.2rem solid #AC92EC;
         height: 30px;
         width: 180px;
         font-size:16px;
+        margin: 5px auto;
     }
     #div_btn2, #div_btn1{
         gap: 24px;
@@ -157,11 +173,11 @@
 }
 @media (max-width: 477px) { 
     #astar_canvas{
-        height: 334px;
-        width: 334px;
+        height: 324px;
+        width: 324px;
     }
     .astar_settings{
-        height: 360px;
+        height: 350px;
         width: 310px;
    }
    .parametrs_header{
@@ -186,13 +202,15 @@
         width: 90px;
         height: 20px;
         font-size:14px;
-        border: 0.15rem solid #AC92EC
+        border: 0.15rem solid #AC92EC;
+        margin: 5px auto;
     }
     select {
         border: 0.15rem solid #AC92EC;
         height: 24px;
         width: 140px;
         font-size:12px;
+        margin: 5px auto;
     }
     select option {
         background-color:#e7c6ff;

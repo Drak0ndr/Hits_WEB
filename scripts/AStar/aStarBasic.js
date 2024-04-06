@@ -4,7 +4,7 @@ import { aStar } from "./astarAlgorithm.js";
 
 const canvas = document.getElementById('astar_canvas');
 canvas.height = document.querySelector('#astar_canvas').clientHeight;
-canvas.width = document.querySelector('#astar_canvas').clientHeight;
+canvas.width = document.querySelector('#astar_canvas').clientWidth;
 export const ctx = canvas.getContext('2d');
 
 export let fieldPixelsSize = 50;
@@ -76,10 +76,10 @@ function fillCoordinates(){
 
 function containsObject(obj, list) {
     for (let i = 0; i < list.length; ++i) {
-        if(Math.trunc(list[i].vertex1.x) === Math.trunc(obj.vertex1.x) && Math.trunc(list[i].vertex1.y) === Math.trunc(obj.vertex1.y) &&
-        Math.trunc(list[i].vertex2.x) === Math.trunc(obj.vertex2.x) && Math.trunc(list[i].vertex2.y) === Math.trunc(obj.vertex2.y) &&
-        Math.trunc(list[i].vertex3.x) === Math.trunc(obj.vertex3.x) && Math.trunc(list[i].vertex3.y) === Math.trunc(obj.vertex3.y) &&
-        Math.trunc(list[i].vertex4.x) === Math.trunc(obj.vertex4.x) && Math.trunc(list[i].vertex4.y) === Math.trunc(obj.vertex4.y))
+        if(Math.floor(list[i].vertex1.x) === Math.floor(obj.vertex1.x) && Math.floor(list[i].vertex1.y) === Math.floor(obj.vertex1.y) &&
+        Math.floor(list[i].vertex2.x) === Math.floor(obj.vertex2.x) && Math.floor(list[i].vertex2.y) === Math.floor(obj.vertex2.y) &&
+        Math.floor(list[i].vertex3.x) === Math.floor(obj.vertex3.x) && Math.floor(list[i].vertex3.y) === Math.floor(obj.vertex3.y) &&
+        Math.floor(list[i].vertex4.x) === Math.floor(obj.vertex4.x) && Math.floor(list[i].vertex4.y) === Math.floor(obj.vertex4.y))
 
             return i;
     }

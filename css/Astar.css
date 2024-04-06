@@ -9,8 +9,8 @@ main {
     display: flex;
     align-items:center;
     justify-content: space-around;
-    min-height: 100vh;
-    padding: 80px 0;
+    min-height: calc(100vh - 114px);
+    padding: 20px 0;
 }
 nav{
     position: relative;
@@ -57,8 +57,8 @@ nav{
 }
 .astar_settings{
     background: #e7c6ff;
-    height: 806px;
-    width: 90%;
+    height: 766px;
+    width: 80%;
     border-radius: 30px;
     border: 5px solid #AC92EC;
     display: flex;
@@ -68,8 +68,8 @@ nav{
 }
 #astar_canvas{
     background-color: #AC92EC;
-    height: 900px;
-    width: 900px;
+    height: 860px;
+    width: 860px;
     cursor: pointer;
 }
 #field_settings{
