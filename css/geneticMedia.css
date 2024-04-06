@@ -1,0 +1,235 @@
+@media (max-width: 1800px) {
+    #genetic_canvas{
+        width: 940px;
+    }
+}
+@media (max-width: 1440px) {
+    main{
+        min-height: calc(100vh - 104px);
+    }
+    .parametrs_header{
+        height: 54px;
+    }
+    .parametrs_logo{
+        width: 45px;
+        height: 45px;
+    }
+    .parametrs_descr{
+        font-size: 36px;
+    }
+    .genetic_settings{
+        height: 540px;
+        width: 300px;
+    }
+    #genetic_canvas{
+        width: 740px;
+    }
+    #count_generations_descr, #count_children_descr, #speed_range_descr,#probability_descr,
+    label, .div6_check, .div5_check, #ansver{
+        font-size: 1.5rem;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 6px;
+    }
+    #ansver{
+        width: 90%;
+        height: 30px;
+    }
+    #count_generations, #count_children, #probability {
+        width: 70%;
+        height: 0.6rem;
+    }
+    #count_generations::-webkit-slider-thumb, #count_children::-webkit-slider-thumb,
+    #probability::-webkit-slider-thumb {
+        width: 1.4em;
+        height: 1.4em; 
+    }
+    input[type='checkbox']{
+        width: 1.2rem !important;
+        height: 1.2rem !important;
+        font-size: 1.2em;
+    }
+    input[type='checkbox']:checked {
+        background-color: #FFC0CB;
+        border: 0.2rem solid #F67280;
+    }
+    #start, #remove_field {
+        width: 120px;
+    }
+    input[type="number"] {
+        width: 160px;
+        height: 24px;
+        font-size: 16px;
+    }
+    #div_btn{
+        gap: 10px;
+    }
+    #count_generations_descr, #count_children_descr, #speed_range_descr,#probability_descr,
+    label, .div6_check, .div5_check, #ansver{
+        font-size: 1.2rem;
+    }
+}
+@media (max-width: 1099px) {
+    main{
+        min-height: calc(100vh - 80px);
+        gap: 40px;
+        flex-direction: column;
+        justify-content: center;
+        align-items:center;
+    }
+    .parametrs{
+        width: 100%;
+    }
+    .field {
+        width: 100%;
+        order: -1;
+    } 
+    nav{
+        justify-content: space-around;
+    }
+    .links {
+        width: 86%;
+        justify-content: space-around;
+    }
+    nav a {
+        margin: 0 5px 0 5px;
+    }
+    .link span {
+        display: none;
+    }
+    .logo svg{
+        width: 60px;
+        height: 60px;
+        fill: whitesmoke;
+    }
+    .logo {
+        margin: 0 5px 0 5px;
+    }
+    nav a svg {
+        width: 60px;
+        height: 60px;
+    }
+    #genetic_canvas{
+        width: 700px;
+        height: 540px;
+    }
+    .parametrs_header{
+        height: 50px;
+    }
+    .parametrs_logo{
+        width: 40px;
+        height: 40px;
+    }
+    .parametrs_descr{
+        font-size: 30px;
+    }
+    .genetic_settings{
+        height: 500px;
+        width: 360px;
+    }
+    #count_generations_descr, #count_children_descr, #speed_range_descr,#probability_descr,
+    label, .div6_check, .div5_check, #ansver{
+        font-size: 1.3rem;
+    }
+    #ansver{
+        height: 30px;
+    }
+    #count_generations, #count_children, #probability {
+        height: 0.7rem;
+    }
+    #count_generations::-webkit-slider-thumb, #count_children::-webkit-slider-thumb,
+    #probability::-webkit-slider-thumb {
+        width: 1.4em;
+        height: 1.4em;
+    }
+    input[type='checkbox']{
+        width: 1.2rem !important;
+        height: 1.2rem !important;
+        font-size: 1.2em;
+    }
+    input[type="number"] {
+        height: 26px;
+        font-size: 18px;
+    }
+}
+@media (max-width: 767px) {
+    main{
+        min-height: calc(100vh - 67px);
+        gap: 20px;
+    }
+    .logo svg{
+        width: 10vw;
+        height: 10vw;
+        max-width: 60px;
+        max-height: 60px;
+    }
+    .logo {
+        margin: 0 5px 0 5px;
+    }
+    nav a svg {
+        width: 10vw;
+        max-width: 60px;
+        height: 10vw;
+        max-height: 60px;
+    }
+    nav a {
+        margin: 0 2px 0 2px;
+    } 
+    #genetic_canvas{
+        width: 460px;
+        height: 460px;
+    }
+    .parametrs_header{
+        height: 44px;
+    }
+    .parametrs_logo{
+        width: 30px;
+        height: 30px;
+    }
+    .parametrs_descr{
+        font-size: 30px;
+    }
+    .genetic_settings{
+        height: 400px;
+        width: 320px;
+    }
+    #count_generations_descr, #count_children_descr, #speed_range_descr,#probability_descr,
+    label, .div6_check, .div5_check, #ansver{
+        font-size: 1.2rem;
+    }
+    #ansver{
+        height: 30px;
+    }
+    #count_generations, #count_children, #probability {
+        height: 0.6rem;
+        width: 140px;
+    }
+    #count_generations::-webkit-slider-thumb, #count_children::-webkit-slider-thumb,
+    #probability::-webkit-slider-thumb {
+        width: 1.3em;
+        height: 1.3em;
+    }
+    input[type='checkbox']{
+        width: 1.1rem !important;
+        height: 1.1rem !important;
+        font-size: 1.1em;
+    }
+    input[type="number"] {
+        height: 22px;
+        font-size: 14px;
+        width: 120px;
+    }
+    #start, #remove_field {
+        width: 100px;
+        font-size: 0.6rem;
+        height: 40px;
+    }
+}
+@media (max-width: 477px) { 
+    main{
+        min-height: calc(100vh - 58px);
+    }
+    #genetic_canvas{
+        width: 350px;
+    }
+}

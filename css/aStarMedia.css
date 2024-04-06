@@ -59,6 +59,7 @@
         margin: 0 5px 0 5px;
     }
     main{
+        min-height: calc(100vh - 80px);
         justify-content: center;
         align-items:center;
     }
@@ -169,6 +170,9 @@
     }
 }
 @media (max-width: 477px) { 
+    main{
+        min-height: calc(100vh - 67px);
+    }
     #astar_canvas{
         height: 324px;
         width: 324px;
@@ -222,3 +226,4 @@
         height: 28px;
     }
 }
+

@@ -76,10 +76,10 @@ function fillCoordinates(){
 
 function containsObject(obj, list) {
     for (let i = 0; i < list.length; ++i) {
-        if(Math.floor(list[i].vertex1.x) === Math.floor(obj.vertex1.x) && Math.floor(list[i].vertex1.y) === Math.floor(obj.vertex1.y) &&
-        Math.floor(list[i].vertex2.x) === Math.floor(obj.vertex2.x) && Math.floor(list[i].vertex2.y) === Math.floor(obj.vertex2.y) &&
-        Math.floor(list[i].vertex3.x) === Math.floor(obj.vertex3.x) && Math.floor(list[i].vertex3.y) === Math.floor(obj.vertex3.y) &&
-        Math.floor(list[i].vertex4.x) === Math.floor(obj.vertex4.x) && Math.floor(list[i].vertex4.y) === Math.floor(obj.vertex4.y))
+        if(Math.round(list[i].vertex1.x) === Math.round(obj.vertex1.x) && Math.round(list[i].vertex1.y) === Math.round(obj.vertex1.y) &&
+        Math.round(list[i].vertex2.x) === Math.round(obj.vertex2.x) && Math.round(list[i].vertex2.y) === Math.round(obj.vertex2.y) &&
+        Math.round(list[i].vertex3.x) === Math.round(obj.vertex3.x) && Math.round(list[i].vertex3.y) === Math.round(obj.vertex3.y) &&
+        Math.round(list[i].vertex4.x) === Math.round(obj.vertex4.x) && Math.round(list[i].vertex4.y) === Math.round(obj.vertex4.y))
 
             return i;
     }
