@@ -66,8 +66,7 @@ a {
 .card_bg {
     height: 128px;
     width: 128px;
-    background-color: #f9b234;
-  
+    background-color: #952aff;
     z-index: 1;
     position: absolute;
     top: -135px;
@@ -81,16 +80,16 @@ a {
 }
 
 .card:nth-child(2n) .card_bg{
-    background-color: #3ecd5e;
+    background-color: #cd3e94;
 }
 .card:nth-child(3n) .card_bg{
-    background-color: #e44002;
+    background-color: #3ecd5e;
 }
 .card:nth-child(4n) .card_bg{
-    background-color: #952aff;
+    background-color: #f9b234;
 }
 .card:nth-child(5n) .card_bg{
-    background-color: #cd3e94;
+    background-color: #e44002;
 }
 .card:nth-child(6n) .card_bg{
     background-color: #4c49ea;

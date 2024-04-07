@@ -113,9 +113,6 @@ nav {
     .alg_name {
         margin-right: 40px;
     }
-    .field {
-        width: 600px;
-    }
     .parametrs {
         width: 150px;
     }
@@ -127,3 +124,26 @@ nav {
     }
 }
 
+@media (max-width:620px) {
+    .field canvas {
+        width: 500px;
+        height: 500px;
+    }
+    .field {
+        min-width: 0;
+    }
+}
+
+@media (max-width:520px) {
+    .field canvas {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media (max-width:420px) {
+    .field canvas {
+        width: 300px;
+        height: 300px;
+    }
+}

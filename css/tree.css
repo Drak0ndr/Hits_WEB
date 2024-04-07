@@ -69,9 +69,10 @@ nav {
 }
 
 .field {
-    width: 79vw;
+    width: calc(100vw - 300px);
     display: flex;
     justify-content: center;
+    min-width: 525px;
 }
 
 .field canvas {
@@ -131,7 +132,7 @@ nav {
 .tree ul {
 	padding-top: 20px;
     position: relative;
-	
+    display: flex;
 	transition: all 0.5s;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
@@ -241,5 +242,18 @@ nav {
 	border-color:  #94a0b4;
 }
 
+@media (max-width: 1024px) {
+    .tree li {
+        padding: 20px 2px 0 2px;
+    }
+
+}
+
+@media (max-width: 850px) {
+    main {
+        justify-content: center;
+    }
+
+}
 /*Thats all. I hope you enjoyed it.
  Thanks :)*/
