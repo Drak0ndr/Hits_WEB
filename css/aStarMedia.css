@@ -37,27 +37,6 @@
     }
 }
 @media (max-width: 1099px) {
-    nav{
-        justify-content: space-around;
-    }
-    .links {
-        width: 86%;
-        justify-content: space-around;
-    }
-    nav a {
-        margin: 0 5px 0 5px;
-    }
-    .link span {
-        display: none;
-    }
-    .logo svg{
-        width: 60px;
-        height: 60px;
-        fill: whitesmoke;
-    }
-    .logo {
-        margin: 0 5px 0 5px;
-    }
     main{
         min-height: calc(100vh - 80px);
         justify-content: center;
@@ -100,24 +79,6 @@
     }
 }
 @media (max-width: 767px) {
-    .logo svg{
-        width: 10vw;
-        height: 10vw;
-        max-width: 60px;
-        max-height: 60px;
-    }
-    .logo {
-        margin: 0 5px 0 5px;
-    }
-    nav a svg {
-        width: 10vw;
-        max-width: 60px;
-        height: 10vw;
-        max-height: 60px;
-    }
-    nav a {
-        margin: 0 2px 0 2px;
-    }
     #wrapper{
         gap: 10px;
         flex-direction: column;
