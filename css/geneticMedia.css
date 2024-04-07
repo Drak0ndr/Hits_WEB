@@ -1,13 +1,3 @@
-/* @media (max-width: 1600px) {
-    main {
-        min-height: calc(100vh - 117px);
-        padding: 10px 0;
-    }
-    #genetic_canvas{
-        width: 930px;
-        height: 580px;
-    }
-} */
 @media (max-width: 1440px) {
     main{
         min-height: calc(100vh - 106px);
@@ -239,10 +229,6 @@
         width: 350px;
     }
 }
-
-
-
-
 @media (min-width: 1600px) and (min-height: 1000px){
     main {
         min-height: calc(100vh - 118px);

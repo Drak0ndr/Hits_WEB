@@ -1,4 +1,4 @@
-import { currButton, kmeansColors, pointCoordinates, currCountClusters, currCountClustersHierarchical, currRadius, currCountNeighbors, canvas1, ctx, ctx2, ctx3, mouseButton} from "./clusteringBasic.js";
+import { currButton, resetButton, kmeansColors, pointCoordinates, currCountClusters, currCountClustersHierarchical, currRadius, currCountNeighbors, canvas1, ctx, ctx2, ctx3, mouseButton} from "./clusteringBasic.js";
 import { kMeans } from "./kMeans.js";
 import { dbscan } from "./DBSCAN.js";
 import { hierarchicalClustering } from "./hierarchical.js";
@@ -105,7 +105,7 @@ function drawingPoints(e) {
         if (currButton === 0 && checkingDistance(x, y)) {
             clearClusters();
             addPoint(x, y);
-            currButton = 1;
+            resetButton();
         } 
     }
 }

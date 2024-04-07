@@ -26,6 +26,10 @@ canvas3.width = document.querySelector('#canvas3').clientWidth;
 canvas3.height = document.querySelector('#canvas3').clientHeight;
 export const ctx3 = canvas3.getContext('2d');
 
+export function resetButton(){
+    currButton = 1;
+}
+
 document.getElementById('remove_points').addEventListener('click', () => {
     currButton = 1;
     ctx.reset();
