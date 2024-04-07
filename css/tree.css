@@ -69,7 +69,7 @@ nav {
 }
 
 .field {
-    width: calc(100vw - 300px);
+    width: calc(100vw - max(300px, 20vw));
     display: flex;
     justify-content: center;
     min-width: 525px;
