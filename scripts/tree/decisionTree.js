@@ -47,7 +47,7 @@ export class DecisionTree {
         }
         return [left, right]
     }
-    train(data) {
+    train(data, k) {
         this.tree[0].data = data
         this.calculateNodeEntropy(this.tree[0])
         let queue = [0]
@@ -81,12 +81,13 @@ export class DecisionTree {
                     this.calculateNodeEntropy(temp_left_node)
                     this.calculateNodeEntropy(temp_right_node)
                     let gain = this.tree[ind].entropy - temp[0].length / (temp[0].length + temp[1].length) * temp_left_node.entropy - temp[1].length / (temp[0].length + temp[1].length) * temp_right_node.entropy
-
-                    if (gain > bt) {
-                        bt = gain
+                    let balance = (1 - Math.abs(temp[0].length / (temp[0].length + temp[1].length) * temp_left_node.entropy- temp[1].length / (temp[0].length + temp[1].length) * temp_right_node.entropy))*k
+                    // console.log(gain, balance)
+                    if (gain + balance > bt) {
+                        bt = gain + balance
                         bestNumArg = j
                         bestValue = item[j]
-                        console.log(j, item, temp, temp_left_node.entropy, temp_right_node.entropy, gain)
+                        console.log(j, item, temp, temp_left_node.entropy, temp_right_node.entropy, gain, balance)
                     }
 
 

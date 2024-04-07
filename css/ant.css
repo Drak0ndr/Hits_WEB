@@ -69,7 +69,7 @@ nav {
 }
 
 .field {
-    width: 79vw;
+    width: 78vw;
     display: flex;
     justify-content: center;
 }
@@ -78,7 +78,7 @@ nav {
     width: 65vw;
     height: 80vh;
     min-width: 300px;
-    background-color: whitesmoke;
+    background-color: rgb(67, 74, 82);
 }
 
 .clear, .start, .pixelation {

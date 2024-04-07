@@ -38,7 +38,7 @@ export class Draw {
 
     drawAns(path) {
         for (let i = 0; i < path.length - 1; i++) {
-            this.drawLine(this.vertex[path[i]][0], this.vertex[path[i]][1], this.vertex[path[i + 1]][0], this.vertex[path[i + 1]][1], 'green', 1)
+            this.drawLine(this.vertex[path[i]][0], this.vertex[path[i]][1], this.vertex[path[i + 1]][0], this.vertex[path[i + 1]][1], '#f9b234', 1)
         }
     }
 

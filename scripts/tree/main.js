@@ -7,10 +7,12 @@ const startBtn = document.querySelector('.start')
 const ansSpan = document.querySelector('.ans span')
 const field = document.querySelector('.field')
 const firstUl = document.querySelector('.field ul')
+const optBtn = document.querySelector('.optimization')
 let decisionTree = new DecisionTree()
 let drawTree= new Draw(field, firstUl)
+let data = []
 inputFile.addEventListener('change', (e) => {
-    let data = []
+    data = []
     let decoder = new TextDecoder('utf-8');
     let file = inputFile.files[0]
     label.innerHTML = file.name
@@ -23,7 +25,7 @@ inputFile.addEventListener('change', (e) => {
             data[i] = data[i].split(';')
         }
         console.log(data)
-        decisionTree.train(data)
+        decisionTree.train(data, 0)
         drawTree.drawGraph(decisionTree.tree, -1)
     }
     
@@ -36,4 +38,11 @@ startBtn.addEventListener('click', (e) => {
     ansSpan.innerHTML = data[0]
     drawTree.clear()
     drawTree.drawGraph(decisionTree.tree, data[1])
+})
+
+optBtn.addEventListener('click', e=> {
+    console.log('gg')
+    drawTree.clear()
+    decisionTree.train(data, 0.9)
+    drawTree.drawGraph(decisionTree.tree, -1)
 })

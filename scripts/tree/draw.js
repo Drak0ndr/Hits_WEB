@@ -12,7 +12,7 @@ export class Draw {
         let elem = ''
         let color = 'white'
         if (ind == predictInd) {
-            color = 'blue'
+            color = '#eba68d'
         }
         elem = ['<li>',
             '<a href="#">','Arg', graph[ind].numArg, ' <= ', graph[ind].condition, '</a>',

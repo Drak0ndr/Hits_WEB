@@ -81,7 +81,7 @@ nav {
     background-color: white;
 }
 
-.clear, .start, .pixelation, .load_data {
+.clear, .start, .pixelation, .load_data, .optimization {
     background-color: #ffdd2d;
     border-radius: 12px;
     width: 90%;
@@ -94,7 +94,7 @@ nav {
     cursor: pointer;
 }
 
-.clear:hover, .start:hover, .pixelation:hover{
+.clear:hover, .start:hover, .pixelation:hover, .optimization:hover{
     background-color: #e7c82e;
 }
 
@@ -230,16 +230,16 @@ nav {
 /*Time for some hover effects*/
 /*We will apply the hover effect the the lineage of the element also*/
 .tree li a:hover, .tree li a:hover+ul li a {
-	background: #c8e4f8;
+	background: #eba68d;
     color: #000;
-    border: 1px solid #94a0b4;
+    border: 1px solid #ea764d;
 }
 /*Connector styles on hover*/
 .tree li a:hover+ul li::after,
 .tree li a:hover+ul li::before,
 .tree li a:hover+ul::before,
 .tree li a:hover+ul ul::before{
-	border-color:  #94a0b4;
+	border-color:  #eba68d;
 }
 
 @media (max-width: 1024px) {
