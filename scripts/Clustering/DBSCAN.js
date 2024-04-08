@@ -1,72 +1,51 @@
 import {heuristics} from "./drawingFunctions.js"
 
-function addNeighbors(point, pointCoordinates, radius) { 
-    let neighbors = [];
-
-    for (let i = 0; i < pointCoordinates.length; i++) { 
-        if (point === pointCoordinates[i]) {
-            continue;
-        }
-        
-        if (heuristics(point, pointCoordinates[i]) <= radius) {
-            neighbors.push(pointCoordinates[i]);
-        }
-    }
-    return neighbors;
+function findNeighbors(point, points, radius) {
+    return points.filter(newPoint => newPoint !== point && heuristics(point, newPoint) <= radius);
 }
 
 export function dbscan(pointCoordinates, radius, minCountNeighbors) {
-    let visited = new Set();
+    let visitedMap = new Map();
+    let allClusters = [];
     let wastes = new Set();
-    let clusters = [];
-    
-    for (let i = 0; i < pointCoordinates.length; ++i) { 
-        let currPoint = pointCoordinates[i];
 
-        if (visited.has(currPoint)){
-            continue;
+    function expandCluster(cluster, point) {
+        let neighbors = findNeighbors(point, pointCoordinates, radius);
+
+        if (neighbors.length < minCountNeighbors) {
+            wastes.add(point);
+            return;
         }
 
-        visited.add(currPoint);
+        visitedMap.set(point, true);
+        cluster.push(point);
 
-        let neighbors = addNeighbors(currPoint, pointCoordinates, radius);
-
-        if (neighbors.length < minCountNeighbors) { 
-            wastes.add(currPoint);
-
-            continue;
-        }
-
-        let cluster = [currPoint];
-        clusters.push(cluster);
-
-        let possiblePoints = new Set(neighbors);
-
-        while (possiblePoints.size > 0) { 
-            let possiblePoint = possiblePoints.values().next().value;
-            visited.add(possiblePoint);
-
-            let checkingNeighbors = addNeighbors(possiblePoint, pointCoordinates, radius);
-
-            if (checkingNeighbors.length >= minCountNeighbors) {
-                for (let j = 0; j < checkingNeighbors.length; ++j) {
-                    let neighbor = checkingNeighbors[j];
-
-                    if (!visited.has(neighbor)) {
-                        possiblePoints.add(neighbor);
-                        visited.add(neighbor);
-                    }
-                }
+        neighbors.forEach(neighbor => {
+            if (!visitedMap.has(neighbor)) {
+                visitedMap.set(neighbor, true);
+                cluster.push(neighbor);
+                expandCluster(cluster, neighbor);
             }
-            
-
-            if (!wastes.has(possiblePoint)) {
-                cluster.push(possiblePoint);
-            }
-            
-            possiblePoints.delete(possiblePoint);
-        }
+        });
     }
-    
-    return clusters;
-}
+
+    pointCoordinates.forEach(point => {
+        if (!visitedMap.has(point)) {
+            visitedMap.set(point, true);
+
+            let neighbors = findNeighbors(point, pointCoordinates, radius);
+
+            if (neighbors.length < minCountNeighbors) {
+                wastes.add(point);
+
+            } else {
+                let newCluster = [];
+                allClusters.push(newCluster);
+                expandCluster(newCluster, point);
+            }
+        }
+    });
+
+    return allClusters.filter(cluster => cluster.length >= minCountNeighbors);
+} 
+
