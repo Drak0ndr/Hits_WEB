@@ -121,7 +121,7 @@ export async function aStar() {
 
                 if (neighbour === undefined) {
 
-                    if(!(newNeighbour.posX === finishCoordinates[0].posX && newNeighbour.posY === finishCoordinates[0].posY))
+                    if(!(newNeighbour.posX === finishCoordinates[0].posX && newNeighbour.posY === finishCoordinates[0].posY)){
                         ctx.fillStyle = '#FFCE54';
                         ctx.fillRect(newNeighbour.vertex1.x, newNeighbour.vertex1.y, cellSize, cellSize);
 
@@ -131,19 +131,16 @@ export async function aStar() {
                         }
         
                         ++count; 
-
-                    newNeighbour.distanceToStart = current.distanceToStart + 10;
-                    newNeighbour.distanceToFinish = findDistance(newNeighbour, finishCoordinates[0]) * 10;
+                    }
+                    newNeighbour.distanceToStart = current.distanceToStart + 1;
+                    newNeighbour.distanceToFinish = findDistance(newNeighbour, finishCoordinates[0]);
                     newNeighbour.sumDistances = newNeighbour.distanceToStart + newNeighbour.distanceToFinish;
 
                     newNeighbour.parent = current;
                     openList.push(newNeighbour);
                     
                 } else {
-                    if (neighbour.distanceToStart >= current.distanceToStart + 10) {
-                        openList[openList.indexOf(neighbour)].distanceToStart = current.distanceToStart + 10;
-                        openList[openList.indexOf(neighbour)].parent = current;
-                    }
+                    continue;
                 }
             }
         }
@@ -154,17 +151,14 @@ export async function aStar() {
         alert(`Очень жаль, но пути нет 🤷`);
     
     } else {
-        ctx.fillStyle = '#0000FF';
-        ctx.fillRect(finishCoordinates[0].vertex1.x, finishCoordinates[0].vertex1.y, cellSize, cellSize);
-    
-        let k = 0;
+        let distancePath = 0;
         for(;current.parent != null; current = current.parent) {
             
             if (!(current.posX === finishCoordinates[0].posX && current.posY === finishCoordinates[0].posY)){
                 ctx.fillStyle = 'white';
                 ctx.fillRect(current.vertex1.x, current.vertex1.y, cellSize, cellSize);
 
-                ++k;
+                ++distancePath;
 
                 if(count >= Math.floor(fieldPixelsSize / 8)){
                     await new Promise((resolve, reject) => setTimeout(resolve, 101 - document.getElementById('animation_range').value));
@@ -175,7 +169,7 @@ export async function aStar() {
             }
         }
 
-        document.getElementById("ansver").textContent = "Минимальная длина пути: " + k; 
+        document.getElementById("ansver").textContent = "Минимальная длина пути: " + distancePath; 
     }   
 }
 
