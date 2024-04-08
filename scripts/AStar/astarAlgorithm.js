@@ -62,7 +62,7 @@ export async function aStar() {
         openList.sort(comparisonDistances);
 
         current = openList[0];
-    
+        console.log(current.cellNumber)
         openList.splice(openList.indexOf(current), 1);
 
         closedList.push(current);
@@ -151,22 +151,29 @@ export async function aStar() {
         alert(`Очень жаль, но пути нет 🤷`);
     
     } else {
-        let distancePath = 0;
+        let foundPath = [];
+
         for(;current.parent != null; current = current.parent) {
             
             if (!(current.posX === finishCoordinates[0].posX && current.posY === finishCoordinates[0].posY)){
-                ctx.fillStyle = 'white';
-                ctx.fillRect(current.vertex1.x, current.vertex1.y, cellSize, cellSize);
-
-                ++distancePath;
-
-                if(count >= Math.floor(fieldPixelsSize / 8)){
-                    await new Promise((resolve, reject) => setTimeout(resolve, 101 - document.getElementById('animation_range').value));
-                    count = 0;
-                }
-
-                count++;
+                foundPath.push(current);
             }
+        }
+
+        let distancePath = 0;
+
+        for(let i = foundPath.length - 1; i >= 0; --i){
+            ctx.fillStyle = 'white';
+            ctx.fillRect(foundPath[i].vertex1.x, foundPath[i].vertex1.y, cellSize, cellSize);
+
+            ++distancePath;
+
+            if(count >= Math.floor(fieldPixelsSize / 8)){
+                await new Promise((resolve, reject) => setTimeout(resolve, 101 - document.getElementById('animation_range').value));
+                count = 0;
+            }
+
+            count++;
         }
 
         document.getElementById("ansver").textContent = "Минимальная длина пути: " + distancePath; 

@@ -204,6 +204,7 @@ input[type="number"] {
     width: 150px;
     height: 30px;
     font-size: 20px;
+    text-align: center;
 }
 #div_btn{
     display: flex;

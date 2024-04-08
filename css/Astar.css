@@ -156,6 +156,7 @@ input[type="number"] {
     display: block;
     margin: 10px auto;
     cursor: pointer;
+    text-align: center;
 }
 input[id="field_range"] {
     width: 200px;
