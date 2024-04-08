@@ -95,3 +95,9 @@ a {
     background-color: #4c49ea;
 }
 
+@media (max-width: 1400px) {
+    .card {
+        height: 270px;
+        margin-top: 15px;
+    }
+}
