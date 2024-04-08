@@ -486,7 +486,7 @@ function neuralNetwork(data) {
 
 function train(count) {
     console.log(centralize([0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]))
-    let trainSpeed = 0.1
+    let trainSpeed = 0.01
     for (let i = 0; i < count; i++) {
         let TA = 0
         train_data.forEach((item, ind) => {
