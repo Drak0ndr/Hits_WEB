@@ -9,8 +9,8 @@ nav {
     z-index: 1000;
 }
 .logo svg{
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     fill: whitesmoke;
 }
 
@@ -77,8 +77,8 @@ a:nth-child(6n) .link:hover{
         
     }
     .logo svg{
-        width: 90px;
-        height: 90px;
+        width: 80px;
+        height: 80px;
         fill: whitesmoke;
     }
 }
