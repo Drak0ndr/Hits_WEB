@@ -12,14 +12,26 @@ main {
     
     /* min-height: 100vh; */
     display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
 }
 
 nav {
     padding: 10px 10px;
+    display: flex;
+    justify-content: space-between;
 }
-
+.alg_name {
+    width: 79vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    font-size: 40px;
+}
 .parametrs {
     width: 20vw;
+    min-width: 150px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -57,15 +69,16 @@ nav {
 }
 
 .field {
-    width: 79vw;
+    width: 78vw;
     display: flex;
     justify-content: center;
 }
 
 .field canvas {
-    width: 600px;
-    height: 600px;
-    background-color: white;
+    width: 65vw;
+    height: 80vh;
+    min-width: 300px;
+    background-color: rgb(67, 74, 82);
 }
 
 .clear, .start, .pixelation {
@@ -90,3 +103,20 @@ nav {
     font-size: 20px;
 }
 
+@media (max-width: 768px) {
+    main {
+        justify-content: center;
+    }
+    .field canvas {
+        width: 98vw;
+        max-height: 500px;
+        height: calc(85vh - 150px)
+    }
+    
+    .field {
+        width: 100vw;
+    }
+    .clear, .start {
+        height: 40px;
+    }
+}

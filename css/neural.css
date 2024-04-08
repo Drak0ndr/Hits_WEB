@@ -12,14 +12,27 @@ main {
     
     /* min-height: 100vh; */
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 nav {
     padding: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.alg_name {
+    width: 78vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    font-size: 40px;
 }
 
 .parametrs {
     width: 20vw;
+    min-width: 150px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -30,6 +43,8 @@ nav {
 .back {
     width: 6vw;
     height: 6vw;
+    min-width: 70px;
+    min-height: 70px;
     border-radius:50%;
     background-color:rgb(24, 26, 27);
     display: flex;
@@ -40,6 +55,8 @@ nav {
 .back a {
     width: 7vw;
     height: 7vw;
+    min-width: 70px;
+    min-height: 70px;
     border-radius:50%;
     display: flex;
     justify-content: center;
@@ -53,11 +70,14 @@ nav {
 .back svg {
     width: 5vw;
     height: 5vw;
+    min-width: 60px;
+    min-height: 60px;
     color: #64748b;;
 }
 
 .field {
-    width: 79vw;
+    width: 78vw;
+    min-width: 600px;
     display: flex;
     justify-content: center;
 }
@@ -89,4 +109,41 @@ nav {
     color: white;
     font-size: 20px;
 }
+@media (max-width:800px) {
+    .alg_name {
+        margin-right: 40px;
+    }
+    .parametrs {
+        width: 150px;
+    }
+}
 
+@media (max-width:750px) {
+    .alg_name {
+        margin-right: 70px;
+    }
+}
+
+@media (max-width:620px) {
+    .field canvas {
+        width: 500px;
+        height: 500px;
+    }
+    .field {
+        min-width: 0;
+    }
+}
+
+@media (max-width:520px) {
+    .field canvas {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media (max-width:420px) {
+    .field canvas {
+        width: 300px;
+        height: 300px;
+    }
+}

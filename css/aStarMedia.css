@@ -1,0 +1,294 @@
+@media (max-width: 1440px) {
+    main {
+        min-height: calc(100vh - 117px);
+    }
+    #astar_canvas{
+        height: 600px;
+        width: 600px;
+    }
+    .parametrs_header{
+        height: 60px;
+    }
+    .parametrs_logo{
+        width: 45px;
+        height: 45px;
+    }
+    .parametrs_descr{
+        font-size: 40px;
+    }
+    .astar_settings{
+        height: 540px;
+        width: 80%;
+   }
+   #field_range_descr, #animation_range_descr, #ansver, #label_dist{
+    font-size: 1.4rem;
+    }
+    #start, #remove_field, #add_start, #add_finish,#generate_maze {
+        font-size: 0.55rem;
+        font-weight: 900;
+        height: 50px;
+        width: 110px;
+    }
+    select {
+        font-size:20px;
+    }
+    input[type="number"], input[id="field_range"]  {
+        font-size:20px;
+    }
+}
+@media (max-width: 1099px) {
+    main{
+        min-height: calc(100vh - 80px);
+        justify-content: center;
+        align-items:center;
+    }
+    nav a svg {
+        width: 60px;
+        height: 60px;
+    }
+    #wrapper{
+        gap: 40px;
+        flex-direction: column;
+        align-items:center;
+    }
+    .parametrs{
+        width: 100%;
+    }
+    .field {
+        width: 100%;
+        order: -1;
+    }  
+    #start, #remove_field, #add_start, #add_finish,#generate_maze {
+        font-size: 0.8rem;
+        width: 150px;
+    }
+    #astar_canvas{
+        height: 560px;
+        width: 560px;
+    }
+    .astar_settings{
+        height: 500px;
+        width: 50%;
+   }
+   input[type="number"], input[id="field_range"]  {
+    font-size:20px;
+    margin: 6px auto;
+    }
+    select{
+        margin: 6px auto;
+    }
+}
+@media (max-width: 767px) {
+    #wrapper{
+        gap: 10px;
+        flex-direction: column;
+    }
+    .parametrs{
+        width: 100vw;
+    }
+    .field {
+        width: 100vw;
+        order: -1;
+    }  
+    #astar_canvas{
+        height: 430px;
+        width: 430px;
+    }
+    .astar_settings{
+        height: 400px;
+        width: 60%;
+   }
+   .parametrs_header{
+    height: 60px;
+    }
+    .parametrs_logo{
+        width: 30px;
+        height: 30px;
+    }
+    .parametrs_descr{
+        font-size: 30px;
+    }
+    #field_range_descr, #animation_range_descr, #ansver, #label_dist{
+        font-size: 1.1rem;
+    }
+    #start, #remove_field, #add_start, #add_finish,#generate_maze {
+        font-size: 0.6rem;
+        height: 40px;
+        width: 112px;
+    }
+    input[type="number"], input[id="field_range"] {
+        width: 150px;
+        height: 28px;
+        font-size:16px;
+        border: 0.2rem solid #AC92EC;
+        margin: 5px auto;
+    }
+    select {
+        border: 0.2rem solid #AC92EC;
+        height: 30px;
+        width: 180px;
+        font-size:16px;
+        margin: 5px auto;
+    }
+    #div_btn2, #div_btn1{
+        gap: 24px;
+    }
+    #ansver{
+        height: 35px;
+    }
+}
+@media (max-width: 477px) { 
+    main{
+        min-height: calc(100vh - 67px);
+    }
+    #astar_canvas{
+        height: 324px;
+        width: 324px;
+    }
+    .astar_settings{
+        height: 350px;
+        width: 310px;
+   }
+   .parametrs_header{
+    height: 40px;
+    }
+    .parametrs_logo{
+        width: 28px;
+        height: 28px;
+    }
+    .parametrs_descr{
+        font-size: 28px;
+    }
+    #field_range_descr, #animation_range_descr, #ansver, #label_dist{
+        font-size: 0.8rem;
+    }
+    #start, #remove_field, #add_start, #add_finish,#generate_maze {
+        font-size: 0.5rem;
+        height: 34px;
+        width: 96px;
+    }
+    input[type="number"], input[id="field_range"] {
+        width: 90px;
+        height: 20px;
+        font-size:14px;
+        margin: 5px auto;
+    }
+    select {
+        height: 24px;
+        width: 140px;
+        font-size:12px;
+        margin: 5px auto;
+    }
+    select option {
+        font-size:12px;
+        height: 20px !important;
+        width: 140px !important;
+    }
+    #div_btn2, #div_btn1{
+        gap: 16px;
+    }
+    #ansver{
+        height: 28px;
+    }
+}
+@media (min-width: 1099px) and (max-height: 820px){
+    main {
+        min-height: calc(100vh - 117px);
+    }
+    #astar_canvas{
+        height: 520px;
+        width: 520px;
+    }
+    .parametrs_header{
+        height: 60px;
+    }
+    .parametrs_logo{
+        width: 40px;
+        height: 40px;
+    }
+    .parametrs_descr{
+        font-size: 36px;
+    }
+    .astar_settings{
+        height: 460px;
+        width: 80%;
+   }
+   #field_range_descr, #animation_range_descr, #ansver, #label_dist{
+    font-size: 1.3rem;
+    }
+    #start, #remove_field, #add_start, #add_finish,#generate_maze {
+        font-size: 0.55rem;
+        font-weight: 900;
+        height: 40px;
+        width: 110px;
+    }
+    input[type="number"], input[id="field_range"]  {
+        font-size:20px;
+        margin: 6px auto;
+        height: 30px;
+        width: 160px;
+        font-size: 18px;
+        border: 0.2rem solid #AC92EC;
+    }
+    select{
+        margin: 6px auto;
+        border: 0.2rem solid #AC92EC;
+        height: 32px;
+        width: 180px;
+        font-size: 18px;
+    }
+    #ansver{
+        height: 40px;
+    }
+}
+@media (min-width: 1099px) and (min-height: 1000px){
+    main {
+        min-height: calc(100vh - 118px);
+    }
+    #astar_canvas{
+        height: 900px;
+        width: 900px;
+    }
+    .parametrs_header{
+        height:100px;
+    }
+    .parametrs_logo{
+        width: 60px;
+        height: 60px;
+    }
+    .parametrs_descr{
+        font-size: 56px;
+    }
+    .astar_settings{
+        height: 800px;
+        width: 80%;
+   }
+   #field_range_descr, #animation_range_descr, #ansver, #label_dist{
+    font-size: 2rem;
+    }
+    #start, #remove_field, #add_start, #add_finish,#generate_maze {
+        font-size: 0.9rem;
+        font-weight: 900;
+        height: 60px;
+        width: 170px;
+    }
+    input[type="number"], input[id="field_range"]  {
+        font-size:20px;
+        margin: 6px auto;
+        height: 40px;
+        width: 220px;
+        font-size: 24px;
+        border: 0.25rem solid #AC92EC;
+    }
+    select{
+        margin: 6px auto;
+        border: 0.25rem solid #AC92EC;
+        height: 50px;
+        width: 240px;
+        font-size: 24px;
+    }
+    #ansver{
+        height: 64px;
+    }
+}
+
