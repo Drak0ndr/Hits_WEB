@@ -25,6 +25,8 @@ inputFile.addEventListener('change', (e) => {
             data[i] = data[i].split(';')
         }
         console.log(data)
+        decisionTree = new DecisionTree()
+        drawTree.clear()
         decisionTree.train(data, 0)
         drawTree.drawGraph(decisionTree.tree, -1)
     }
@@ -35,9 +37,10 @@ startBtn.addEventListener('click', (e) => {
     let testData = inputTest.value.split(';')
     console.log(testData)
     let data = decisionTree.predict(testData)
+    console.log(data)
     ansSpan.innerHTML = data[0]
     drawTree.clear()
-    drawTree.drawGraph(decisionTree.tree, data[1])
+    drawTree.drawGraph(decisionTree.tree, data[1], data[2])
 })
 
 optBtn.addEventListener('click', e=> {

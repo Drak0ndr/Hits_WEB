@@ -119,6 +119,7 @@ export class DecisionTree {
     predict(item) {
         let isEnd = false
         let posId = 0
+        let path = [0]
         while (!isEnd) {
             if (+this.tree[posId].numArg == 0) {
                 isEnd = true
@@ -126,13 +127,15 @@ export class DecisionTree {
             }
             if (+item[+this.tree[posId].numArg] <= +this.tree[posId].condition) {
                 posId = this.tree[posId].left
+                path.push(posId)
             } else {
                 posId = this.tree[posId].right
+                path.push(posId)
             }
 
         }
         this.tree[posId].data.push(item)
         console.log(this.tree)
-        return [this.tree[posId].data[0][this.tree[posId].data[0].length-1], posId]
+        return [this.tree[posId].data[0][this.tree[posId].data[0].length-1], posId, path]
     }
 }
