@@ -1,4 +1,4 @@
-import { currButton, resetButton, kmeansColors, pointCoordinates, currCountClusters, currCountClustersHierarchical, currRadius, currCountNeighbors, canvas1, ctx, ctx2, ctx3, mouseButton} from "./clusteringBasic.js";
+import { currButton, resetButton, dbscanColors, hierarchicalColors, kmeansColors, pointCoordinates, currCountClusters, currCountClustersHierarchical, currRadius, currCountNeighbors, canvas, ctx, mouseButton} from "./clusteringBasic.js";
 import { kMeans } from "./kMeans.js";
 import { dbscan } from "./DBSCAN.js";
 import { hierarchicalClustering } from "./hierarchical.js";
@@ -10,43 +10,59 @@ export class Point {
         this.radius = radius;
     }
     
-    drawingPoints(arrContext, color = 'black') {
-        for(let i = 0; i < arrContext.length; ++i){
-            arrContext[i].beginPath();
-            arrContext[i].arc(this.x, this.y, this.radius, 0, 360);
-            arrContext[i].closePath();
-            arrContext[i].fillStyle = color;
-            arrContext[i].fill();
-        }
-    }
+    drawingPoints(start, end, color = 'black', text = ' ', dx = 0, dy = 0) {
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.arc(this.x, this.y, this.radius, start, end);
+        ctx.closePath();
+        ctx.fillStyle = color;
+        ctx.fill();
+
+        ctx.fillStyle = "black";
+        ctx.font = 'bold 8px Poppins';
+        ctx.textAlign = "center";
+        ctx.fillText(text, this.x + dx, this.y + dy);
+    } 
 }
 
 export let kmeans = { clusters: null, centroids: null};
+export let dbscanClusters = [];
+export let heuristicsClusters = [];
 
-const colors = ["#4169E1",'#7851A9',"#CA0147",'#9B2D30','#E6E6FA','#E6D690','#3EB489','#50C878','#6495ED','#480607','#A5260A','#900020',
-                '#D5713F','#641349','#7B001C','#FFD700','#4B0082','#1CD3A2','#7B3F00','#21421E','#4C5866','#808000','#C7FCEC','#2A6478',
-                '#00A693','#32127A','#660066','#116062','#036C56', '#ED760E', '#CC5500', '#FF4F00', '#F8D568', '#FFFF00', '#EDFF21', '#39ff14',
-                '#04d9ff', '#5555ff', '#7df9ff', '#003153', '#1560BD', '#1164B4', '#00BFFF', '#252850', '#1D334A', '#102C54', '#002137', '#543964']
+const colors1 = ['#FBCEB1', '#7FFFD4', '#E32636', '#9966CC', '#A8E4A0', '#C1876B', '#BDECB6', '#77DDE7', '#ABCDEF', '#AFEEEE', '#ECEBBD',
+                '#CED23A', '#009B76', '#B00000', '#D5D5D5', '#6495ED', '#34C924', '#911E42', '#256D7B', '#5D8AA8', '#FFCF48', '#F64A46',
+                '#EF3038', '#80DAEB', '#87CEEB', '#FFDB58', '#D1E231', '#EDFF21', '#3BB08F', '#5D76CB', '#FFFF99', '#FF4D00', '#CD9A7B',
+                '#76FF7A', '#007BA7', '#00FF00', '#0BDA51', '#7FC7FF', '#FF9966', '#00A693', '#FFCFAB', '#9D81BA', '#F3DA0B', '#FF6E4A']
 
-let radius = 7;
+const colors2 = ['#AB274F', '#CD9575', '#6A5ACD', '#FAE7B5', '#EEE8AA', '#FFDF84', '#47A76A', '#FAF0BE', '#9F8170', '#FFB02E', '#A2ADD0',
+                '#85BB65', '#F9F8BB', '#C5E384', '#CDA434', '#1E90FF', '#00BFFF', '#00A86B', '#77DD77', '#A18594', '#FCDD76', '#FCDD76']
+
+const colors3 = ['#FDD9B5', '#78DBE2', '#9F2B68', '#44944A', '#F5F5DC', '#30D5C8', '#FFDB8B', '#DABDAB', '#98FB98', '#8CCB5E', '#FFCF40',
+                '#FFDC33', '#2A8D9C', '#FFB841', '#62639B', '#9B2D30', '#3E5F8A', '#D5713F', '#9ACEEB', '#DAD871', '#00FF7F', '#A7FC00',
+                '#0095B6', '#D76E00', '#42AAFF', '#30BA8F', '#B2EC5D', '#9ACD32', '#2E8B57', '#ADDFAD', '#FFD700', '#BDDA57', '#1CD3A2', 
+                '#7851A9', '#FFF44F', '#FF8243', '#3EB489', '#A3C6C0', '#BAACC7', '#C7FCEC', '#8673A1', '#7442C8', '#B0E0E6', '#99FF99']
+
+let radius = 14;
 let spikes = 5;
-let innerRadius = 4;
-let outerRadius = 2;
+let innerRadius = 6;
+let outerRadius = 3;
 let algorithm = 1;
 let currDistance = 1;
 
 function addPoint(x, y) {
     let point = new Point(x, y, radius);
     pointCoordinates.push(point);
-    pointCoordinates[pointCoordinates.length - 1].drawingPoints([ctx, ctx2, ctx3]);
+    pointCoordinates[pointCoordinates.length - 1].drawingPoints(0, Math.PI * 2);
 }
 
 function findDistance(x1, y1, x2, y2) {
     return Math.sqrt((x2 - x1)**2 + (y2 - y1)**2);
 }
 
-export function removeKMeans(){
+export function removeAllClusters(){
     kmeans = { clusters: null, centroids: null};
+    dbscanClusters = [];
+    heuristicsClusters = [];
 }
 
 export function heuristics(firstPoint, secondPoint) {
@@ -87,7 +103,7 @@ function checkingDistance(x, y) {
     let index = findNeighborIndex(x, y);
 
     if (index === null || findDistance(pointCoordinates[index].x, pointCoordinates[index].y, x, y) > radius * 2 + 2
-     && x > radius + 2 && x < canvas1.clientWidth - radius - 2 && y > radius + 2 && y < canvas1.clientHeight - radius - 2) {
+     && x > radius + 2 && x < canvas.clientWidth - radius - 2 && y > radius + 2 && y < canvas.clientHeight - radius - 2) {
         return true;
     }
 
@@ -110,7 +126,7 @@ function drawingPoints(e) {
     }
 }
 
-export function drawingClusters(clusters){
+export function drawingClusters(clusters, colors){
     for (let i = 0; i < clusters.length; ++i) {
         let colorIndex = Math.floor((Math.random() * colors.length / clusters.length) + (colors.length / clusters.length * i));
 
@@ -118,20 +134,22 @@ export function drawingClusters(clusters){
             let index = pointCoordinates.indexOf(clusters[i][j]);
 
             if (algorithm === 1) {
-                pointCoordinates[index].drawingPoints([ctx], colors[colorIndex]);
+                pointCoordinates[index].drawingPoints(0, Math.PI * 2 / 3, colors[colorIndex], "K", 4, 10);
                 kmeansColors.push(colors[colorIndex]);
 
             }else if (algorithm === 2) {
-                pointCoordinates[index].drawingPoints([ctx2], colors[colorIndex]);
+                pointCoordinates[index].drawingPoints(Math.PI * 2 / 3, Math.PI * 4 / 3, colors[colorIndex], "D", -8, 2);
+                dbscanColors.push(colors[colorIndex]);
 
             }else if (algorithm === 3){
-                pointCoordinates[index].drawingPoints([ctx3], colors[colorIndex]);
+                pointCoordinates[index].drawingPoints(Math.PI * 4 / 3,  Math.PI * 2, colors[colorIndex], "И", 4, -4);
+                hierarchicalColors.push(colors[colorIndex]);
             }
         }
     }
 }
 
-export function drawingKMeansClusters(clusters){
+export function drawingAllClusters(clusters, colors, start, end, text = ' ', dx = 0, dy = 0){
     let index = 0;
 
     for (let i = 0; i < clusters.length; ++i) {
@@ -140,10 +158,16 @@ export function drawingKMeansClusters(clusters){
 
         for (let j = 0; j < clusters[i].length; ++j) { 
             ctx.beginPath();
-            ctx.arc(clusters[i][j].x, clusters[i][j].y, clusters[i][j].radius, 0, 360);
+            ctx.moveTo(clusters[i][j].x, clusters[i][j].y);
+            ctx.arc(clusters[i][j].x, clusters[i][j].y, clusters[i][j].radius, start, end);
             ctx.closePath();
-            ctx.fillStyle = kmeansColors[index - 1];
+            ctx.fillStyle = colors[index - 1];
             ctx.fill();
+
+            ctx.fillStyle = "black";
+            ctx.font = 'bold 8px Poppins';
+            ctx.textAlign = "center";
+            ctx.fillText(text, clusters[i][j].x + dx, clusters[i][j].y + dy);
         }
     }
 }
@@ -166,13 +190,13 @@ export function drawingCentroids(centroids) {
                 rot += step
     
                 x = cx + Math.cos(rot) * innerRadius;
-                y = cy+Math.sin(rot) * innerRadius;
+                y = cy + Math.sin(rot) * innerRadius;
                 ctx.lineTo(x, y)
                 rot += step
             }
                 ctx.lineTo(cx, cy - outerRadius);
                 ctx.closePath();
-                ctx.lineWidth = 4;
+                ctx.lineWidth = 5;
                 ctx.strokeStyle = 'black';
                 ctx.stroke();
                 ctx.fillStyle = 'white';
@@ -181,35 +205,40 @@ export function drawingCentroids(centroids) {
     }  
 }
 
-function drawingDBSCANMargin() {
+export function drawingDBSCANMargin() {
     for (let i = 0; i < pointCoordinates.length; ++i) {
-        pointCoordinates[i].drawingPoints([ctx2]);
+        pointCoordinates[i].drawingPoints(Math.PI * 2 / 3, Math.PI * 4 / 3,"white", ' ');
     }
 }
 
-function drawingDBSCANCentre(){
+export function drawingDBSCANCentre(clusters){
+    let arrPoints = [];
+    for(let i = 0; i < clusters.length; ++i){
+        arrPoints.push(...clusters[i])
+    }
+
     for (let i = 0; i < pointCoordinates.length; ++i) {
-        ctx2.beginPath();
-        ctx2.moveTo(pointCoordinates[i].x - 2.5, pointCoordinates[i].y - 2.5);
-        ctx2.lineTo(pointCoordinates[i].x + 2.5, pointCoordinates[i].y + 2.5);
-        ctx2.moveTo(pointCoordinates[i].x + 2.5, pointCoordinates[i].y - 2.5);
-        ctx2.lineTo(pointCoordinates[i].x - 2.5, pointCoordinates[i].y + 2.5);
-        ctx2.lineWidth = 2;
-        ctx2.strokeStyle = "white";
-        ctx2.stroke();
+        if(!arrPoints.includes(pointCoordinates[i])){
+            ctx.beginPath();
+            ctx.moveTo(pointCoordinates[i].x - 10.5, pointCoordinates[i].y - 2.5);
+            ctx.lineTo(pointCoordinates[i].x - 6.5, pointCoordinates[i].y + 2.5);
+            ctx.moveTo(pointCoordinates[i].x - 6.5, pointCoordinates[i].y - 2.5);
+            ctx.lineTo(pointCoordinates[i].x - 10.5, pointCoordinates[i].y + 2.5);
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = "#FF0000";
+            ctx.stroke();
+        }
     }
 }
 
 export function resetClusters() {
     ctx.reset();
-    ctx2.reset();
-    ctx3.reset();   
 }
 
 export function clearClusters(){
     resetClusters();
     for (let i = 0; i < pointCoordinates.length; ++i) {
-        pointCoordinates[i].drawingPoints([ctx, ctx2, ctx3]);
+        pointCoordinates[i].drawingPoints(0, Math.PI * 2);
     }
 
     kmeans.centroids = null;
@@ -219,7 +248,7 @@ export function startKMeans () {
     resetClusters();
     algorithm = 1;
     kmeans = kMeans(currCountClusters);
-    drawingClusters(kmeans.clusters);
+    drawingClusters(kmeans.clusters, colors1);
 
     if(document.getElementById('centroids_check').checked){
         drawingCentroids(kmeans.centroids);
@@ -229,15 +258,15 @@ export function startKMeans () {
 export function startDBSCAN (){
     algorithm = 2;
     drawingDBSCANMargin();
-    drawingDBSCANCentre();
-    let clusters = dbscan(pointCoordinates, currRadius, currCountNeighbors);
-    drawingClusters(clusters);
+    dbscanClusters = dbscan(pointCoordinates, currRadius, currCountNeighbors);
+    drawingClusters(dbscanClusters, colors2);
+    drawingDBSCANCentre(dbscanClusters);
 }
 
 export function startHierarchical() { 
     algorithm = 3;
-    let clusters = hierarchicalClustering(pointCoordinates, currCountClustersHierarchical);
-    drawingClusters(clusters);
+    heuristicsClusters = hierarchicalClustering(pointCoordinates, currCountClustersHierarchical);
+    drawingClusters(heuristicsClusters, colors3);
 }
 
 export function startAlgorithms() {
@@ -253,15 +282,15 @@ export function startAlgorithms() {
     startKMeans();
     startDBSCAN();
     startHierarchical();
+
+    if(document.getElementById('centroids_check').checked){
+        drawingCentroids(kmeans.centroids);
+    }
 }
 
 export function startDrawing() {
-    document.getElementById('canvas1').addEventListener('mousemove',drawingPoints);
-    document.getElementById('canvas1').addEventListener('mousedown',drawingPoints);   
-    document.getElementById('canvas2').addEventListener('mousemove', drawingPoints);
-    document.getElementById('canvas2').addEventListener('mousedown', drawingPoints);
-    document.getElementById('canvas3').addEventListener('mousemove', drawingPoints);
-    document.getElementById('canvas3').addEventListener('mousedown', drawingPoints);
+    document.getElementById('canvas').addEventListener('mousemove',drawingPoints);
+    document.getElementById('canvas').addEventListener('mousedown',drawingPoints);   
 }
 
 document.getElementById('distance_select').addEventListener('change', (event) => {

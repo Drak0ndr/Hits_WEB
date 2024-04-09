@@ -56,7 +56,7 @@ main {
     align-items: center;
     justify-content: center;
 }
-#canvas1, #canvas2, #canvas3 {
+#canvas{
     background-color: #FCB4D5;
     width: 95%;
     height: 90%;
@@ -234,10 +234,10 @@ select option {
     background-size: 15% 100%;
 }
  #radius_range {
-    background-size: 20% 100%;
+    background-size: 33.3% 100%;
  }
  #neighbors_range {
-    background-size: 54% 100%;
+    background-size: 28.6% 100%;
  }
  #hierarchical_range {
     background-size: 15% 100%;

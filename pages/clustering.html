@@ -355,12 +355,12 @@
                     <div class="dbscan_div">
                         <span class="alg_label">Настройки DBSCAN</span>
                         <div>
-                            <span class="choose_set" id="radius_range_descr">Pадиус поиска точек: 80</span>
-                            <input type="range" id="radius_range" min="50" max="200" step="1" value ="80">
+                            <span class="choose_set" id="radius_range_descr">Pадиус поиска точек: 100</span>
+                            <input type="range" id="radius_range" min="50" max="200" step="1" value ="100">
                         </div>
                         <div>
-                            <span class="choose_set" id="neighbors_range_descr">Количество соседей: 8</span>
-                            <input type="range" id="neighbors_range" min="1" max="15" step="1" value ="8">
+                            <span class="choose_set" id="neighbors_range_descr">Количество соседей: 5</span>
+                            <input type="range" id="neighbors_range" min="1" max="15" step="1" value ="5">
                         </div>
                     </div>
                     <div class="hierarchical_div">
@@ -387,20 +387,9 @@
         </div>
         <div class="field">
               <div class = "canvas_div">
-                  <div class = "canvas_header">Алгоритм K-Means</div>
-                  <canvas id="canvas1"></canvas>
+                  <div class = "canvas_header">Представленные алгоритмы: K-Means, DBSCAN, Иерархический</div>
+                  <canvas id="canvas"></canvas>
               </div>
-      
-              <div class="canvas_div">
-                  <div class = "canvas_header">Алгоритм DBSCAN</div>
-                  <canvas id="canvas2"></canvas>
-              </div>
-              
-              <div class="canvas_div">
-                  <div class = "canvas_header">Иерархический алгоритм</div>
-                  <canvas id="canvas3"></canvas>
-              </div>
-        </div>
     </main>
     <script type='module' src="../scripts/clustering/clusteringBasic.js"></script>
     <script type="module" src="../scripts/animate.js"></script>
