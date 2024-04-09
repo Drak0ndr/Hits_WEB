@@ -7,15 +7,18 @@ export class Draw {
     clear() {
         this.field.innerHTML = '<ul></ul>'
     }
-    drawNode(graph, ind, parent, predictInd) {
+    drawNode(graph, ind, parent, predictInd, path = [-1]) {
         // console.log(this.field, this.root)
         let elem = ''
         let color = 'white'
+        if (path.indexOf(ind) > -1) {
+            color = '#ffb7b7'
+        }
         if (ind == predictInd) {
             color = '#eba68d'
         }
         elem = ['<li>',
-            '<a href="#">','Arg', graph[ind].numArg, ' <= ', graph[ind].condition, '</a>',
+            '<a href="#" style="background-color:', color, '">','Arg', graph[ind].numArg, ' <= ', graph[ind].condition, '</a>',
             '<ul>',
             '<li>','<a href="#">','yes', '</a>',
             '<ul>','</ul>',
@@ -35,10 +38,10 @@ export class Draw {
         let newParents = parent.querySelectorAll('ul li ul')
         // console.log(newParents)
         if (graph[ind].left > 0) {
-            this.drawNode(graph, graph[ind].left, newParents[1], predictInd)
+            this.drawNode(graph, graph[ind].left, newParents[1], predictInd, path)
         }
         if (graph[ind].right > 0) {
-            this.drawNode(graph, graph[ind].right, newParents[2], predictInd)
+            this.drawNode(graph, graph[ind].right, newParents[2], predictInd, path)
         }
         // this.ctx.strokeStyle = 'black'
         // if (ind == predictInd) {
@@ -63,10 +66,10 @@ export class Draw {
         // }
     }
 
-    drawGraph(graph, predictInd) {
+    drawGraph(graph, predictInd, path = [-1]) {
         console.log(graph)
         this.root = this.field.querySelector('ul')
-        this.drawNode(graph, 0,this.root, predictInd)
+        this.drawNode(graph, 0,this.root, predictInd, path)
     }
 
 }
