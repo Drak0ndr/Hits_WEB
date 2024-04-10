@@ -20,7 +20,7 @@ a {
 .card {
     width: 30vw;
     min-width: 300px;
-    height: 290px;
+    height: calc(50vh - 80px);
     background-color: #121212;
     overflow: hidden;
     margin-top: 20px;
@@ -69,7 +69,7 @@ a {
     background-color: #952aff;
     z-index: 1;
     position: absolute;
-    top: -135px;
+    top: calc(-25vh + 50px);
     right: -75px;
   
     border-radius: 50%;
@@ -99,5 +99,23 @@ a {
     .card {
         height: 270px;
         margin-top: 15px;
+    }
+
+    .card_bg {
+        top: -135px;
+    }
+}
+
+@media (min-width: 1900px) {
+    .card:hover .card_bg {
+        -webkit-transform: scale(20);
+        -ms-transform: scale(20);
+        transform: scale(20);
+    }
+    .card_bg {
+        transition: all .7s ease;
+    }
+    .card_title {
+        font-size: 4vh;
     }
 }

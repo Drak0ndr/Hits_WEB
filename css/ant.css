@@ -120,3 +120,12 @@ nav {
         height: 40px;
     }
 }
+
+@media (min-width: 1900px) {
+    .clear, .start, .pixelation {
+        height: 8vh;
+        font-size: 1.3vw;
+        margin-bottom: 3vh;
+    }
+
+}

@@ -118,7 +118,6 @@ nav {
     display: flex;
     justify-content: center;
     align-items:center;
-    font-size: 20px;
     cursor: pointer;
 }
 
@@ -257,3 +256,16 @@ nav {
 }
 /*Thats all. I hope you enjoyed it.
  Thanks :)*/
+
+ @media (min-width: 1900px) {
+    .clear, .start, .pixelation, .load_data, .optimization {
+        height: 8vh;
+        font-size: 1.3vw;
+        margin-bottom: 3vh;
+    }
+
+    .tree li a {
+        font-size: 2vh;
+    }
+
+}
