@@ -230,7 +230,7 @@ nav {
 /*Time for some hover effects*/
 /*We will apply the hover effect the the lineage of the element also*/
 .tree li a:hover, .tree li a:hover+ul li a {
-	background: #eba68d;
+	background: #eba68d !important;
     color: #000;
     border: 1px solid #ea764d;
 }
