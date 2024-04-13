@@ -62,7 +62,7 @@ export async function aStar() {
         openList.sort(comparisonDistances);
 
         current = openList[0];
-        console.log(current.cellNumber)
+
         openList.splice(openList.indexOf(current), 1);
 
         closedList.push(current);

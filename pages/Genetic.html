@@ -354,7 +354,8 @@
                 </div>
                 <div id = "div4">
                     <span id="speed_range_descr">Скорость анимации: 50%</span>
-                    <input type="number" id="speed_range" min="1" max="100" step="1" value ="50" name="speed_range">
+                    <input type="number" id="speed_range" min="1" max="100" step="1" value ="50" name="speed_range"
+                    onkeyup="this.value=this.value.replace(/[^0-9]+/g,''); isRightSpeed(this);">
                 </div>
                 <div id = "div5">
                     <span class="div5_check">Показать ребра графа</span>

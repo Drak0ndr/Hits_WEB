@@ -218,6 +218,7 @@ canvas.addEventListener('mouseup', () => {
 });
 
 document.getElementById("speed_range").addEventListener('input', () => {
+    isRightSpeed(document.getElementById('speed_range'));
     animation = 101 - document.getElementById("speed_range").value;
     document.getElementById('speed_range_descr').textContent = "Скорость анимации: " + 
     document.getElementById("speed_range").value + "%"; 
@@ -249,5 +250,13 @@ document.getElementById("start").addEventListener('click', () => {
     geneticAlgorithm();
 }); 
 
+function isRightSpeed(obj){
+    if (obj.value > 100){
+        obj.value = 100;
+    }   
+    if (obj.value < 1){
+        obj.value = 1;
+    } 
+}
 
 

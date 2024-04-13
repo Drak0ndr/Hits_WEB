@@ -50,7 +50,7 @@ main {
 .canvas_div{
     max-height: 980px;
     height: 90%;
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;

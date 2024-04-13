@@ -3,20 +3,22 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     background-color: rgb(33, 37, 41);
     min-height: 100vh;
-
 }
+
 main {
-    
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
+
 a {
     text-decoration: none;
 }
+
 .card {
     width: 30vw;
     min-width: 300px;
@@ -61,7 +63,6 @@ a {
     z-index: 2;
     position: relative;
 }
-
 
 .card_bg {
     height: 128px;
@@ -119,3 +120,4 @@ a {
         font-size: 4vh;
     }
 }
+
