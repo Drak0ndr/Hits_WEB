@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    position: absolute;
+    top: 22vh;
+    display: flex;
+    align-items: center;
+}
+
+.arrow {
+    width: 2vw;
+    height: 6vh;
+    background-color: blue;
+    opacity: 0.5;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    cursor: pointer;
+}
+
+.parametrs {
+    height: 50vh;
+    width: 15vw;
+    background-color:rgba(0, 255, 255, 0.5);
+}
+
+.options {
+    font-size: 20px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    height: 100vh;
+}
+
+canvas {
+    width: 1000px;
+    height: 500px;
+    background-color: #c79030;
+}
