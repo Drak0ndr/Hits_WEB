@@ -1,17 +1,19 @@
 import { Draw } from "./draw.js";
 import { Colony } from "./colony.js";
 const canvas = document.querySelector('canvas')
-const pixel = 10
+const pixel = 15
 const inputColony = document.querySelector('#colony')
 const inputEat = document.querySelector('#eat')
 const inputWall = document.querySelector('#wall')
 const inputRemWall = document.querySelector('#remwall')
+const btnArrow = document.querySelector('.arrow')
+const setting = document.querySelector('nav')
 let matrix = []
-canvas.width = canvas.offsetWidth
-canvas.height = canvas.offsetHeight
+canvas.width = Math.floor(canvas.offsetWidth / pixel) * pixel
+canvas.height = Math.floor(canvas.offsetHeight / pixel) * pixel
 
-let matrixWidth = canvas.offsetWidth / pixel
-let matrixHeight = canvas.offsetHeight / pixel
+let matrixWidth = canvas.width / pixel
+let matrixHeight = canvas.height / pixel
 for (let y =0; y < matrixHeight; y++) {
     let temp = []
     for (let x = 0; x < matrixWidth; x++) {
@@ -19,7 +21,7 @@ for (let y =0; y < matrixHeight; y++) {
     }
     matrix.push(temp)
 }
-console.log(matrix)
+// console.log(matrix)
 let draw = new Draw(canvas, pixel)
 draw.drawGrid()
 let isColony = false
@@ -32,7 +34,7 @@ canvas.addEventListener('click', e => {
     if (inputColony.checked && isColony == false) {
         matrix[matrixY][matrixX].build = 1
         matrix[matrixY][matrixX].feromons[0] = 10**10
-        colony = new Colony(100, matrixY, matrixX, matrix)
+        colony = new Colony(500, matrixY, matrixX, matrix)
         isColony = true
     } else if (inputColony.checked) {
         alert("Можно поставить только 1 колонию")
@@ -51,7 +53,7 @@ canvas.addEventListener('click', e => {
     // colony.nextIteration()
     draw.drawField(matrix)
     draw.drawAnts(colony.ants)
-    console.log(matrixY,matrixX)
+    // console.log(matrixY,matrixX)
 })
 function animate() {
     if (isColony) {
@@ -61,8 +63,13 @@ function animate() {
         draw.drawAnts(colony.ants)
 
     }
-    console.log(isColony)
+    // console.log(isColony)
     requestAnimationFrame(animate)
+    
     
 }
 requestAnimationFrame(animate)
+
+btnArrow.addEventListener('click', e => {
+    setting.classList.toggle('hide')
+})

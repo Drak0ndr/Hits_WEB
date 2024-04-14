@@ -9,7 +9,10 @@ nav {
     top: 22vh;
     display: flex;
     align-items: center;
+    transition: all 1s ease-in;
 }
+
+
 
 .arrow {
     width: 2vw;
@@ -39,7 +42,12 @@ main {
 }
 
 canvas {
-    width: 1000px;
-    height: 500px;
+    width: 100vw;
+    height: 100vh;
     background-color: #c79030;
+}
+
+.hide {
+    left: -15vw;
+
 }

@@ -39,6 +39,6 @@ export class Colony {
             }
             
         })
-        console.log(this.ants, this.matrix)
+        console.log(this.ants)
     }
 }
