@@ -75,8 +75,8 @@ export class Draw {
             let y = item.posY
             let x = item.posX
             if (item.isEat == false) {
-                this.ctx.fillStyle = 'aqua'
-                this.ctx.strokeStyle = 'aqua'
+                this.ctx.fillStyle = 'Crimson'
+                this.ctx.strokeStyle = 'Crimson'
             } else {
                 this.ctx.fillStyle = 'mediumSeaGreen'
                 this.ctx.strokeStyle = 'mediumSeaGreen'

@@ -35,7 +35,7 @@ export class Colony {
             if (item[3] == false) {
                 this.matrix[item[0]][item[1]].feromons[0] += item[2]
             } else {
-                this.matrix[item[0]][item[1]].feromons[1] += item[2]
+                this.matrix[item[0]][item[1]].feromons[1] += item[2] * item[4]
             }
             
         })

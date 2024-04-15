@@ -3,6 +3,7 @@ export class Ant{
         this.posY = posY
         this.posX = posX
         this.isEat = false
+        this.eatValue = 1
         this.coef = 1
         this.dir = dir
     }
@@ -10,6 +11,7 @@ export class Ant{
         let path = []
         let sm = 0
         let alfa = 1
+        let beta = 0
         dirs.forEach(item => {
             let y = item[0]
             let x = item[1]
@@ -19,11 +21,11 @@ export class Ant{
             if (tempY >= 0 && tempY < matrix.length && tempX >= 0 && tempX < matrix[0].length) {
                 if (matrix[tempY][tempX].build != 3) {
                     if (this.isEat == true) {
-                        path.push([tempY, tempX, matrix[tempY][tempX].feromons[0]**alfa * len])
-                        sm+=matrix[tempY][tempX].feromons[0]**alfa * len
+                        path.push([tempY, tempX, matrix[tempY][tempX].feromons[0]**alfa * (1/len)**beta])
+                        sm+=matrix[tempY][tempX].feromons[0]**alfa * (1/len)**beta
                     } else {
-                        path.push([tempY, tempX, matrix[tempY][tempX].feromons[1]**alfa * len])
-                        sm+=matrix[tempY][tempX].feromons[1]**alfa * len
+                        path.push([tempY, tempX, matrix[tempY][tempX].feromons[1]**alfa * (1/len)**beta])
+                        sm+=matrix[tempY][tempX].feromons[1]**alfa * (1/len)**beta
                     }
                 }
 
@@ -162,6 +164,7 @@ export class Ant{
         })
         if (matrix[this.posY][this.posX].build == 2) {
             this.isEat = true
+            this.eatValue = matrix[this.posY][this.posX].eatValue
             this.coef = 1
             this.dir += 180
             if (this.dir >= 360) {
@@ -182,7 +185,7 @@ export class Ant{
             dist = 99
         }
         // console.log(vers, random)
-        return [this.posY, this.posX, 0.9/dist * this.coef, this.isEat]
+        return [this.posY, this.posX, 1 * this.coef, this.isEat, this.eatValue]
     }
 }
 
