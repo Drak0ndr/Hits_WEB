@@ -6,6 +6,7 @@ export class Ant{
         this.eatValue = 1
         this.coef = 1
         this.dir = dir
+        this.path = [[posY,posX]]
     }
     genPaths(matrix, dirs) {
         let path = []
@@ -156,36 +157,52 @@ export class Ant{
                 if ((item[0] - this.posY) == -1 && (item[1] - this.posX == -1)) {
                     this.dir = 315
                 }
+                
                 this.posY = item[0]
                 this.posX = item[1]
-                
+                this.path.push([this.posY, this.posX])
                 return
             }
         })
-        if (matrix[this.posY][this.posX].build == 2) {
+        let bestPath = []
+        if (matrix[this.posY][this.posX].build == 2 && this.isEat == false) {
             this.isEat = true
+            bestPath =  [...this.path]
+            this.path = [[this.posY, this.posX]]
             this.eatValue = matrix[this.posY][this.posX].eatValue
             this.coef = 1
             this.dir += 180
             if (this.dir >= 360) {
                 this.dir-=360
             }
-        }
-
-        if (matrix[this.posY][this.posX].build == 1) {
+        } else if (matrix[this.posY][this.posX].build == 1 && this.isEat == true) {
             this.isEat = false
+            // console.log(this.path.length)
+            bestPath =  [...this.path]
+            this.path = [[this.posY, this.posX]]
             this.coef = 1
             this.dir += 180
             if (this.dir >= 360) {
                 this.dir-=360
             }
+        } else if (matrix[this.posY][this.posX].build == 1 || matrix[this.posY][this.posX].build == 2) {
+            this.dir += 180
+            if (this.dir >= 360) {
+                this.dir-=360
+            }
         }
-        this.coef*=0.9
+
+        
+        this.coef*=0.95
         if (dist == 0) {
             dist = 99
         }
         // console.log(vers, random)
-        return [this.posY, this.posX, 1 * this.coef, this.isEat, this.eatValue]
+        // if (bestPath.length > 0) {
+        //     console.log(bestPath)
+        // }
+        
+        return [this.posY, this.posX, 0.5 * this.coef, this.isEat, this.eatValue, bestPath]
     }
 }
 
