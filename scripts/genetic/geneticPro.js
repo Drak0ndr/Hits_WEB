@@ -281,7 +281,13 @@ document.getElementById("start").addEventListener('click', () => {
     geneticAlgorithm();
 });
 
+document.getElementById("my_block").addEventListener('mouseover', (e) => {
+    setTimeout(() => document.getElementById("exit_descr").style.display = "flex", 200);
+});
 
+document.getElementById("my_block").addEventListener('mouseout', () => {
+    setTimeout(() => document.getElementById("exit_descr").style.display = "none", 200);
+});
 
 
 
