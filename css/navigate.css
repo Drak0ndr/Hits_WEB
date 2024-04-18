@@ -16,7 +16,7 @@ nav {
 
 nav a {
     color: whitesmoke;
-    font-size: 1.75vw;
+    font-size: 1.7vw;
     margin: 0 10px 0 10px;
     text-decoration: none;
 }
@@ -64,9 +64,9 @@ a:nth-child(5n) .link:hover{
 a:nth-child(6n) .link:hover{
     background-color: #4c49ea;
 } */
-@media (max-width: 1400px) {
+@media (max-width: 1500px) {
     nav a {
-        font-size: 1.5vw;
+        font-size: 1.6vw;
     }
     nav a svg {
         width: 40px;
@@ -82,7 +82,11 @@ a:nth-child(6n) .link:hover{
         fill: whitesmoke;
     }
 }
-
+@media (max-width: 1300px) {
+    nav a {
+        font-size: 1.4vw;
+    }
+}
 
 @media (max-width: 1100px) {
 
