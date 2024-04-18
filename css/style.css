@@ -2,12 +2,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Trebuchet MS", sans-serif;
+    
 }
 body {
     background-color: rgb(33, 37, 41);
     min-height: 100vh;
     overflow: hidden;
+    font-family: "Trebuchet MS", sans-serif;
 }
 main {
     display: flex;
