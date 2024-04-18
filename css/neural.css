@@ -110,6 +110,13 @@ nav {
     color: white;
     font-size: 20px;
 }
+
+@media (max-width:1300px) {
+    .field canvas {
+        width: 550px;
+        height: 550px;
+    }
+}
 @media (max-width:800px) {
     .alg_name {
         margin-right: 40px;
