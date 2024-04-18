@@ -16,6 +16,7 @@ main {
 nav{
     position: relative;
     text-decoration: none; 
+    font-family: "Trebuchet MS", sans-serif;
 }
 #wrapper{
     display: flex;

@@ -7,6 +7,9 @@ body{
     background-color: rgb(33, 37, 41);
     min-height: 100vh;
 }
+nav{
+    font-family: "Trebuchet MS", sans-serif;
+}
 main{
     position: relative;
     display: flex;

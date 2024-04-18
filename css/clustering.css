@@ -9,6 +9,7 @@ body{
 nav{
     position: relative;
     text-decoration: none; 
+    font-family: "Trebuchet MS", sans-serif;
 }
 main {  
     min-height: calc(100vh - 118px);
@@ -46,6 +47,7 @@ main {
     justify-content: center;
     text-align: center;
     height: 10%;
+    font-family: "Trebuchet MS", sans-serif;
 }
 .canvas_div{
     max-height: 980px;
