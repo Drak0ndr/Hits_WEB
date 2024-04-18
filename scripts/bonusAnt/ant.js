@@ -11,7 +11,7 @@ export class Ant{
     genPaths(matrix, dirs) {
         let path = []
         let sm = 0
-        let alfa = 1
+        let alfa = 1.3
         let beta = 0
         dirs.forEach(item => {
             let y = item[0]
@@ -192,7 +192,10 @@ export class Ant{
             }
         }
 
-        
+        let price = 0
+        for(let i = 0; i < bestPath.length-1; i++) {
+            price+= ((bestPath[i][0] - bestPath[i+1][0])**2 + (bestPath[i][1] - bestPath[i+1][1])**2)**0.5
+        }
         this.coef*=0.95
         if (dist == 0) {
             dist = 99
@@ -202,7 +205,7 @@ export class Ant{
         //     console.log(bestPath)
         // }
         
-        return [this.posY, this.posX, 0.5 * this.coef, this.isEat, this.eatValue, bestPath]
+        return [this.posY, this.posX, 0.2 * this.coef, this.isEat, this.eatValue, bestPath, 1/price * this.eatValue]
     }
 }
 
