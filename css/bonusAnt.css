@@ -10,6 +10,7 @@ nav {
     display: flex;
     align-items: center;
     transition: all 1s ease-in;
+    font-family: "Trebuchet MS", sans-serif;
 }
 
 
