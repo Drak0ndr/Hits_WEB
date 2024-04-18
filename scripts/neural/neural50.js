@@ -187,7 +187,18 @@ function shuffle(array) {
   }
 let train_data = []
 let check_data = []
-// fetch('../scripts/mnist0.json')
+fetch('../scripts/neural/fixmnist.json')
+    .then(response => {
+        return response.json()
+    })
+    .then(data => {
+        console.log(data)
+        data.forEach(item => {
+            train_data.push(item)
+        })
+        console.log(train_data.length)
+    })
+// fetch('../scripts/neural/mnist0.json')
 //     .then(response => {
 //         return response.json()
 //     })
@@ -198,7 +209,7 @@ let check_data = []
 //         })
 //         console.log(train_data.length)
 //     })
-// fetch('../scripts/mnist1.json')
+// fetch('../scripts/neural/mnist1.json')
 //     .then(response => {
 //         return response.json()
 //     })
@@ -209,7 +220,7 @@ let check_data = []
 //         })
 //         console.log(train_data.length)
 //     })
-// fetch('../scripts/mnist2.json')
+// fetch('../scripts/neural/mnist2.json')
 //     .then(response => {
 //         return response.json()
 //     })
@@ -220,7 +231,7 @@ let check_data = []
 //         })
 //         console.log(train_data.length)
 //     })
-// fetch('../scripts/mnist3.json')
+// fetch('../scripts/neural/mnist3.json')
 //     .then(response => {
 //         return response.json()
 //     })
@@ -231,7 +242,7 @@ let check_data = []
 //         })
 //         console.log(train_data.length)
 //     })
-// fetch('../scripts/mnist4.json')
+// fetch('../scripts/neural/mnist4.json')
 //     .then(response => {
 //         return response.json()
 //     })
@@ -242,7 +253,7 @@ let check_data = []
 //         })
 //         console.log(train_data.length)
 //     })
-// fetch('../scripts/mnist5.json')
+// fetch('../scripts/neural/mnist5.json')
 //     .then(response => {
 //         return response.json()
 //     })
@@ -253,7 +264,7 @@ let check_data = []
 //         })
 //         console.log(train_data.length)
 //     })
-// fetch('../scripts/mnist6.json')
+// fetch('../scripts/neural/mnist6.json')
 //     .then(response => {
 //         return response.json()
 //     })
@@ -264,7 +275,7 @@ let check_data = []
 //         })
 //         console.log(train_data.length)
 //     })
-// fetch('../scripts/mnist7.json')
+// fetch('../scripts/neural/mnist7.json')
 //     .then(response => {
 //         return response.json()
 //     })
@@ -275,7 +286,7 @@ let check_data = []
 //         })
 //         console.log(train_data.length)
 //     })
-// fetch('../scripts/mnist8.json')
+// fetch('../scripts/neural/mnist8.json')
 //     .then(response => {
 //         return response.json()
 //     })
@@ -286,7 +297,7 @@ let check_data = []
 //         })
 //         console.log(train_data.length)
 //     })
-// fetch('../scripts/mnist9.json')
+// fetch('../scripts/neural/mnist9.json')
 //     .then(response => {
 //         return response.json()
 //     })
@@ -493,7 +504,7 @@ function neuralNetwork(data) {
 
 function train(count) {
     console.log(centralize([0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]))
-    let trainSpeed = 0.01
+    let trainSpeed = 0.03
     for (let i = 0; i < count; i++) {
         let TA = 0
         train_data.forEach((item, ind) => {
@@ -613,6 +624,6 @@ function train(count) {
 // setTimeout(() => {
 //     train_data = shuffle(train_data)
 //     console.log(train_data.length)
-//     train(0)
+//     train(20)
 
 // }, 15000)
