@@ -69,7 +69,7 @@ export class AntAlg {
                     this.graph[item][i][2] *= 0.6
                 }
             }
-            console.log(data)
+            // console.log(data)
             for (let i = 0; i < data.length; i++) {
                 let cost = 0
                 for (let j = 0; j < data[i].length - 1; j++) {
@@ -80,7 +80,7 @@ export class AntAlg {
                     }
                 }
                 let delta = 100 / cost
-                console.log(cost, data[i], delta)
+                // console.log(cost, data[i], delta)
     
                 for (let j = 0; j < data[i].length - 1; j++) {
                     for (let k = 0; k < this.graph[data[i][j]].length; k++) {
@@ -96,8 +96,8 @@ export class AntAlg {
             }
         }
 
-        console.log(bestCost, bestPath)
-        console.log(this.graph)
+        // console.log(bestCost, bestPath)
+        // console.log(this.graph)
         return [bestCost, bestPath]
     }
 }

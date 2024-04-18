@@ -60,4 +60,13 @@ export class Draw {
         this.vertex = []
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
     }
+
+    clearPaths() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        this.vertex.forEach(item => {
+            this.ctx.beginPath()
+            this.ctx.arc(item[0], item[1], 5, 0, Math.PI * 2)
+            this.ctx.fill()
+        })
+    }
 }

@@ -11,6 +11,7 @@ const optBtn = document.querySelector('.optimization')
 let decisionTree = new DecisionTree()
 let drawTree= new Draw(field, firstUl)
 let data = []
+let isLoadTree = false
 inputFile.addEventListener('change', (e) => {
     data = []
     let decoder = new TextDecoder('utf-8');
@@ -28,6 +29,7 @@ inputFile.addEventListener('change', (e) => {
         decisionTree = new DecisionTree()
         drawTree.clear()
         decisionTree.train(data, 0)
+        isLoadTree = true
         drawTree.drawGraph(decisionTree.tree, -1)
     }
     
@@ -44,8 +46,10 @@ startBtn.addEventListener('click', (e) => {
 })
 
 optBtn.addEventListener('click', e=> {
-    console.log('gg')
-    drawTree.clear()
-    decisionTree.train(data, 0.9)
-    drawTree.drawGraph(decisionTree.tree, -1)
+    if (isLoadTree) {
+        drawTree.clear()
+        decisionTree.train(data, 0.9)
+        drawTree.drawGraph(decisionTree.tree, -1)
+    }
+
 })

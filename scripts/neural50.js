@@ -8,7 +8,7 @@ canvas.width = canvas.offsetWidth
 canvas.height = canvas.offsetHeight
 const pixel = canvas.width / 50
 let isMouseDown = false
-
+let isDraw = false
 function drawLine(x1, y1, x2, y2, color = 'gray') {
     ctx.beginPath()
     ctx.strokeStyle = color
@@ -96,6 +96,7 @@ function pixelization(draw = false) {
 
 clearBtn.addEventListener('click', e => {
     clear()
+    isDraw = false
     // drawGrid()
 })
 
@@ -116,19 +117,24 @@ pixelBtn.addEventListener('click', e => {
 })
 
 recognizeBtn.addEventListener('click', e => {
-    let data = pixelization(true)
-    console.log(data)
-    let ans = neuralNetwork(data)
-    let bt = 0
-    let btInd = 0
-    ans.forEach((item, ind) => {
-        if (item > bt) {
-            bt = item
-            btInd = ind
-        }
-    })
-    ansSpan.innerHTML = btInd
-    console.log(ans)
+    if (isDraw) {
+        let data = pixelization(true)
+        console.log(data)
+        let ans = neuralNetwork(data)
+        let bt = 0
+        let btInd = 0
+        ans.forEach((item, ind) => {
+            if (item > bt) {
+                bt = item
+                btInd = ind
+            }
+        })
+        ansSpan.innerHTML = btInd
+        console.log(ans)
+    } else {
+        ansSpan.innerHTML = 'Пустота'
+    }
+
 })
 
 canvas.addEventListener('mousedown', e => {
@@ -143,6 +149,7 @@ canvas.addEventListener('mouseup', e => {
 
 canvas.addEventListener('mousemove', e => {
     if (isMouseDown) {
+        isDraw = true
         ctx.fillStyle = 'red'
         ctx.strokeStyle = 'red'
         ctx.lineWidth = pixel
