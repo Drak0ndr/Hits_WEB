@@ -2,12 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Trebuchet MS", sans-serif;
 }
 body {
     background-color: rgb(33, 37, 41);
     min-height: 100vh;
     overflow: hidden;
+    font-family: "Trebuchet MS", sans-serif;
 }
 main {
     display: flex;
@@ -84,20 +84,20 @@ a:nth-child(6n) .link:hover{
 }
 
 @media (max-width: 750px) {
+    #main_descr{
+        width: 90%;
+    }
     h1{
-        font-size: 28px;
+        font-size: 30px;
     }
     h2{
-        font-size: 14px;
+        font-size: 16px;
     }
 }
 
 @media (max-width: 400px) {
-    h1{
-        font-size: 22px;
-    }
-    h2{
-        font-size: 10px;
+    #main_descr{
+        transform:  translateX(50%) translateY(-30%);
     }
 }
 

@@ -289,6 +289,18 @@ document.getElementById("my_block").addEventListener('mouseout', () => {
     setTimeout(() => document.getElementById("exit_descr").style.display = "none", 200);
 });
 
+document.getElementById("genetic_number").addEventListener('input', () => {
+    isRightNumber(document.getElementById('genetic_number'));
+});
+
+function isRightNumber(obj){
+    if (obj.value > 1000){
+        obj.value = 1000;
+    }   
+    if (obj.value < 1){
+        obj.value = 1;
+    } 
+}
 
 
 

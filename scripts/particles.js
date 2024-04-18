@@ -754,22 +754,24 @@ var pJS = function(tag_id, params){
 
     pJS.tmp.pushing = true;
 
-    for(var i = 0; i < nb; i++){
-      pJS.particles.array.push(
-        new pJS.fn.particle(
-          pJS.particles.color,
-          pJS.particles.opacity.value,
-          {
-            'x': pos ? pos.pos_x : Math.random() * pJS.canvas.w,
-            'y': pos ? pos.pos_y : Math.random() * pJS.canvas.h
-          }
+    if(pJS.particles.array.length < 300){
+      for(var i = 0; i < nb; i++){
+        pJS.particles.array.push(
+          new pJS.fn.particle(
+            pJS.particles.color,
+            pJS.particles.opacity.value,
+            {
+              'x': pos ? pos.pos_x : Math.random() * pJS.canvas.w,
+              'y': pos ? pos.pos_y : Math.random() * pJS.canvas.h
+            }
+          )
         )
-      )
-      if(i == nb-1){
-        if(!pJS.particles.move.enable){
-          pJS.fn.particlesDraw();
+        if(i == nb-1){
+          if(!pJS.particles.move.enable){
+            pJS.fn.particlesDraw();
+          }
+          pJS.tmp.pushing = false;
         }
-        pJS.tmp.pushing = false;
       }
     }
 
