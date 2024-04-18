@@ -344,7 +344,7 @@ for (let i = 0; i < 10; i++) {
     neuralData.outputSlise.push(0)
     neuralData.outputSliseSm.push(0)
 }
-fetch('../scripts/neuralData50.json')
+fetch('../scripts/neural/neuralData50.json')
     .then(response => {
         return response.json()
     })
