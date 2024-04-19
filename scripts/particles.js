@@ -113,7 +113,7 @@ var pJS = function(tag_id, params){
           duration: 0.4
         },
         repulse:{
-          distance: 200,
+          distance: 100,
           duration: 0.4
         },
         push:{
@@ -754,7 +754,7 @@ var pJS = function(tag_id, params){
 
     pJS.tmp.pushing = true;
 
-    if(pJS.particles.array.length < 300){
+    if(pJS.particles.array.length < 250){
       for(var i = 0; i < nb; i++){
         pJS.particles.array.push(
           new pJS.fn.particle(

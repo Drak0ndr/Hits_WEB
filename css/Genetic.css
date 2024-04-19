@@ -11,7 +11,7 @@ main {
     align-items:center;
     justify-content: center;
     min-height: calc(100vh - 118px);
-    padding: 70px 0;
+    padding: 70px 0px 0px 0px;
     position: relative;
 }
 #my_block{
