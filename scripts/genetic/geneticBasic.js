@@ -131,10 +131,10 @@ export function showPath(path) {
     let sumDist = 0;
     
     document.getElementById("speed_range").value <= 20 ? numberIterations = 80 :  
-    document.getElementById("speed_range").value <= 40 ? numberIterations = 160 :
-    document.getElementById("speed_range").value <= 60 ? numberIterations = 240 :
-    document.getElementById("speed_range").value <= 80 ? numberIterations = 320 :
-    numberIterations = 400;
+    document.getElementById("speed_range").value <= 40 ? numberIterations = 180 :
+    document.getElementById("speed_range").value <= 60 ? numberIterations = 280 :
+    document.getElementById("speed_range").value <= 80 ? numberIterations = 380 :
+    numberIterations = 480;
     
     for (let i = 0; i < path.length - 1; ++i) {
         ctx.moveTo(arrVertexes[path[i]].x, arrVertexes[path[i]].y);
