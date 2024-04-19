@@ -11,11 +11,20 @@ export class Draw {
     }
 
     addVertex(x, y) {
-        console.log(x, y, this.vertex)
-        this.ctx.beginPath()
-        this.ctx.arc(x, y, 5, 0, Math.PI * 2)
-        this.ctx.fill()
-        this.vertex.push([x, y])
+        let minDist = 10**10
+        this.vertex.forEach(item => {
+            let dist = ((item[0] - x)**2 + (item[1] - y)**2)**0.5
+            if (dist < minDist) {
+                minDist = dist
+            }
+        })
+        if (minDist > 0) {
+            this.ctx.beginPath()
+            this.ctx.arc(x, y, 5, 0, Math.PI * 2)
+            this.ctx.fill()
+            this.vertex.push([x, y])
+        }
+
     }
 
     drawLine(x1, y1, x2, y2, color = 'gray', width = 0.1) {

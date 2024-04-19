@@ -11,7 +11,6 @@ body {
 
 main {
     
-    /* min-height: 100vh; */
     display: flex;
     flex-wrap: wrap;
     margin-top: 10px;
@@ -22,14 +21,7 @@ nav {
     display: flex;
     justify-content: space-between;
 }
-.alg_name {
-    width: 79vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: whitesmoke;
-    font-size: 40px;
-}
+
 .parametrs {
     width: 20vw;
     min-width: 160px;
@@ -40,34 +32,6 @@ nav {
     padding-top: 10px;
 }
 
-.back {
-    width: 6vw;
-    height: 6vw;
-    border-radius:50%;
-    background-color:rgb(24, 26, 27);
-    display: flex;
-    justify-content: center;
-    align-items:center;
-}
-
-.back a {
-    width: 7vw;
-    height: 7vw;
-    border-radius:50%;
-    display: flex;
-    justify-content: center;
-    align-items:center;
-}
-
-.back:hover {
-    background-color:rgb(31, 34, 35);
-}
-
-.back svg {
-    width: 5vw;
-    height: 5vw;
-    color: #64748b;;
-}
 
 .field {
     width: 78vw;
@@ -82,7 +46,7 @@ nav {
     background-color: rgb(67, 74, 82);
 }
 
-.clear, .start, .pixelation, #newWorld {
+.clear, .start, #newWorld {
     text-decoration: none;
     background-color: #ffdd2d;
     border-radius: 12px;
@@ -96,7 +60,7 @@ nav {
     cursor: pointer;
 }
 
-.clear:hover, .start:hover, .pixelation:hover{
+.clear:hover, .start:hover, #newWorld:hover{
     background-color: #e7c82e;
 }
 
@@ -124,13 +88,13 @@ a:nth-child(4) .link{
     .field {
         width: 100vw;
     }
-    .clear, .start {
+    .clear, .start, #newWorld {
         height: 50px;
     }
 }
 
 @media (min-width: 1900px) {
-    .clear, .start, .pixelation {
+    .clear, .start, #newWorld {
         height: 8vh;
         font-size: 1.3vw;
         margin-bottom: 3vh;
