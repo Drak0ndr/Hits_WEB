@@ -22,27 +22,6 @@ nav {
     display: flex;
     justify-content: space-between;
 }
-a:nth-child(3) .link:hover {
-    background-color: #3ecd5e;
-}
-a .link:hover{
-    transition: all 1s ease;
-}
-a:nth-child(1) .link:hover {
-    background-color: #952aff;
-}
-a:nth-child(2) .link:hover{
-    background-color: #cd3e94;
-}
-a:nth-child(4) .link{
-    background-color: #f9b234;
-}
-a:nth-child(5) .link:hover{
-    background-color: #e44002;
-}
-a:nth-child(6) .link:hover{
-    background-color: #4c49ea;
-}
 .alg_name {
     width: 79vw;
     display: flex;
@@ -152,25 +131,4 @@ a:nth-child(4) .link{
         margin-bottom: 3vh;
     }
 
-}
-a:nth-child(3) .link:hover {
-    background-color: #3ecd5e;
-}
-a .link:hover{
-    transition: all 1s ease;
-}
-a:nth-child(1) .link:hover {
-    background-color: #952aff;
-}
-a:nth-child(2) .link:hover{
-    background-color: #cd3e94;
-}
-a:nth-child(4) .link{
-    background-color: #f9b234;
-}
-a:nth-child(5) .link:hover{
-    background-color: #e44002;
-}
-a:nth-child(6) .link:hover{
-    background-color: #4c49ea;
 }
