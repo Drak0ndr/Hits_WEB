@@ -17,6 +17,7 @@ nav {
 
 .arrow {
     width: 2vw;
+    min-width: 20px;
     height: 6vh;
     background-color: blue;
     opacity: 0.5;
@@ -29,7 +30,9 @@ nav {
     padding: 5px;
     height: 50vh;
     width: 15vw;
+    font-size: max(1.1vw, 15px) ;
     background-color:rgba(0, 255, 255, 0.5);
+    min-width: 200px;
 }
 
 .options {
@@ -50,7 +53,7 @@ canvas {
 }
 
 .hide {
-    left: -15vw;
+    left: min(-15vw, -200px);
 
 }
 
@@ -66,7 +69,7 @@ canvas {
     text-decoration: none;
     background-color: #37d9c1;
     border-radius: 12px;
-    width: 90%;
+    width: 95%;
     height: 40px;
     display: flex;
     justify-content: center;
@@ -76,9 +79,9 @@ canvas {
     cursor: pointer;
 }
 button {
-    width: 90%;
+    width: 95%;
     height: 30px;
-    font-size: 15px;
+    font-size: max(1.1vw, 15px) ;
     margin-top: 10px;
     background-color:rgb(44, 203, 203)
 }
