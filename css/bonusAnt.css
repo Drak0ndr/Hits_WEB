@@ -26,6 +26,7 @@ nav {
 }
 
 .parametrs {
+    padding: 5px;
     height: 50vh;
     width: 15vw;
     background-color:rgba(0, 255, 255, 0.5);
@@ -58,9 +59,29 @@ canvas {
     display: flex;
     justify-content: center;
     align-items:center;
-    padding: 20px;
+    padding: 5px;
 }
 
+.back{
+    text-decoration: none;
+    background-color: #37d9c1;
+    border-radius: 12px;
+    width: 90%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    margin-top: 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+button {
+    width: 90%;
+    height: 30px;
+    font-size: 15px;
+    margin-top: 10px;
+    background-color:rgb(44, 203, 203)
+}
 .range {
     width: 100%;
 }

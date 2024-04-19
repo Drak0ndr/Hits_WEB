@@ -1,6 +1,8 @@
-import { Draw } from "./draw.js";
-import { Colony } from "./colony.js";
+import { Draw } from "./draw.js"
+import { Colony } from "./colony.js"
+import {generateMaze} from "./maze.js"
 const canvas = document.querySelector('canvas')
+const ctx = canvas.getContext('2d', { willReadFrequently: true })
 const pixel = 15
 const inputColony = document.querySelector('#colony')
 const inputEat = document.querySelector('#eat')
@@ -12,6 +14,7 @@ const setting = document.querySelector('nav')
 const inputRange = document.querySelector('#rangeAnts')
 const spanRange = document.querySelector('#rangeValue')
 const inputSpeed = document.querySelector('#speed')
+const buttonMaze = document.querySelector('.genMaze')
 let numAnts = inputRange.value
 let matrix = []
 canvas.width = Math.floor(canvas.offsetWidth / pixel) * pixel
@@ -26,19 +29,95 @@ for (let y =0; y < matrixHeight; y++) {
     }
     matrix.push(temp)
 }
+let draw = new Draw(canvas, pixel)
+draw.drawGrid()
+let isColony = false
+let isMouseDown = false
+let isBuilding = false
+let colony 
 inputRange.addEventListener('mousemove', e => {
     spanRange.innerHTML = inputRange.value
     numAnts = inputRange.value
 })
+
+buttonMaze.addEventListener('click', e => {
+    let width = matrixWidth
+    let height = matrixHeight
+    if (width % 2 === 0) {
+        width+=1
+    }
+    if (height % 2 === 0) {
+        height+=1
+    }
+    let maze = generateMaze(width, height)
+    if (isColony) {
+        colony.isFindPath = false
+    }
+    for(let y =0; y < matrixHeight; y++) {
+        for(let x = 0; x < matrixWidth; x++) {
+            if (matrix[y][x].build === 0 && maze[y][x] === 'wall') {
+                matrix[y][x].build = 3
+            }
+            if (matrix[y][x].build === 3 && maze[y][x] === 'space') {
+                matrix[y][x].build = 0
+            }
+        }
+    }
+
+    draw.drawField(matrix)
+    
+})
 // console.log(matrix)
-let draw = new Draw(canvas, pixel)
-draw.drawGrid()
-let isColony = false
-let colony
+
+canvas.addEventListener('mousedown', e => {
+    isMouseDown = true
+    isBuilding = true
+})
+canvas.addEventListener('mouseup', e => {
+    isMouseDown = false
+    isBuilding = false
+})
+
+canvas.addEventListener('mousemove', e => {
+    let x = e.offsetX
+    let y = e.offsetY
+    let matrixX = Math.floor(x / pixel)
+    let matrixY = Math.floor(y / pixel)
+    
+    if (isMouseDown) {
+        if (inputWall.checked && matrix[matrixY][matrixX].build === 0) {
+            isBuilding = true
+            ctx.beginPath()
+            ctx.fillStyle = 'gray'
+            ctx.strokeStyle = 'gray'
+            matrix[matrixY][matrixX].build = 3
+            if (isColony) {
+                colony.isFindPath = false
+            }
+            ctx.rect(matrixX * pixel, matrixY * pixel, pixel, pixel)
+            ctx.fill()
+            // draw.drawField(matrix)
+            
+        }
+        if (inputRemWall.checked && matrix[matrixY][matrixX].build !== 1) {
+            isBuilding = true
+            ctx.beginPath()
+            ctx.fillStyle = '#c79030'
+            ctx.strokeStyle = '#c79030'
+            matrix[matrixY][matrixX].build = 0
+            if (isColony) {
+                colony.isFindPath = false
+            }
+            ctx.rect(matrixX * pixel, matrixY * pixel, pixel, pixel)
+            ctx.fill()
+            // draw.drawField(matrix)
+        }
+    }
+})
 canvas.addEventListener('click', e => {
     let x = e.offsetX
     let y = e.offsetY
-    console.log(numAnts)
+    // console.log(numAnts)
     let matrixX = Math.floor(x / pixel)
     let matrixY = Math.floor(y / pixel)
     if (inputColony.checked && isColony == false) {
@@ -53,24 +132,33 @@ canvas.addEventListener('click', e => {
         matrix[matrixY][matrixX].build = 2
         matrix[matrixY][matrixX].feromons[1] = 10**10
         matrix[matrixY][matrixX].eatValue = inputEatValue.value
-        colony.isFindPath = false
+        if (isColony) {
+            colony.isFindPath = false
+        }
     }
     if (inputWall.checked) {
         matrix[matrixY][matrixX].build = 3
-        colony.isFindPath = false
+        if (isColony) {
+            colony.isFindPath = false
+        }
     }
-    if (inputRemWall.checked) {
+    if (inputRemWall.checked && matrix[matrixY][matrixX].build !== 1) {
         matrix[matrixY][matrixX].build = 0
-        colony.isFindPath = false
+        if (isColony) {
+            colony.isFindPath = false
+        }
     }
     // colony.matrix = matrix
     // colony.nextIteration()
     draw.drawField(matrix)
-    draw.drawAnts(colony.ants)
+    if (isColony) {
+        draw.drawAnts(colony.ants)
+    }
+
     // console.log(matrixY,matrixX)
 })
 function animate() {
-    if (isColony) {
+    if (isColony && isBuilding === false) {
         for (let i = 0; i < inputSpeed.value; i++) {
             colony.nextIteration()
 
