@@ -39,7 +39,7 @@ export class DecisionTree {
         for (let i = 1; i < node.data.length; i++) {
             let flag= true
             for (let j = 0; j < p.length; j++) {
-                if (node.data[i][node.data[i].length - 1] == p[j][p[j].length -1][p[j][p[j].length - 1].length - 1]) {
+                if (node.data[i][node.data[i].length - 1] === p[j][p[j].length -1][p[j][p[j].length - 1].length - 1]) {
                     p[j].push(node.data[i])
                     flag = false
                 }
@@ -153,7 +153,7 @@ export class DecisionTree {
         let posId = 0
         let path = [0]
         while (!isEnd) {
-            if (+this.tree[posId].numArg == 0) {
+            if (+this.tree[posId].numArg === 0) {
                 isEnd = true
                 break
             }

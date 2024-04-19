@@ -133,28 +133,28 @@ export class Ant{
         vers.forEach(item => {
             if (random >= item[2] && random <= item[3]) {
                 dist = ((this.posY - item[0])**2 + (this.posX - item[1])**2)**0.5
-                if ((item[0] - this.posY) == -1 && (item[1] - this.posX == 0)) {
+                if ((item[0] - this.posY) === -1 && (item[1] - this.posX === 0)) {
                     this.dir = 0
                 }
-                if ((item[0] - this.posY) == -1 && (item[1] - this.posX == 1)) {
+                if ((item[0] - this.posY) === -1 && (item[1] - this.posX === 1)) {
                     this.dir = 45
                 }
-                if ((item[0] - this.posY) == 0 && (item[1] - this.posX == 1)) {
+                if ((item[0] - this.posY) === 0 && (item[1] - this.posX === 1)) {
                     this.dir = 90
                 }
-                if ((item[0] - this.posY) == 1 && (item[1] - this.posX == 1)) {
+                if ((item[0] - this.posY) === 1 && (item[1] - this.posX === 1)) {
                     this.dir = 135
                 }
-                if ((item[0] - this.posY) == 1 && (item[1] - this.posX == 0)) {
+                if ((item[0] - this.posY) === 1 && (item[1] - this.posX === 0)) {
                     this.dir = 180
                 }
-                if ((item[0] - this.posY) == 1 && (item[1] - this.posX == -1)) {
+                if ((item[0] - this.posY) === 1 && (item[1] - this.posX === -1)) {
                     this.dir = 225
                 }
-                if ((item[0] - this.posY) == 0 && (item[1] - this.posX == -1)) {
+                if ((item[0] - this.posY) === 0 && (item[1] - this.posX === -1)) {
                     this.dir = 270
                 }
-                if ((item[0] - this.posY) == -1 && (item[1] - this.posX == -1)) {
+                if ((item[0] - this.posY) === -1 && (item[1] - this.posX === -1)) {
                     this.dir = 315
                 }
                 
@@ -165,7 +165,7 @@ export class Ant{
             }
         })
         let bestPath = []
-        if (matrix[this.posY][this.posX].build == 2 && this.isEat == false) {
+        if (matrix[this.posY][this.posX].build === 2 && this.isEat === false) {
             this.isEat = true
             bestPath =  [...this.path]
             this.path = [[this.posY, this.posX]]
@@ -175,7 +175,7 @@ export class Ant{
             if (this.dir >= 360) {
                 this.dir-=360
             }
-        } else if (matrix[this.posY][this.posX].build == 1 && this.isEat == true) {
+        } else if (matrix[this.posY][this.posX].build === 1 && this.isEat === true) {
             this.isEat = false
             // console.log(this.path.length)
             bestPath =  [...this.path]
@@ -185,7 +185,7 @@ export class Ant{
             if (this.dir >= 360) {
                 this.dir-=360
             }
-        } else if (matrix[this.posY][this.posX].build == 1 || matrix[this.posY][this.posX].build == 2) {
+        } else if (matrix[this.posY][this.posX].build === 1 || matrix[this.posY][this.posX].build === 2) {
             this.dir += 180
             if (this.dir >= 360) {
                 this.dir-=360

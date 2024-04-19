@@ -71,7 +71,7 @@ export class Colony {
             }
         }
         delts.forEach(item => {
-            if (item[3] == false) {
+            if (item[3] === false) {
                 this.matrix[item[0]][item[1]].feromons[0] += item[2]
             } else {
                 this.matrix[item[0]][item[1]].feromons[1] += item[2] * item[4]
@@ -83,7 +83,7 @@ export class Colony {
             console.log(this.bestPath.length, this.bestPrice)
             let baseInd = 0
             let eatInd = this.bestPath.length - 1
-            if (this.matrix[this.bestPath[0][0]][this.bestPath[0][1]].build == 2) {
+            if (this.matrix[this.bestPath[0][0]][this.bestPath[0][1]].build === 2) {
                 baseInd = this.bestPath.length-1
                 eatInd = 0
             }

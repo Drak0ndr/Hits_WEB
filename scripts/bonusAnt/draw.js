@@ -44,15 +44,15 @@ export class Draw {
         for (let y = 0; y < matrix.length; y++) {
             for(let x = 0; x < matrix[y].length; x++) {
                 this.ctx.beginPath()
-                if (matrix[y][x].build == 1) {
+                if (matrix[y][x].build === 1) {
                     this.ctx.fillStyle = 'red'
                     this.ctx.strokeStyle = 'red'
                 }
-                else if (matrix[y][x].build == 2) {
+                else if (matrix[y][x].build === 2) {
                     this.ctx.fillStyle = 'green'
                     this.ctx.strokeStyle = 'green'
                 }
-                else if (matrix[y][x].build == 3) {
+                else if (matrix[y][x].build === 3) {
                     this.ctx.fillStyle = 'gray'
                     this.ctx.strokeStyle = 'gray'
                 } else {
@@ -102,7 +102,7 @@ export class Draw {
                 color = `rgba(255,0,0,${opacity})`
                 this.ctx.fillStyle = color
                 this.ctx.strokeStyle = color
-                if (matrix[y][x].build != 3) {
+                if (matrix[y][x].build !== 3) {
                     this.ctx.rect(x * this.pixel, y * this.pixel, this.pixel, this.pixel)
                     this.ctx.fill()
                 }
@@ -124,7 +124,7 @@ export class Draw {
                 color = `rgba(0,150,0,${opacity})`
                 this.ctx.fillStyle = color
                 this.ctx.strokeStyle = color
-                if (matrix[y][x].build != 3) {
+                if (matrix[y][x].build !== 3) {
                     this.ctx.rect(x * this.pixel, y * this.pixel, this.pixel, this.pixel)
                     this.ctx.fill()
                 }
