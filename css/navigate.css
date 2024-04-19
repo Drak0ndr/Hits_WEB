@@ -48,22 +48,27 @@ nav a svg {
     background-color: rgb(44, 49, 54);;
 }
 
-/* a:nth-child(2n) .link:hover {
+a:nth-child(3) .link:hover {
     background-color: #3ecd5e;
 }
-
-a:nth-child(3n) .link:hover{
-    background-color: #e44002;
+a .link:hover{
+    transition: all 1s ease;
 }
-a:nth-child(4n) .link:hover{
+a:nth-child(1) .link:hover {
     background-color: #952aff;
 }
-a:nth-child(5n) .link:hover{
+a:nth-child(2) .link:hover{
     background-color: #cd3e94;
 }
-a:nth-child(6n) .link:hover{
+a:nth-child(4) .link:hover{
+    background-color: #f9b234;
+}
+a:nth-child(5) .link:hover{
+    background-color: #e44002;
+}
+a:nth-child(6) .link:hover{
     background-color: #4c49ea;
-} */
+}
 @media (max-width: 1500px) {
     nav a {
         font-size: 1.6vw;
