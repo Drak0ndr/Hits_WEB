@@ -36,7 +36,7 @@ export class AntAlg {
         let blackList = []
         while (blackList.length < Object.keys(this.graph).length - 1) {
             let line = this.getP(pos, blackList)
-            if (line.length == 0) {
+            if (line.length === 0) {
                 break
             }
             let random = Math.random()
@@ -75,7 +75,7 @@ export class AntAlg {
                 let cost = 0
                 for (let j = 0; j < data[i].length - 1; j++) {
                     for (let k = 0; k < this.graph[data[i][j]].length; k++) {
-                        if (this.graph[data[i][j]][k][0] == data[i][j + 1]) {
+                        if (this.graph[data[i][j]][k][0] === data[i][j + 1]) {
                             cost += this.graph[data[i][j]][k][1]
                         }
                     }
@@ -85,7 +85,7 @@ export class AntAlg {
                 
                 for (let j = 0; j < data[i].length - 1; j++) {
                     for (let k = 0; k < this.graph[data[i][j]].length; k++) {
-                        if (this.graph[data[i][j]][k][0] == data[i][j + 1]) {
+                        if (this.graph[data[i][j]][k][0] === data[i][j + 1]) {
                             this.graph[data[i][j]][k][2] += delta
                         }
                     }
