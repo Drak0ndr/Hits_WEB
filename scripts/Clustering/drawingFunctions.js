@@ -42,10 +42,10 @@ const colors3 = ['#FDD9B5', '#78DBE2', '#9F2B68', '#44944A', '#F5F5DC', '#30D5C8
                 '#0095B6', '#D76E00', '#42AAFF', '#30BA8F', '#B2EC5D', '#9ACD32', '#2E8B57', '#ADDFAD', '#FFD700', '#BDDA57', '#1CD3A2', 
                 '#7851A9', '#FFF44F', '#FF8243', '#3EB489', '#A3C6C0', '#BAACC7', '#C7FCEC', '#8673A1', '#7442C8', '#B0E0E6', '#99FF99']
 
-let radius = 14;
-let spikes = 5;
-let innerRadius = 6;
-let outerRadius = 3;
+const radius = 14;
+const spikes = 5;
+const innerRadius = 6;
+const outerRadius = 3;
 let algorithm = 1;
 let currDistance = 1;
 
@@ -66,21 +66,11 @@ export function removeAllClusters(){
 }
 
 export function heuristics(firstPoint, secondPoint) {
-    let distance = 0;
     let x = firstPoint.x - secondPoint.x;
     let y = firstPoint.y - secondPoint.y;
 
-    if (currDistance === 1){  
-        distance = Math.sqrt(x**2 + y**2)
-    
-    }else if(currDistance === 2){
-        distance = Math.abs(x) + Math.abs(y);
-
-    }else{
-        distance = Math.max(Math.abs(x), Math.abs(y));
-    }
-    
-    return distance;
+    return currDistance === 1 ? Math.sqrt(x**2 + y**2) : currDistance === 2 ? 
+    Math.abs(x) + Math.abs(y) : Math.max(Math.abs(x), Math.abs(y));
 }
 
 export function findNeighborIndex(x, y) {

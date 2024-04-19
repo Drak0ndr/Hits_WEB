@@ -16,7 +16,6 @@ function pathGeneration() {
 
     for (let j = 0; j < arrVertexes.length; ++j) {
         let pos = getRandomNumber(j, arrVertexes.length); 
-
         [path[j], path[pos]] = [path[pos], path[j]];  
     }
    

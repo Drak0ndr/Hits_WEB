@@ -10,16 +10,9 @@ export function dbscan(pointCoordinates, radius, minCountNeighbors) {
     let wastes = new Set();
 
     function expandCluster(cluster, point) {
-        let neighbors = findNeighbors(point, pointCoordinates, radius);
-
-        if (neighbors.length < minCountNeighbors) {
-            wastes.add(point);
-            return;
-        }
-
-        visitedMap.set(point, true);
         cluster.push(point);
-
+        let neighbors = findNeighbors(point, pointCoordinates, radius);
+        
         neighbors.forEach(neighbor => {
             if (!visitedMap.has(neighbor)) {
                 visitedMap.set(neighbor, true);

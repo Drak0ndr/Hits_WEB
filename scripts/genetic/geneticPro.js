@@ -1,17 +1,17 @@
 class Genotype {
     constructor(fitness, setGeneNumbers, firstSetGenes, secondSetGenes) {
-        this.fitness = fitness
-        this.setGeneNumbers = setGeneNumbers
-        this.firstSetGenes =  firstSetGenes
-        this.secondSetGenes =  secondSetGenes
+        this.fitness = fitness;
+        this.setGeneNumbers = setGeneNumbers;
+        this.firstSetGenes =  firstSetGenes;
+        this.secondSetGenes =  secondSetGenes;
     }
 }
 
-let populationSize = 200;   
-let numberGenerations = 100;
-let probabilityMutation = 50;
+const populationSize = 200;   
+const numberGenerations = 100;
+const probabilityMutation = 50;
 
-let genes = [
+const genes = [
     "\t\t\t\t\tlet fib1 = ", "0;\n", "\t\t\t\t\tlet fib2 = ","1;\n", 
     "\t\t\t\t\tlet fibSum = ", "0;\n",
     "\t\t\t\t\tfor(let i = 0; i < n - 2; ++i){\n", 
@@ -20,6 +20,7 @@ let genes = [
 ]
 
 let genotypes = [];
+let intervalID;
 
 function fibonacci(n){
     let fib1 = 0;
@@ -75,7 +76,6 @@ function genGeneration() {
 
     for (let j = 0; j < genes.length; ++j) {
         let pos = getRandomNumber(j, genes.length); 
-
         [gen[j], gen[pos]] = [gen[pos], gen[j]];  
     } 
    
@@ -83,8 +83,8 @@ function genGeneration() {
 }
 
 function sortGenes() {
-    for (let i = 0; i < genotypes.length - 1; i++) {
-        for (let j = i + 1; j < genotypes.length; j++) {
+    for (let i = 0; i < genotypes.length - 1; ++i) {
+        for (let j = i + 1; j < genotypes.length; ++j) {
             if (genotypes[i].fitness > genotypes[j].fitness) {
                 [genotypes[i], genotypes[j]] = [genotypes[j], genotypes[i]];
             }
@@ -213,9 +213,6 @@ function outputValue(n) {
     }
 }
 
-let intervalID;
-
-
 function geneticAlgorithm() {
     document.getElementById('description').style.display = "flex";
 
@@ -240,7 +237,7 @@ function geneticAlgorithm() {
 
         sortGenes();
 
-        for (let k = 0; k < numberGenerations; k++) {
+        for (let k = 0; k < numberGenerations; ++k) {
             genotypes.pop();
         }
         
@@ -249,7 +246,7 @@ function geneticAlgorithm() {
             count = 0;
         }
 
-        if(genotypes[0].fitness != Infinity){
+        if(genotypes[0].fitness !== Infinity){
             index = 0;
         }
 
@@ -264,7 +261,7 @@ function geneticAlgorithm() {
 
         count ++;
         
-        if(genotypes[0].fitness == 0){
+        if(genotypes[0].fitness === 0){
             document.getElementById('description').style.display = "none";
             clearInterval(intervalID);
         }

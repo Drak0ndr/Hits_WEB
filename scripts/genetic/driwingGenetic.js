@@ -6,7 +6,7 @@ export let probabilityMutation = 50;
 
 export let edgeMapping = false;  
 
-export let radius = 7;   
+export const radius = 7;   
 
 export function drawVertexes() {
     for(let i = 0; i < arrVertexes.length; ++i){

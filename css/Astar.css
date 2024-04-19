@@ -183,7 +183,7 @@ select {
 }
 select option {
     background-color:#e7c6ff;
-    font-size:22px;
+    font-size:20px;
     height: 40px !important;
     width: 200px !important;
 }

@@ -24,12 +24,12 @@ function chooseCentroids(countClusters) {
             sumDistances += minDistance;
         });
 
-
-        let pick = Math.random() * sumDistances;
+        let pick = Math.random() * sumDistances; // random случайным образом укажет на число из интервала [0; sumDistances)
         let total = 0;
 
+        // Определяем, какой точке соответствует pick
         for (let j = 0; j <  arrDistances.length; ++j) {
-            total +=  arrDistances[j];
+            total += arrDistances[j];
 
             if (total >= pick) {
                 centroids.push(pointCoordinates[j]);
@@ -49,7 +49,7 @@ export function kMeans(countClusters) {
 
     while (!converged) {
         arrClusters.forEach(cluster => cluster.length = 0);
-
+       
         for (let point of pointCoordinates) {
             let minDistance = Infinity;
             let closestCentroid;
@@ -66,11 +66,8 @@ export function kMeans(countClusters) {
             arrClusters[centroids.indexOf(closestCentroid)].push(point);
         }
 
-        let newCentroids = arrClusters.map(cluster => {
-            if (cluster.length === 0) {
-                return centroids[arrClusters.indexOf(cluster)];
-            }
-            
+        let newCentroids = arrClusters.map(cluster => { // Пересчёт центров кластеров
+
             let sum = cluster.reduce((sumPoints, point) => {
                 sumPoints.x += point.x;
                 sumPoints.y += point.y;
@@ -81,18 +78,18 @@ export function kMeans(countClusters) {
             let newCoordY = sum.y / cluster.length;
 
             return new Point(newCoordX, newCoordY);
-        });
+        }); 
 
         converged = true;
         
-        for (let i = 0; i < centroids.length; i++) {
-            if (heuristics(centroids[i], newCentroids[i]) > 0.001) {
+        for (let i = 0; i < centroids.length; ++i) {
+            if (heuristics(centroids[i], newCentroids[i]) > 0.001) { // Устанавливаем сходимость
                 converged = false;
                 break;
             }
         }
   
-        centroids = newCentroids;
+        centroids = newCentroids; // Обновляем центроиды
     }
 
     return { clusters: arrClusters, centroids };

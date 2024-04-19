@@ -1,6 +1,6 @@
 import { Cell } from "./classes.js";
 import {generateMaze, drawMaze} from './maze.js';
-import { aStar } from "./astarAlgorithm.js";
+import { aStar } from "./aStarAlgorithm.js";
 
 const canvas = document.getElementById('astar_canvas');
 canvas.height = document.querySelector('#astar_canvas').clientHeight;
@@ -91,7 +91,8 @@ function arrValidation(arr){
     let newArr = [];
     
     for(let i = 0; i < arr.length - 1; ++i){
-        let col = []
+        let col = [];
+
         for(let j = 0; j < arr.length - 1; ++j){
             col.push(arr[i][j]);
         }  
@@ -151,12 +152,12 @@ canvas.addEventListener('click', function(e){
        
             markedCells.splice(containsObject(cell, markedCells), 1);
             
-            if(containsObject(cell, startСoordinates) != Infinity){
+            if(containsObject(cell, startСoordinates) !== Infinity){
                 startСoordinates = [];
                 document.getElementById("add_start").disabled = false;
             }
 
-            if(containsObject(cell, finishCoordinates) != Infinity){
+            if(containsObject(cell, finishCoordinates) !== Infinity){
                 finishCoordinates = [];
                 document.getElementById("add_finish").disabled = false;
             }
@@ -196,16 +197,12 @@ document.getElementById('field_range').addEventListener('change', () => {
 
 document.getElementById('animation_range').addEventListener('change', () => {
     isRightAnimation(document.getElementById('animation_range'));
-});
-
-document.getElementById('animation_range').addEventListener('click', () => {
     document.getElementById('animation_range_descr').textContent = "Cкорость анимации: " + 
     document.getElementById('animation_range').value + "%";
 });
 
 document.getElementById('remove_field').addEventListener('click', () => {
     document.getElementById("ansver").textContent = "Минимальная длина пути: ";
-
     ctx.reset();
     drawGrid();
     resettingVariables();
@@ -213,7 +210,6 @@ document.getElementById('remove_field').addEventListener('click', () => {
 
 document.getElementById('generate_maze').addEventListener('click',  () => {
     document.getElementById("ansver").textContent = "Минимальная длина пути: ";
-    
     ctx.reset();
     drawGrid();  
     resettingVariables();
@@ -229,15 +225,14 @@ document.getElementById('generate_maze').addEventListener('click',  () => {
     drawMaze(mapMaze, arrCoordinates, cellSize);  
 });
 
-
 document.getElementById('start').addEventListener('click',  () => {
     document.getElementById("ansver").textContent = "Минимальная длина пути: ";
 
     if(startСoordinates.length === 0 && finishCoordinates.length === 0){
 		alert("Установите старт и финиш и попробуйте заново");
         return 0;
-	}
-	else if(finishCoordinates.length === 0){
+        
+	}else if(finishCoordinates.length === 0){
 		alert("Установите финиш и попробуйте заново");
         return 0;
 

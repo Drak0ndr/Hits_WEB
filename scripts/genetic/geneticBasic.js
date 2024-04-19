@@ -8,10 +8,10 @@ class Vertex {
     }
 }
 
-export let canvas = document.getElementById("genetic_canvas");
+export const canvas = document.getElementById("genetic_canvas");
 canvas.height = document.querySelector('#genetic_canvas').clientHeight;
 canvas.width = document.querySelector('#genetic_canvas').clientWidth;
-export let ctx = canvas.getContext('2d');
+export const ctx = canvas.getContext('2d');
 
 export let arrVertexes = [];     
 export let arrPaths = [];  

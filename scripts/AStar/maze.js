@@ -106,7 +106,6 @@ export function generateMaze (numberColumns, numberRows) {
 		}
 	}
 
-
 	let map = [];
 	
 	for (let y = 0; y < numberRows; ++y) {

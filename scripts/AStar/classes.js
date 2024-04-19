@@ -2,8 +2,8 @@ import { fieldPixelsSize } from "./aStarBasic.js";
 
 export class Point {
     constructor(x, y) {
-        this.x = x
-        this.y = y
+        this.x = x;
+        this.y = y;
     }
 }
 
