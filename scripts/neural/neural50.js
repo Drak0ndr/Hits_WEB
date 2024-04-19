@@ -407,21 +407,21 @@ function centralize(data) {
             }
         }
     }
-    if (left == right) {
+    if (left === right) {
         ans = data
     }
     let top = 0
     let bottom = 0
     let flagTop = false
     let flagBottom = false
-    while (flagTop == false) {
+    while (flagTop === false) {
         for (let i = 0; i < size; i++) {
             if (data[top * size + i] > 0) {
                 flagTop = true
                 break
             }
         }
-        if (flagTop == false) {
+        if (flagTop === false) {
             top++
         }
     }
@@ -432,7 +432,7 @@ function centralize(data) {
                 break
             }
         }
-        if (flagBottom == false) {
+        if (flagBottom === false) {
             bottom++
         }
     }
@@ -525,7 +525,7 @@ function train(count) {
                     bestIndAns = ind
                 }
             })
-            if (bestInd == bestIndAns) {
+            if (bestInd === bestIndAns) {
                 TA++
             }
             let errors = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
