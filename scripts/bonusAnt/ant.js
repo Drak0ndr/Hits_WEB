@@ -67,47 +67,47 @@ export class Ant{
         let vectorDownLeft = [[1,-1],[1,0],[0,-1]]
         let vectorLeft = [[1,-1], [0,-1], [-1, -1]]
         let vectorUpLeft = [[0,-1], [-1,-1], [-1,0]]
-        if (this.dir == 0) {
+        if (this.dir === 0) {
             let temp = this.genPaths(matrix, vectorUp)
             path = temp[0]
             sm = temp[1]
         }
-        if (this.dir == 45) {
+        if (this.dir === 45) {
             let temp = this.genPaths(matrix, vectorUpRight)
             path = temp[0]
             sm = temp[1]
         }
-        if (this.dir == 90) {
+        if (this.dir === 90) {
             let temp = this.genPaths(matrix, vectorRight)
             path = temp[0]
             sm = temp[1]
         }
-        if (this.dir == 135) {
+        if (this.dir === 135) {
             let temp = this.genPaths(matrix, vectorDownRight)
             path = temp[0]
             sm = temp[1]
         }
-        if (this.dir == 180) {
+        if (this.dir === 180) {
             let temp = this.genPaths(matrix, vectorDown)
             path = temp[0]
             sm = temp[1]
         }
-        if (this.dir == 225) {
+        if (this.dir === 225) {
             let temp = this.genPaths(matrix, vectorDownLeft)
             path = temp[0]
             sm = temp[1]
         }
-        if (this.dir == 270) {
+        if (this.dir === 270) {
             let temp = this.genPaths(matrix, vectorLeft)
             path = temp[0]
             sm = temp[1]
         }
-        if (this.dir == 315) {
+        if (this.dir === 315) {
             let temp = this.genPaths(matrix, vectorUpLeft)
             path = temp[0]
             sm = temp[1]
         }
-        if (path.length == 0) {
+        if (path.length === 0) {
             this.dir+=180
             if (this.dir >= 360) {
                 this.dir-=360
