@@ -190,6 +190,12 @@ function geneticAlgorithm() {
 
         arrPaths = findMinPath(arrVertexes, arrPaths);
 
+        if (arrPaths === undefined){
+            alert("Поставьте больше вершин!")
+            clearInterval(intervalId);
+            return;
+        }
+
         showPath(arrPaths[0]);
 
         if (previousPath !== arrPaths[0]){

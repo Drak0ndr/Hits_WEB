@@ -304,6 +304,7 @@
     }
     #genetic_canvas{
         height: 540px;
+        max-width: 1000px;
     }
     .parametrs_header{
         height: 60px;

@@ -41,6 +41,10 @@ export async function aStar() {
 
         closedList.push(current);
 
+        if (current.posX === finishCoordinates[0].posX  && current.posY === finishCoordinates[0].posY) {
+            break;
+        }
+
         if (!(current.posX === startСoordinates[0].posX && current.posY === startСoordinates[0].posY) && 
             !(current.posX === finishCoordinates[0].posX  && current.posY === finishCoordinates[0].posY)) {
 
@@ -55,9 +59,7 @@ export async function aStar() {
             ++count; 
         }
 
-        if (current.posX === finishCoordinates[0].posX  && current.posY === finishCoordinates[0].posY) {
-            break;
-        }
+        
 
         let directions = [];
 

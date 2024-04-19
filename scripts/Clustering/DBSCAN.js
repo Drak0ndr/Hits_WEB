@@ -6,8 +6,8 @@ function findNeighbors(point, points, radius) {
 
 export function dbscan(pointCoordinates, radius, minCountNeighbors) {
     let visitedMap = new Map();
-    let allClusters = [];
     let wastes = new Set();
+    let allClusters = [];
 
     function expandCluster(cluster, point) {
         cluster.push(point);

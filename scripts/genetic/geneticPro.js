@@ -68,12 +68,8 @@ function getRandomNumber(min, max) {
 } 
 
 function genGeneration() {
-    let gen = [];
-
-    for (let i = 0; i < genes.length; ++i) {
-        gen.push(i);
-    }
-
+    let gen = Array.from({ length: genes.length }, (element, index) => index);
+ 
     for (let j = 0; j < genes.length; ++j) {
         let pos = getRandomNumber(j, genes.length); 
         [gen[j], gen[pos]] = [gen[pos], gen[j]];  
