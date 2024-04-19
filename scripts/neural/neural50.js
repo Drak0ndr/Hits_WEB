@@ -1,3 +1,5 @@
+import { Draw } from "./draw.js"
+
 const clearBtn = document.querySelector('.clear')
 const pixelBtn = document.querySelector('.pixelation')
 const recognizeBtn = document.querySelector('.recognize')
@@ -9,45 +11,8 @@ canvas.height = canvas.offsetHeight
 const pixel = canvas.width / 50
 let isMouseDown = false
 let isDraw = false
-function drawLine(x1, y1, x2, y2, color = 'gray') {
-    ctx.beginPath()
-    ctx.strokeStyle = color
-    ctx.lineJoin = 'miter'
-    ctx.lineWidth = 1
-    ctx.moveTo(x1, y1)
-    ctx.lineTo(x2, y2)
-    ctx.stroke()
-}
+let drawCanvas = new Draw(ctx, canvas, pixel)
 
-function drawCell(x, y, w, h) {
-    ctx.fillStyle = 'blue'
-    ctx.strokeStyle = 'blue'
-    ctx.lineJoin = 'miter'
-    ctx.lineWidth = 1
-    ctx.rect(x, y, w, h)
-    ctx.fill()
-}
-
-function clear() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-}
-
-function drawGrid() {
-    const w = canvas.width
-    const h = canvas.height
-    const p = w / pixel
-
-    const xStep = w / p
-    const yStep = h / p
-
-    for (let x = 0; x < w; x += xStep) {
-        drawLine(x, 0, x, h)
-    }
-
-    for (let y = 0; y < h; y += yStep) {
-        drawLine(0, y, w, y)
-    }
-}
 
 function pixelization(draw = false) {
     const w = canvas.width
@@ -82,11 +47,11 @@ function pixelization(draw = false) {
     }
     // console.log(drawMatrix)
     if (draw) {
-        clear()
-        drawGrid()
+        drawCanvas.clear()
+        drawCanvas.drawGrid()
 
-        for (i in drawMatrix) {
-            drawCell(drawMatrix[i][0], drawMatrix[i][1], drawMatrix[i][2], drawMatrix[i][3])
+        for (let i in drawMatrix) {
+            drawCanvas.drawCell(drawMatrix[i][0], drawMatrix[i][1], drawMatrix[i][2], drawMatrix[i][3])
         }
     }
     return arr
@@ -95,7 +60,7 @@ function pixelization(draw = false) {
 // drawGrid()
 
 clearBtn.addEventListener('click', e => {
-    clear()
+    drawCanvas.clear()
     isDraw = false
     // drawGrid()
 })
@@ -113,7 +78,8 @@ pixelBtn.addEventListener('click', e => {
         }
     }
     train_data.push({ input: temp, output: outData })
-    console.log(temp, outData)
+    console.log(train_data)
+    console.log(JSON.stringify(train_data))
 })
 
 recognizeBtn.addEventListener('click', e => {
@@ -186,17 +152,17 @@ function shuffle(array) {
   }
 let train_data = []
 let check_data = []
-// fetch('../scripts/neural/fixmnist.json')
-//     .then(response => {
-//         return response.json()
-//     })
-//     .then(data => {
-//         console.log(data)
-//         data.forEach(item => {
-//             train_data.push(item)
-//         })
-//         console.log(train_data.length)
-//     })
+fetch('../scripts/neural/fixmnist.json')
+    .then(response => {
+        return response.json()
+    })
+    .then(data => {
+        // console.log(data)
+        data.forEach(item => {
+            train_data.push(item)
+        })
+        // console.log(train_data.length)
+    })
 // fetch('../scripts/neural/mnist0.json')
 //     .then(response => {
 //         return response.json()
@@ -586,39 +552,9 @@ function train(count) {
             }
         })
         console.log(i, TA / train_data.length)
-        // n = 31
-        // console.log(train_data[n].output, neuralNetwork(train_data[n]))
+
     }
     console.log(neuralData)
-    // train_data.forEach(item => {
-    //     console.log(item.output, neuralNetwork(item.input))
-    // })
-    // let TA = 0
-    // check_data.forEach((item, ind) => {
-    //     let ans = neuralNetwork(item.input)
-    //     let bestNum = 0
-    //     let bestInd = 0
-    //     console.log(item.output, ans)
-    //     ans.forEach((item, ind) => {
-    //         if (item > bestNum) {
-    //             bestNum = item
-    //             bestInd = ind
-    //         }
-    //     })
-    //     bestNum = 0
-    //     let bestIndAns = 0
-    //     item.output.forEach((item, ind) => {
-    //         if (item > bestNum) {
-    //             bestNum = item
-    //             bestIndAns = ind
-    //         }
-    //     })
-    //     if (bestInd == bestIndAns) {
-    //         TA++
-    //     }
-    // })
-
-    // console.log(TA / check_data.length)
 }
 // setTimeout(() => {
 //     train_data = shuffle(train_data)
