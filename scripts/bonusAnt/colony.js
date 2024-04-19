@@ -9,8 +9,12 @@ export class Colony {
         this.bestPath = []
         this.isFindPath = false
         this.bestPrice = 0
+        let antDir = 0
+        if (posY === 0) {
+            antDir = 180
+        }
         for(let i = 0; i < numAnts; i++) {
-            let ant = new Ant(posY, posX, 0)
+            let ant = new Ant(posY, posX, antDir)
             this.ants.push(ant)
         }
         console.log(this.ants)
