@@ -167,7 +167,7 @@ export class DecisionTree {
 
         }
         this.tree[posId].data.push(item)
-        console.log(this.tree)
+        
         return [this.tree[posId].data[0][this.tree[posId].data[0].length-1], posId, path]
     }
 }

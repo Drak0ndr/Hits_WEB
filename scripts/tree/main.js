@@ -12,6 +12,7 @@ let decisionTree = new DecisionTree()
 let drawTree= new Draw(field, firstUl)
 let data = []
 let isLoadTree = false
+let argCount = 0
 inputFile.addEventListener('change', (e) => {
     data = []
     let decoder = new TextDecoder('utf-8');
@@ -25,10 +26,11 @@ inputFile.addEventListener('change', (e) => {
         for(let i = 0; i < data.length; i++) {
             data[i] = data[i].split(';')
         }
-        console.log(data)
+        
         decisionTree = new DecisionTree()
         drawTree.clear()
         decisionTree.train(data, 0)
+        argCount = data[0].length
         isLoadTree = true
         drawTree.drawGraph(decisionTree.tree, -1)
     }
@@ -37,12 +39,15 @@ inputFile.addEventListener('change', (e) => {
 // Комик;8;290;38
 startBtn.addEventListener('click', (e) => {
     let testData = inputTest.value.split(';')
-    console.log(testData)
-    let data = decisionTree.predict(testData)
-    console.log(data)
-    ansSpan.innerHTML = data[0]
-    drawTree.clear()
-    drawTree.drawGraph(decisionTree.tree, data[1], data[2])
+    if (testData.length === argCount - 1) {
+        let data = decisionTree.predict(testData)
+        ansSpan.innerHTML = data[0]
+        drawTree.clear()
+        drawTree.drawGraph(decisionTree.tree, data[1], data[2])
+    } else {
+        alert('Вы ввели плохие данные')
+    }
+
 })
 
 optBtn.addEventListener('click', e=> {
