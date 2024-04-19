@@ -119,7 +119,7 @@ export class DecisionTree {
                         bt = gain + balance
                         bestNumArg = j
                         bestValue = item[j]
-                        console.log(j, item, temp, temp_left_node.entropy, temp_right_node.entropy, gain, balance)
+                        
                     }
 
 
@@ -146,7 +146,7 @@ export class DecisionTree {
             this.nodeCount++
         }
 
-        console.log(this.tree)
+        
     }
     predict(item) {
         let isEnd = false

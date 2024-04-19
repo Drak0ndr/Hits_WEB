@@ -119,7 +119,7 @@ pixelBtn.addEventListener('click', e => {
 recognizeBtn.addEventListener('click', e => {
     if (isDraw) {
         let data = pixelization(true)
-        console.log(data)
+        
         let ans = neuralNetwork(data)
         let bt = 0
         let btInd = 0
@@ -130,7 +130,7 @@ recognizeBtn.addEventListener('click', e => {
             }
         })
         ansSpan.innerHTML = btInd
-        console.log(ans)
+        // console.log(ans)
     } else {
         ansSpan.innerHTML = 'Пустота'
     }
@@ -164,8 +164,7 @@ canvas.addEventListener('mousemove', e => {
         ctx.moveTo(e.offsetX, e.offsetY)
     }
 })
-console.log(canvas.offsetWidth, canvas.offsetHeight)
-console.log(canvas, pixel)
+
 
 function getRandom(min, max) {
     return Math.random() * (max - min) + min;
@@ -187,17 +186,17 @@ function shuffle(array) {
   }
 let train_data = []
 let check_data = []
-fetch('../scripts/neural/fixmnist.json')
-    .then(response => {
-        return response.json()
-    })
-    .then(data => {
-        console.log(data)
-        data.forEach(item => {
-            train_data.push(item)
-        })
-        console.log(train_data.length)
-    })
+// fetch('../scripts/neural/fixmnist.json')
+//     .then(response => {
+//         return response.json()
+//     })
+//     .then(data => {
+//         console.log(data)
+//         data.forEach(item => {
+//             train_data.push(item)
+//         })
+//         console.log(train_data.length)
+//     })
 // fetch('../scripts/neural/mnist0.json')
 //     .then(response => {
 //         return response.json()
@@ -360,7 +359,7 @@ fetch('../scripts/neural/neuralData50.json')
         return response.json()
     })
     .then(data => {
-        console.log(data)
+        // console.log(data)
         neuralData = data
     })
 function centralize(data) {
