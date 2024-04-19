@@ -53,12 +53,15 @@ canvas.addEventListener('click', e => {
         matrix[matrixY][matrixX].build = 2
         matrix[matrixY][matrixX].feromons[1] = 10**10
         matrix[matrixY][matrixX].eatValue = inputEatValue.value
+        colony.isFindPath = false
     }
     if (inputWall.checked) {
         matrix[matrixY][matrixX].build = 3
+        colony.isFindPath = false
     }
     if (inputRemWall.checked) {
         matrix[matrixY][matrixX].build = 0
+        colony.isFindPath = false
     }
     // colony.matrix = matrix
     // colony.nextIteration()

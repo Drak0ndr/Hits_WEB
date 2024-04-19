@@ -32,7 +32,7 @@ nav {
 }
 .parametrs {
     width: 20vw;
-    min-width: 150px;
+    min-width: 160px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -82,7 +82,8 @@ nav {
     background-color: rgb(67, 74, 82);
 }
 
-.clear, .start, .pixelation {
+.clear, .start, .pixelation, #newWorld {
+    text-decoration: none;
     background-color: #ffdd2d;
     border-radius: 12px;
     width: 90%;
@@ -110,6 +111,10 @@ a:nth-child(4) .link{
     main {
         justify-content: center;
     }
+
+    .parametrs {
+        width: auto;
+    }
     .field canvas {
         width: 98vw;
         max-height: 500px;
@@ -120,7 +125,7 @@ a:nth-child(4) .link{
         width: 100vw;
     }
     .clear, .start {
-        height: 40px;
+        height: 50px;
     }
 }
 

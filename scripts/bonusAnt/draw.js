@@ -102,8 +102,11 @@ export class Draw {
                 color = `rgba(255,0,0,${opacity})`
                 this.ctx.fillStyle = color
                 this.ctx.strokeStyle = color
-                this.ctx.rect(x * this.pixel, y * this.pixel, this.pixel, this.pixel)
-                this.ctx.fill()
+                if (matrix[y][x].build != 3) {
+                    this.ctx.rect(x * this.pixel, y * this.pixel, this.pixel, this.pixel)
+                    this.ctx.fill()
+                }
+                
             }
         }
 
@@ -121,8 +124,11 @@ export class Draw {
                 color = `rgba(0,150,0,${opacity})`
                 this.ctx.fillStyle = color
                 this.ctx.strokeStyle = color
-                this.ctx.rect(x * this.pixel, y * this.pixel, this.pixel, this.pixel)
-                this.ctx.fill()
+                if (matrix[y][x].build != 3) {
+                    this.ctx.rect(x * this.pixel, y * this.pixel, this.pixel, this.pixel)
+                    this.ctx.fill()
+                }
+                
             }
         }
     }

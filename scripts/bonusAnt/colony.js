@@ -60,10 +60,10 @@ export class Colony {
                     let newX = x + dx[j]
                     if (newY > 0 && newY < this.matrix.length && newX > 0 && newX < this.matrix[0].length) {
                         if (this.matrix[y][x].feromons[0] < 10) {
-                            this.matrix[newY][newX].feromons[0] += this.matrix[y][x].feromons[0]/100000
+                            this.matrix[newY][newX].feromons[0] += this.matrix[y][x].feromons[0]/50000
                         }
                         if (this.matrix[y][x].feromons[1] < 10) {
-                            this.matrix[newY][newX].feromons[1] += this.matrix[y][x].feromons[1]/100000
+                            this.matrix[newY][newX].feromons[1] += this.matrix[y][x].feromons[1]/50000
                         }
                         
                     }

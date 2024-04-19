@@ -33,7 +33,7 @@ nav {
 
 .parametrs {
     width: 20vw;
-    min-width: 150px;
+    min-width: 160px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -124,7 +124,7 @@ a:nth-child(6) .link{
         margin-right: 40px;
     }
     .parametrs {
-        width: 150px;
+        width: auto;
     }
 }
 
