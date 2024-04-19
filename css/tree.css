@@ -52,7 +52,7 @@ a:nth-child(6) .link:hover{
 }
 
 .parametrs {
-    width: 20vw;
+    width: 18vw;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -91,12 +91,15 @@ a:nth-child(6) .link:hover{
 }
 
 .field {
-    width: calc(100vw - max(300px, 20vw));
-    display: flex;
-    justify-content: center;
-    min-width: 525px;
+    /* width: calc(100vw - max(300px, 20vw)); */
+    margin: 0 auto;
+    overflow-x: scroll;
+    /* min-width: 525px; */
+    max-width: calc(100vw - max(300px, 20vw));
 }
-
+.field::-webkit-scrollbar {
+    width: 0px;
+}
 .field canvas {
     width: 100%;
     height: 80vh;
@@ -262,7 +265,9 @@ a:nth-child(6) .link:hover{
 .tree li a:hover+ul ul::before{
 	border-color:  #eba68d;
 }
-
+a:nth-child(5) .link{
+    background-color: #e44002;
+}
 @media (max-width: 1024px) {
     .tree li {
         padding: 20px 2px 0 2px;
@@ -274,6 +279,16 @@ a:nth-child(6) .link:hover{
     main {
         justify-content: center;
     }
+    .field {
+        width: 99vw;
+        max-width: 100vw;
+        margin: 0 auto;
+        overflow-x: scroll;
+        scrollbar-width: 0px;
+        /* min-width: 525px; */
+    }
+
+
 
 }
 /*Thats all. I hope you enjoyed it.
@@ -290,4 +305,25 @@ a:nth-child(6) .link:hover{
         font-size: 2vh;
     }
 
+}
+a:nth-child(3) .link:hover {
+    background-color: #3ecd5e;
+}
+a .link:hover{
+    transition: all 1s ease;
+}
+a:nth-child(1) .link:hover {
+    background-color: #952aff;
+}
+a:nth-child(2) .link:hover{
+    background-color: #cd3e94;
+}
+a:nth-child(4) .link:hover{
+    background-color: #f9b234;
+}
+a:nth-child(5) .link{
+    background-color: #e44002;
+}
+a:nth-child(6) .link:hover{
+    background-color: #4c49ea;
 }
