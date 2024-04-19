@@ -74,7 +74,7 @@ nav {
     margin: 0 auto;
     overflow-x: scroll;
     /* min-width: 525px; */
-    max-width: calc(100vw - max(300px, 20vw));
+    max-width: calc(100vw - max(310px, 21vw));
 }
 .field::-webkit-scrollbar {
     width: 0px;
