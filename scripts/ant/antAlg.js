@@ -1,6 +1,8 @@
 export class AntAlg {
     constructor(graph) {
         this.graph = graph
+        this.bestPath = []
+        this.bestCost = 10 ** 10
     }
 
     getP(start, blackList = []) {
@@ -57,8 +59,8 @@ export class AntAlg {
     }
 
     start(n) {
-        let bestPath = []
-        let bestCost = 10 ** 10
+        // this.bestPath = []
+        // this.bestCost = 10 ** 10
         for(let iterCount = 0; iterCount < n; iterCount++) {
             let data = []
             let keys = Object.keys(this.graph)
@@ -91,14 +93,14 @@ export class AntAlg {
                     }
                 }
 
-                if (cost < bestCost) {
-                    bestCost = cost
-                    bestPath = data[i]
+                if (cost < this.bestCost) {
+                    this.bestCost = cost
+                    this.bestPath = data[i]
                 }
             }
         }
 
         
-        return [bestCost, bestPath]
+        return [this.bestCost, this.bestPath]
     }
 }
