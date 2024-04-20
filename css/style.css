@@ -2,14 +2,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 body {
     background-color: rgb(33, 37, 41);
     min-height: 100vh;
-
+    overflow: hidden;
+    font-family: "Trebuchet MS", sans-serif;
 }
 main {
-    
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -17,81 +18,87 @@ main {
 a {
     text-decoration: none;
 }
-.card {
-    width: 30vw;
-    min-width: 300px;
-    height: 290px;
-    background-color: #121212;
-    overflow: hidden;
-    margin-top: 20px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 28px;
-}
-
-.card_link {
-    display: block;
-    padding: 30px 20px;
-    background-color: #121212;
-    width: 100%;
-    text-align: center;
-    position: relative;
-}
-
-.card_link:hover {
-    text-decoration: none;
-    color: #FFF;
-}
-
-.card:hover .card_bg {
-    -webkit-transform: scale(10);
-    -ms-transform: scale(10);
-    transform: scale(10);
-}
-
-.card_title {
-    margin: 0 0 25px;
-    overflow: hidden;
-    font-weight: bold;
-    font-size: 30px;
-    color: whitesmoke;
-
-    z-index: 2;
-    position: relative;
-}
-
-
-.card_bg {
-    height: 128px;
-    width: 128px;
-    background-color: #952aff;
-    z-index: 1;
+#main_descr{
+    width: 76%;
     position: absolute;
-    top: -135px;
-    right: -75px;
-  
-    border-radius: 50%;
-  
-    -webkit-transition: all .5s ease;
-    -o-transition: all .5s ease;
-    transition: all .5s ease;
+    top: 40%;
+    transform:  translateX(50%) translateY(-10%);
+    right:50%;
+    text-align: center;
+    color:white ;
+    text-shadow: 4px 2px black;
 }
-
-.card:nth-child(2n) .card_bg{
-    background-color: #cd3e94;
+h1{
+    font-size: 56px;
+    margin-bottom: 30px;
 }
-.card:nth-child(3n) .card_bg{
+h2{
+    font-size: 25px;
+}
+a:nth-child(3) .link:hover {
     background-color: #3ecd5e;
 }
-.card:nth-child(4n) .card_bg{
+a .link:hover{
+    transition: all 1s ease;
+}
+a:nth-child(1) .link:hover {
+    background-color: #952aff;
+}
+a:nth-child(2n) .link:hover{
+    background-color: #cd3e94;
+}
+a:nth-child(4n) .link:hover{
     background-color: #f9b234;
 }
-.card:nth-child(5n) .card_bg{
+a:nth-child(5n) .link:hover{
     background-color: #e44002;
 }
-.card:nth-child(6n) .card_bg{
+a:nth-child(6n) .link:hover{
     background-color: #4c49ea;
+}
+
+@media (min-width: 1800px) {
+    h1{
+        font-size: 84px;
+    }
+    h2{
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 1300px) {
+    h1{
+        font-size: 48px;
+    }
+    h2{
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1100px) {
+    h1{
+        font-size: 32px;
+    }
+    h2{
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 750px) {
+    #main_descr{
+        width: 90%;
+    }
+    h1{
+        font-size: 30px;
+    }
+    h2{
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 400px) {
+    #main_descr{
+        transform:  translateX(50%) translateY(-30%);
+    }
 }
 

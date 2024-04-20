@@ -1,0 +1,254 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(33, 37, 41);
+    min-height: 100vh;
+}
+nav{
+    font-family: "Trebuchet MS", sans-serif;
+}
+main{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 120px);
+}
+#my_block{
+    width: 75px;
+    height: 55px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 10;
+}
+.genetic_wrapper, .settings {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    width: 75%;
+    height: 540px;
+}
+.settings{
+    width: 25%;
+}
+.genetic_div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    gap: 10px;
+}
+#output{
+    width: 700px;
+    height: 92%;
+    padding: 15px 20px;
+    background-color: #A8E4A0;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 18px;
+    font-style: oblique;
+    font-weight: 700;
+    border-radius: 20px;
+    border: 5px dashed  mediumseagreen;
+	box-shadow: 0 0 0 (5px / 2) darken( mediumseagreen, 20%),
+		        0 0 0 (5px * 2.5) #fff,
+		        inset 0 0 0 (5px / 2) darken( mediumseagreen, 20%),
+		        0 5px (5px * 2) (5px * 3) rgba(0,0,0,0.5),
+		        inset 0 0 0 (5px * 1.2) #fff,
+		        inset 0 0 100vw 100vw beige;
+}
+#description {
+    width: 500px;
+    height: 60px;
+    display: none;
+    align-items:center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px #31D618,
+      0 0 82px #31D618,
+      0 0 92px #31D618,
+      0 0 102px #31D618,
+      0 0 151px #31D618;
+    animation: smooth-blink 1.5s linear infinite; 
+}
+@keyframes smooth-blink {
+    50% { 
+        opacity: 0; 
+        font-weight: 100;
+    } 
+}
+#input, #start_div, #input_number{
+    height: 70%;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+#start_div{
+    height: 30%;
+}
+#input{
+    flex-direction: column;
+    gap:20px;
+    width: 260px;
+}
+#input_number{
+    flex-direction: column;
+    height: 30%;
+    gap:10px;
+    width: 100%;
+    border-radius:20px;
+    background-color: #A8E4A0;
+    border: 5px dashed  mediumseagreen;
+	box-shadow: 0 0 0 (5px / 2) darken( mediumseagreen, 20%),
+		        0 0 0 (5px * 2.5) #fff,
+		        inset 0 0 0 (5px / 2) darken( mediumseagreen, 20%),
+		        0 5px (5px * 2) (5px * 3) rgba(0,0,0,0.5),
+		        inset 0 0 0 (5px * 1.2) #fff,
+		        inset 0 0 100vw 100vw beige;
+}
+#ansver{
+    width: 260px;
+    height: 100px;
+    padding: 20px;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 18px;
+    font-style: oblique;
+    font-weight: 700;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #A8E4A0;
+    border: 5px dashed  mediumseagreen;
+	box-shadow: 0 0 0 (5px / 2) darken( mediumseagreen, 20%),
+		        0 0 0 (5px * 2.5) #fff,
+		        inset 0 0 0 (5px / 2) darken( mediumseagreen, 20%),
+		        0 5px (5px * 2) (5px * 3) rgba(0,0,0,0.5),
+		        inset 0 0 0 (5px * 1.2) #fff,
+		        inset 0 0 100vw 100vw beige;
+}
+#text{
+    font-size: 18px;
+    font-weight: 900;
+    text-align: center;
+    font-family: "Trebuchet MS", sans-serif;
+    font-style: oblique;
+}
+input[type="number"] {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    outline:none;
+    border: 0.15rem solid mediumseagreen;
+    border-radius:5px;
+    width: 150px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+#start{
+    text-transform: uppercase;
+    background-color: #E63244;
+    border-radius: 20px;
+    border-style: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 900;
+    margin: 0;
+    padding: 0.3rem 0.6rem;
+    text-align: center;
+    transition: all 0.15s;
+    height: 70px;
+    width: 200px;
+}
+#start:hover, #start:active {
+    background-color: #F80000;
+    transform: scale(1.1);   
+}
+#exit {
+    display: flex;
+    flex-direction: column;
+    align-items:end;
+    justify-self: center;
+    gap: 5px;
+    width: 45px;
+    height: 40px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 5;
+}
+#exit > span{
+    display: block;
+    height: 5px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: mediumseagreen; 
+    transition: 0.5s all;
+}
+#exit_descr {
+    border-radius:10px;
+    display: none;
+    width: 200px;
+    height: 80px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #fff;
+    align-items: center;
+    justify-content: start;
+    padding: 0px 10px;
+}
+#exit_descr > span{
+    height: 100%;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+}
+#my_block:hover #exit{
+    top: 30px;
+}
+#my_block:hover #exit span:nth-child(2){
+    position: relative;
+    transform: translateX(-1px);  
+}
+#my_block:hover #exit span:nth-child(1){
+    transform: rotate(45deg); 
+    position: absolute;
+    top:-8px;
+    right: 0px;
+    width: 50%;  
+}
+#my_block:hover #exit span:nth-child(3){
+    transform: rotate(-45deg); 
+    position: absolute;
+    top:8px;
+    right: 0px;
+    width: 50%;    
+}
+a:nth-child(3) .link {
+    background-color: #3ecd5e;
+}
+
+
+

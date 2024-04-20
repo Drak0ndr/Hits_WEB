@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav {
+    position: absolute;
+    top: 22vh;
+    display: flex;
+    align-items: center;
+    transition: all 1s ease-in;
+    font-family: "Trebuchet MS", sans-serif;
+}
+
+
+
+.arrow {
+    width: 2vw;
+    min-width: 20px;
+    height: 6vh;
+    background-color: blue;
+    opacity: 0.5;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    cursor: pointer;
+}
+
+.parametrs {
+    padding: 5px;
+    height: 50vh;
+    width: 15vw;
+    font-size: max(1.1vw, 15px) ;
+    background-color:rgba(0, 255, 255, 0.5);
+    min-width: 200px;
+}
+
+.options {
+    font-size: 20px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    height: 100vh;
+}
+
+canvas {
+    width: 100vw;
+    height: 100vh;
+    background-color: #c79030;
+}
+
+.hide {
+    left: min(-15vw, -200px);
+
+}
+
+.slider {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    padding: 5px;
+}
+
+.back{
+    text-decoration: none;
+    background-color: #37d9c1;
+    border-radius: 12px;
+    width: 95%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    margin-top: 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+button {
+    width: 95%;
+    height: 30px;
+    font-size: max(1.1vw, 15px) ;
+    margin-top: 10px;
+    background-color:rgb(44, 203, 203)
+}
+.range {
+    width: 100%;
+}
+
+#rangeValue {
+    position: relative;
+    text-align: center;
+    width: 60px;
+    font-weight: 500;
+    color: whitesmoke;
+    background-color: #27a0ff;
+    margin-left: 15px;
+    border-radius:25px;
+}
+
+#eatValue {
+    width: 50px;
+    margin-left: 15px;
+}
+
+#speed {
+    width: 50px;
+    margin-left: 15px;
+}

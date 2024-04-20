@@ -89,7 +89,7 @@
         </div>
       </a>
         <div class="links">
-          <a href="../pages/Astar.html">
+          <a href="#">
             <div class="link" id="1">
               <svg fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 488 488" xml:space="preserve">
@@ -336,19 +336,21 @@
                 <div class="astar_settings">
                     <div id = "field_settings">
                         <span id="field_range_descr">Размер поля: 50x50</span>
-                        <input type="number" id="field_range" min="3" max="250" step="1" value ="50" name="field_range">
+                        <input type="number" id="field_range" min="3" max="250" step="1" value ="50"
+                        onkeyup="this.value=this.value.replace(/[^0-9]+/g,'');">
                     </div>
                     <div id="distance">
                         <label id="label_dist">Выберите расстояние:</label>
                         <select id="distance_select">
-                            <option value="1">Евклидово</option>
-                            <option value="2">Манхэттенское</option>
+                            <option value="1">Манхэттенское</option>
+                            <option value="2">Евклидово</option>
                             <option value="3">Чебышева</option>
                         </select>
                     </div>
                     <div id = "animation_settings">
                         <span id="animation_range_descr">Cкорость анимации: 50%</span>
-                        <input type="number" id="animation_range" min="50" max="100" step="1" value ="50" name="animation_range">
+                        <input type="number" id="animation_range" min="1" max="100" step="1" value ="50" name="animation_range"
+                        onkeyup="this.value=this.value.replace(/[^0-9]+/g,'');">
                     </div>
                     <div id="div_btn1">
                         <button type="button" class="settings_button" id="add_start">Поставить точку старта</button>

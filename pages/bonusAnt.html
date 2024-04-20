@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The ant Empire</title>
+    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACL0lEQVR4nO2ZzUvcQBiH56BgTbBsQZ2psEhLF7QHD26CtIVe9KZHPWztyVLvih+3XRZFC9uDTli6f0J7W0EF100KemsPXrzZwx5q0suCN23VkXT9CGkDmTeryeI88IMwgZf3yUxmsixCAoHg1tAVaVpXpCnUiJQVaUxX5TNdlc8NtfUtaiT0pPzaUOVjQ5XZZU6MpDSIGoGyIj3XFanqaL4WRToqq619KMpsDzzoMlS58k/z1xLyz1J/SxxFkQ31UZuhyHuezd/MxP7Oq4cxFAXY5ghzxtkozz0kBIC4nyQ0KCyEwKaYgWCYlMxZGmHBgtMB2whTAofb/BUNt/u4EQK3wdU6/d+Y17jfmYDURvdWwOIIr4DFESFgiRkYudsllEkl5jKpBPObrx9e+H4HdnMvfdfN1AI7sf1K8DQPkEgjKJV8PFbPtQ/ZjSr5OPz38yHFybAFDvOkHyxgap1jzmLFmW62MP6Mrc12112g6FHbpHg0gACZdxbLvqmty+x4ou4CWY/a9ud6EIGCs5jz5aq3QMajtknJpwACuBS6gIa34AKU/AhfgByAmmdp1GRS8huyC52uD7PS4gDLTfSyj+96/17bY5BdyNTIH1ZAzdwCv1ban/o95t2N2Q27DyR7DCJg2cl3POEWsCgZggrYT94tkJvogQusPub/b8HS8CRUwOuzACxAyXuIwHJ0BPASQIB8iY4A+cwvQMn3yAho5BtAAFcjI0BxlVtAILgnXADJ8VuLTdlO0QAAAABJRU5ErkJggg==">
+    <link rel="stylesheet" href="../css/bonusAnt.css">
+</head>
+<body>
+    <nav>
+        <div class="parametrs">
+            <div>
+                <fieldset>
+                    <div>
+                        <input type="radio" name="build" id="colony">
+                        <label for="colony">Поставить колонию</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="build" id="eat">
+                        <label for="eat">Поставить еду</label>
+                        <input type="number" name="" id="eatValue" value="1">
+                    </div>
+                    <div>
+                        <input type="radio" name="build" id="wall">
+                        <label for="wall">Поставить стену</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="build" id="remwall">
+                        <label for="remwall">Убрать стену</label>
+                    </div>
+
+                </fieldset>
+            </div>
+            <span>Количество муравьев:</span>
+            <div class="slider">
+                <input class="range" type="range" name="" id="rangeAnts" min="10" max="500" value="100">
+                <span id="rangeValue">100</span>
+            </div>
+            <div>
+                <span>Скорость:</span>
+                <input type="number" name="" id="speed" min="1" value="1">
+            </div>
+            <button class="genMaze">
+                Сгенерировать Лабиринт
+            </button>
+            <button class="clearField">
+                Очистить поле
+            </button>
+            <a class="back" href="ant.html">
+                Покинуть империю
+            </a>
+
+
+        </div>
+        <div class="arrow">
+
+        </div>
+    </nav>
+    <main>
+        <canvas></canvas>
+    </main>
+    <script type="module" src="../scripts/bonusAnt/main.js"></script>
+</body>
+</html>

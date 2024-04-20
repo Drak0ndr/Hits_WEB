@@ -9,6 +9,7 @@ body{
 nav{
     position: relative;
     text-decoration: none; 
+    font-family: "Trebuchet MS", sans-serif;
 }
 main {  
     min-height: calc(100vh - 118px);
@@ -46,17 +47,18 @@ main {
     justify-content: center;
     text-align: center;
     height: 10%;
+    font-family: "Trebuchet MS", sans-serif;
 }
 .canvas_div{
     max-height: 980px;
     height: 90%;
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-#canvas1, #canvas2, #canvas3 {
+#canvas{
     background-color: #FCB4D5;
     width: 95%;
     height: 90%;
@@ -234,10 +236,10 @@ select option {
     background-size: 15% 100%;
 }
  #radius_range {
-    background-size: 20% 100%;
+    background-size: 33.3% 100%;
  }
  #neighbors_range {
-    background-size: 54% 100%;
+    background-size: 28.6% 100%;
  }
  #hierarchical_range {
     background-size: 15% 100%;
@@ -247,6 +249,9 @@ select option {
     text-align: center;
     justify-content: center;
     gap: 12px;
+}
+a:nth-child(2) .link{
+    background-color: #cd3e94;
 }
 
   

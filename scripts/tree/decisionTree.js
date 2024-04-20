@@ -12,28 +12,60 @@ export class DecisionTree {
         }
         this.nodeCount = 1
     }
-    calculateEntropy(p1, p2) {
-        if (p1 == 0 || p2 == 0) {
-            return 0
-        } else {
-            return -(p1 * Math.log2(p1) + p2 * Math.log2(p2))
-        }
-    }
-    calculateNodeEntropy(node) {
-        let onep = []
-        let twop = []
-        onep.push(node.data[0])
-        for (let i = 1; i < node.data.length; i++) {
-            if (node.data[i][node.data[i].length - 1] == onep[onep.length - 1][onep[onep.length - 1].length - 1]) {
-                onep.push(node.data[i])
+    calculateEntropy(arr) {
+        function getP(p) {
+            if (p==0) {
+                return 0
             } else {
-                twop.push(node.data[i])
+                return p * Math.log2(p)
             }
         }
+        let sm = 0
+        arr.forEach(item => {
+            sm+=getP(item)
+        })
+        sm*= 2/arr.length
+        sm*=-1
+        return sm
+        // if (p1 == 0 || p2 == 0) {
+        //     return 0
+        // } else {
+        //     return -(p1 * Math.log2(p1) + p2 * Math.log2(p2))
+        // }
+    }
+    calculateNodeEntropy(node) {
+        let p = [[]]
+        p[0].push(node.data[0])
+        for (let i = 1; i < node.data.length; i++) {
+            let flag= true
+            for (let j = 0; j < p.length; j++) {
+                if (node.data[i][node.data[i].length - 1] === p[j][p[j].length -1][p[j][p[j].length - 1].length - 1]) {
+                    p[j].push(node.data[i])
+                    flag = false
+                }
+            }
+            if (flag) {
+                p.push([])
+                p[p.length-1].push(node.data[i])
+            }
+            // if (node.data[i][node.data[i].length - 1] == onep[onep.length - 1][onep[onep.length - 1].length - 1]) {
+            //     onep.push(node.data[i])
+            // } else {
+            //     twop.push(node.data[i])
+            // }
+        }
         // console.log(onep, twop)
-        let p1 = onep.length / (onep.length + twop.length)
-        let p2 = twop.length / (onep.length + twop.length)
-        node.entropy = this.calculateEntropy(p1, p2)
+        // let p1 = onep.length / (onep.length + twop.length)
+        // let p2 = twop.length / (onep.length + twop.length)
+        let smLen = 0
+        let verP = []
+        p.forEach(item => {
+            smLen+=item.length
+        })
+        p.forEach(item => {
+            verP.push(item.length / smLen)
+        })
+        node.entropy = this.calculateEntropy(verP)
     }
     sortData(numArg, value, data) {
         let left = []
@@ -71,7 +103,7 @@ export class DecisionTree {
             }
             let bestNumArg = -1
             let bestValue = -1
-            let bt = 0
+            let bt = -1
             for (let item of this.tree[ind].data) {
                 for (let j = 1; j < item.length - 1; j++) {
                     let temp = this.sortData(j, item[j], this.tree[ind].data)
@@ -87,7 +119,7 @@ export class DecisionTree {
                         bt = gain + balance
                         bestNumArg = j
                         bestValue = item[j]
-                        console.log(j, item, temp, temp_left_node.entropy, temp_right_node.entropy, gain, balance)
+                        
                     }
 
 
@@ -114,25 +146,28 @@ export class DecisionTree {
             this.nodeCount++
         }
 
-        console.log(this.tree)
+        
     }
     predict(item) {
         let isEnd = false
         let posId = 0
+        let path = [0]
         while (!isEnd) {
-            if (+this.tree[posId].numArg == 0) {
+            if (+this.tree[posId].numArg === 0) {
                 isEnd = true
                 break
             }
             if (+item[+this.tree[posId].numArg] <= +this.tree[posId].condition) {
                 posId = this.tree[posId].left
+                path.push(posId)
             } else {
                 posId = this.tree[posId].right
+                path.push(posId)
             }
 
         }
         this.tree[posId].data.push(item)
-        console.log(this.tree)
-        return [this.tree[posId].data[0][this.tree[posId].data[0].length-1], posId]
+        
+        return [this.tree[posId].data[0][this.tree[posId].data[0].length-1], posId, path]
     }
 }

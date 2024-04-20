@@ -6,6 +6,7 @@
 
 body {
     background-color: rgb(33, 37, 41);
+    font-family: "Trebuchet MS", sans-serif;
 }
 
 main {
@@ -32,7 +33,7 @@ nav {
 
 .parametrs {
     width: 20vw;
-    min-width: 150px;
+    min-width: 160px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -109,12 +110,28 @@ nav {
     color: white;
     font-size: 20px;
 }
+a:nth-child(6) .link{
+    background-color: #4c49ea;
+}
+@media (max-width: 1900px) {
+    .field canvas {
+        width: 650px;
+        height: 650px;
+    }
+
+}
+@media (max-width:1300px) {
+    .field canvas {
+        width: 550px;
+        height: 550px;
+    }
+}
 @media (max-width:800px) {
     .alg_name {
         margin-right: 40px;
     }
     .parametrs {
-        width: 150px;
+        width: auto;
     }
 }
 
@@ -147,3 +164,17 @@ nav {
         height: 300px;
     }
 }
+
+@media (min-width: 1900px) {
+    .clear, .recognize, .pixelation {
+        height: 8vh;
+        font-size: 1.3vw;
+        margin-bottom: 3vh;
+    }
+    .field canvas {
+        width: 700px;
+        height: 700px;
+    }
+
+}
+

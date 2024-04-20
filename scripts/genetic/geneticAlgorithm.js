@@ -8,15 +8,10 @@ function getRandomNumber(min, max) {
 }  
 
 function pathGeneration() {
-    let path = [];
-
-    for (let i = 0; i < arrVertexes.length; ++i) {
-        path.push(i);
-    }
+    let path = Array.from({ length: arrVertexes.length }, (element, index) => index);
 
     for (let j = 0; j < arrVertexes.length; ++j) {
         let pos = getRandomNumber(j, arrVertexes.length); 
-
         [path[j], path[pos]] = [path[pos], path[j]];  
     }
    
@@ -39,28 +34,18 @@ function findPathDistance(path) {
 
 function crossing(firstParent, secondParent) {
     let breakIndex = getRandomNumber(1, firstParent.length - 1);
-    let child = [];
-
-    for (let i = 0; i < breakIndex; ++i) {
-        child.push(firstParent[i]);
-    }
-
-    for (let i = breakIndex; i < secondParent.length; ++i) {
-        if (child.includes(secondParent[i]) === false) {
-            child.push(secondParent[i]);
+    let child = [...firstParent.slice(0, breakIndex)];
+    
+    secondParent.forEach(gen => {
+        if (!child.includes(gen)) {
+            child.push(gen);
         }
-    }
+    });
 
-    for (let i = 0; i < secondParent.length; ++i) {
-        if (child.includes(secondParent[i]) === false) {
-            child.push(secondParent[i]);
-        }
-    }
- 
     if (getRandomNumber(1, 100) < probabilityMutation) {
         child = mutation(child);
     }
-   
+    
     return child;
 }
 
@@ -100,9 +85,7 @@ export function findMinPath(vertexes, paths) {
     }
 
     if (arrPaths.length === 0) {
-        for (let i = 0; i < numberGenerations; ++i) {
-            arrPaths.push(pathGeneration());
-        }
+        arrPaths = Array.from({ length: numberGenerations }, () => pathGeneration());
     }   
 
     for (let i = 0; i < populationSize; ++i) {
@@ -116,10 +99,7 @@ export function findMinPath(vertexes, paths) {
         arrPaths.push(crossing(arrPaths[firstParent], arrPaths[secondParent]));
     }
 
-    for (let i = 0; i < numberGenerations + populationSize; ++i) {
-        arrDistances.push(findPathDistance(arrPaths[i]));
-    }
-
+    arrDistances = arrPaths.map(path => findPathDistance(path));
     sortPaths(arrDistances);
 
     for (let i = 0; i < populationSize; ++i) {

@@ -1,30 +1,22 @@
-import { kmeans, startDrawing, startAlgorithms, drawingCentroids, drawingKMeansClusters, removeKMeans} from "./drawingFunctions.js";
+import { kmeans, dbscanClusters, drawingDBSCANMargin, heuristicsClusters, drawingDBSCANCentre, startDrawing, startAlgorithms, drawingCentroids, drawingAllClusters, removeAllClusters} from "./drawingFunctions.js";
 
 export let currButton = 1;
 export let currCountClusters = 3;
-export let currRadius = 80;
-export let currCountNeighbors = 9;
+export let currRadius = 100;
+export let currCountNeighbors = 5;
 export let currCountClustersHierarchical = 3;
 export let pointCoordinates = [];
 export let mouseButton = 1;
 export let kmeansColors = [];
+export let dbscanColors = [];
+export let hierarchicalColors = [];
 
 let checkCentroids = false;
 
-export const canvas1 = document.getElementById('canvas1');
-canvas1.width = document.querySelector('#canvas1').clientWidth;
-canvas1.height = document.querySelector('#canvas1').clientHeight;
-export const ctx = canvas1.getContext('2d');
-
-export const canvas2 = document.getElementById('canvas2');
-canvas2.width = document.querySelector('#canvas2').clientWidth;
-canvas2.height = document.querySelector('#canvas2').clientHeight;
-export const ctx2 = canvas2.getContext('2d');
-
-export const canvas3 = document.getElementById('canvas3');
-canvas3.width = document.querySelector('#canvas3').clientWidth;
-canvas3.height = document.querySelector('#canvas3').clientHeight;
-export const ctx3 = canvas3.getContext('2d');
+export const canvas = document.getElementById('canvas');
+canvas.width = document.querySelector('#canvas').clientWidth;
+canvas.height = document.querySelector('#canvas').clientHeight;
+export const ctx = canvas.getContext('2d');
 
 export function resetButton(){
     currButton = 1;
@@ -33,16 +25,18 @@ export function resetButton(){
 document.getElementById('remove_points').addEventListener('click', () => {
     currButton = 1;
     ctx.reset();
-    ctx2.reset();
-    ctx3.reset();
     pointCoordinates = [];
-    removeKMeans();
+    removeAllClusters();
     kmeansColors = [];
+    dbscanColors = [];
+    hierarchicalColors = [];
 });
 
 document.getElementById('start').addEventListener('click', () => {
     kmeansColors = [];
-    removeKMeans()
+    dbscanColors = [];
+    hierarchicalColors = [];
+    removeAllClusters();
     currButton = 0;
     startAlgorithms();
 });
@@ -53,9 +47,13 @@ document.getElementById('centroids_check').addEventListener('change', () => {
         checkCentroids = true;
 
     }else{
-        if(pointCoordinates.length > 0 && kmeansColors.length > 0){
+        if(pointCoordinates.length > 0 && kmeansColors.length > 0 && pointCoordinates.length == kmeansColors.length){
             ctx.reset();
-            drawingKMeansClusters(kmeans.clusters)
+            drawingAllClusters(kmeans.clusters, kmeansColors, 0, Math.PI * 2 / 3, "K", 4, 10);
+            drawingDBSCANMargin();
+            drawingDBSCANCentre(dbscanClusters);
+            drawingAllClusters(dbscanClusters, dbscanColors, Math.PI * 2 / 3, Math.PI * 4 / 3, "D", -8, 2);
+            drawingAllClusters(heuristicsClusters, hierarchicalColors, Math.PI * 4 / 3, Math.PI * 2, "И", 4, -4);
             checkCentroids = false;
 
         }else if(kmeansColors.length === 0){
@@ -88,32 +86,16 @@ document.getElementById('hierarchical_range').addEventListener('input', (e) => {
     hierarchical_range.style.backgroundSize = 100 * (e.target.value - e.target.min) / (e.target.max - e.target.min) + '% 100%';
 });
 
-document.getElementById('canvas1').addEventListener('mousedown', () => {
+document.getElementById('canvas').addEventListener('mousedown', () => {
     mouseButton = 1;
     startDrawing();
 });
 
-document.getElementById('canvas1').addEventListener('mouseup', () => {
+document.getElementById('canvas').addEventListener('mouseup', () => {
     mouseButton = 0;
 });
 
-document.getElementById('canvas2').addEventListener('mousedown', () => {
-    mouseButton = 1;
-    startDrawing();
-});
 
-document.getElementById('canvas2').addEventListener('mouseup', () => {
-    mouseButton = 0;
-});
-
-document.getElementById('canvas3').addEventListener('mousedown', () => {
-    mouseButton = 1;
-    startDrawing();
-});
-
-document.getElementById('canvas3').addEventListener('mouseup', () => {
-    mouseButton = 0;
-});
 
 
 

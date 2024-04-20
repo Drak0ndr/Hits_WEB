@@ -24,12 +24,12 @@ function chooseCentroids(countClusters) {
             sumDistances += minDistance;
         });
 
-
-        let pick = Math.random() * sumDistances;
+        let pick = Math.random() * sumDistances; // random случайным образом укажет на число из интервала [0; sumDistances)
         let total = 0;
 
-        for (let j = 0; j <  arrDistances.length; j++) {
-            total +=  arrDistances[j];
+        // Определяем, какой точке соответствует pick
+        for (let j = 0; j <  arrDistances.length; ++j) {
+            total += arrDistances[j];
 
             if (total >= pick) {
                 centroids.push(pointCoordinates[j]);
@@ -45,65 +45,52 @@ function chooseCentroids(countClusters) {
 export function kMeans(countClusters) {
     let arrClusters = new Array(countClusters).fill().map(() => []);
     let centroids = chooseCentroids(countClusters);
-    let converge = false;
+    let converged = false;
 
-    while (!converge) {
-        for (let i = 0; i < arrClusters.length; i++) {
-            arrClusters[i] = [];
-        }
-
-        for (let i = 0; i < pointCoordinates.length; i++) {
-
-            let point = pointCoordinates[i];
+    while (!converged) {
+        arrClusters.forEach(cluster => cluster.length = 0);
+       
+        for (let point of pointCoordinates) {
             let minDistance = Infinity;
-            let neighbor;
+            let closestCentroid;
     
-            for (let j = 0; j < centroids.length; j++) {
-                let distance = heuristics(point, centroids[j]);
+            for (let centroid of centroids) {
+                let distance = heuristics(point, centroid);
     
                 if (distance < minDistance) {
                     minDistance = distance;
-                    neighbor = centroids[j];
+                    closestCentroid = centroid;
                 }
             }
     
-            arrClusters[centroids.indexOf(neighbor)].push(point);
-        }
- 
-        let newCentroids = [];
-
-        for (let i = 0; i < arrClusters.length; i++) {
-            let cluster = arrClusters[i];
-
-            if (cluster.length === 0) {
-                newCentroids.push(centroids[i]);
-
-            } else {
-                let sumX = 0;
-                let sumY = 0;
-
-                for (let j = 0; j < cluster.length; j++) {
-                    sumX += cluster[j].x;
-                    sumY += cluster[j].y;
-                }
-
-                newCentroids.push(new Point(sumX / cluster.length, sumY / cluster.length));
-            }
+            arrClusters[centroids.indexOf(closestCentroid)].push(point);
         }
 
-        converge = true;
+        let newCentroids = arrClusters.map(cluster => { // Пересчёт центров кластеров
+
+            let sum = cluster.reduce((sumPoints, point) => {
+                sumPoints.x += point.x;
+                sumPoints.y += point.y;
+                return sumPoints;
+            }, { x: 0, y: 0 });
+
+            let newCoordX = sum.x / cluster.length;
+            let newCoordY = sum.y / cluster.length;
+
+            return new Point(newCoordX, newCoordY);
+        }); 
+
+        converged = true;
         
-        for (let i = 0; i < centroids.length; i++) {
-
-            if (heuristics(centroids[i], newCentroids[i]) > 0.01) {
-                converge = false;
+        for (let i = 0; i < centroids.length; ++i) {
+            if (heuristics(centroids[i], newCentroids[i]) > 0.001) { // Устанавливаем сходимость
+                converged = false;
                 break;
             }
-            
         }
   
-        centroids = newCentroids;
+        centroids = newCentroids; // Обновляем центроиды
     }
 
-    return { clusters: arrClusters, centroids: centroids};
+    return { clusters: arrClusters, centroids };
 }

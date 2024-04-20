@@ -16,6 +16,7 @@ main {
 nav{
     position: relative;
     text-decoration: none; 
+    font-family: "Trebuchet MS", sans-serif;
 }
 #wrapper{
     display: flex;
@@ -156,6 +157,7 @@ input[type="number"] {
     display: block;
     margin: 10px auto;
     cursor: pointer;
+    text-align: center;
 }
 input[id="field_range"] {
     width: 200px;
@@ -181,7 +183,7 @@ select {
 }
 select option {
     background-color:#e7c6ff;
-    font-size:22px;
+    font-size:20px;
     height: 40px !important;
     width: 200px !important;
 }
@@ -205,5 +207,8 @@ select option {
 }
 a{
     text-decoration: none;
+}
+a:nth-child(1) .link {
+    background-color: #952aff;
 }
 

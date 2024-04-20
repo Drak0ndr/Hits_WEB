@@ -141,7 +141,7 @@
               </div>
       
             </a>
-            <a href="../pages/clustering.html">
+            <a href="#">
               <div class="link" id="2">
                 <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -348,19 +348,19 @@
                             <input type="range" id="k_means_range" min="1" max="20" step="1" value ="3">
                         </div>
                         <div class="centroids_div">
-                            <span class="choose_set">Показать центроиды</span>
+                            <span class="choose_set" id="center">Показать центроиды</span>
                             <input type="checkbox" id="centroids_check">
                         </div>  
                     </div>
                     <div class="dbscan_div">
                         <span class="alg_label">Настройки DBSCAN</span>
                         <div>
-                            <span class="choose_set" id="radius_range_descr">Pадиус поиска точек: 80</span>
-                            <input type="range" id="radius_range" min="50" max="200" step="1" value ="80">
+                            <span class="choose_set" id="radius_range_descr">Pадиус поиска точек: 100</span>
+                            <input type="range" id="radius_range" min="50" max="200" step="1" value ="100">
                         </div>
                         <div>
-                            <span class="choose_set" id="neighbors_range_descr">Количество соседей: 8</span>
-                            <input type="range" id="neighbors_range" min="1" max="15" step="1" value ="8">
+                            <span class="choose_set" id="neighbors_range_descr">Количество соседей: 5</span>
+                            <input type="range" id="neighbors_range" min="1" max="15" step="1" value ="5">
                         </div>
                     </div>
                     <div class="hierarchical_div">
@@ -387,18 +387,8 @@
         </div>
         <div class="field">
               <div class = "canvas_div">
-                  <div class = "canvas_header">Алгоритм K-Means</div>
-                  <canvas id="canvas1"></canvas>
-              </div>
-      
-              <div class="canvas_div">
-                  <div class = "canvas_header">Алгоритм DBSCAN</div>
-                  <canvas id="canvas2"></canvas>
-              </div>
-              
-              <div class="canvas_div">
-                  <div class = "canvas_header">Иерархический алгоритм</div>
-                  <canvas id="canvas3"></canvas>
+                  <div class = "canvas_header">Представленные алгоритмы: K-Means, DBSCAN, Иерархический</div>
+                  <canvas id="canvas"></canvas>
               </div>
         </div>
     </main>

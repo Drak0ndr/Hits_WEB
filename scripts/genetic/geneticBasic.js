@@ -8,10 +8,10 @@ class Vertex {
     }
 }
 
-export let canvas = document.getElementById("genetic_canvas");
+export const canvas = document.getElementById("genetic_canvas");
 canvas.height = document.querySelector('#genetic_canvas').clientHeight;
 canvas.width = document.querySelector('#genetic_canvas').clientWidth;
-export let ctx = canvas.getContext('2d');
+export const ctx = canvas.getContext('2d');
 
 export let arrVertexes = [];     
 export let arrPaths = [];  
@@ -131,10 +131,10 @@ export function showPath(path) {
     let sumDist = 0;
     
     document.getElementById("speed_range").value <= 20 ? numberIterations = 80 :  
-    document.getElementById("speed_range").value <= 40 ? numberIterations = 180 :
-    document.getElementById("speed_range").value <= 60 ? numberIterations = 280 :
-    document.getElementById("speed_range").value <= 80 ? numberIterations = 380 :
-    numberIterations = 480;
+    document.getElementById("speed_range").value <= 40 ? numberIterations = 160 :
+    document.getElementById("speed_range").value <= 60 ? numberIterations = 240 :
+    document.getElementById("speed_range").value <= 80 ? numberIterations = 320 :
+    numberIterations = 400;
     
     for (let i = 0; i < path.length - 1; ++i) {
         ctx.moveTo(arrVertexes[path[i]].x, arrVertexes[path[i]].y);
@@ -190,6 +190,12 @@ function geneticAlgorithm() {
 
         arrPaths = findMinPath(arrVertexes, arrPaths);
 
+        if (arrPaths === undefined){
+            alert("Поставьте больше вершин!")
+            clearInterval(intervalId);
+            return;
+        }
+
         showPath(arrPaths[0]);
 
         if (previousPath !== arrPaths[0]){
@@ -218,6 +224,7 @@ canvas.addEventListener('mouseup', () => {
 });
 
 document.getElementById("speed_range").addEventListener('input', () => {
+    isRightSpeed(document.getElementById('speed_range'));
     animation = 101 - document.getElementById("speed_range").value;
     document.getElementById('speed_range_descr').textContent = "Скорость анимации: " + 
     document.getElementById("speed_range").value + "%"; 
@@ -249,5 +256,21 @@ document.getElementById("start").addEventListener('click', () => {
     geneticAlgorithm();
 }); 
 
+function isRightSpeed(obj){
+    if (obj.value > 100){
+        obj.value = 100;
+    }   
+    if (obj.value < 1){
+        obj.value = 1;
+    } 
+}
+
+document.getElementById("my_block").addEventListener('mouseover', () => {
+    setTimeout(() => document.getElementById("exit_descr").style.display = "flex", 200);
+});
+
+document.getElementById("my_block").addEventListener('mouseout', () => {
+    setTimeout(() => document.getElementById("exit_descr").style.display = "none", 200);
+});
 
 

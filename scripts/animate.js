@@ -26,41 +26,37 @@ link.forEach(item => {
                         clearInterval(tempInterval)
                     }
                     linkSpan[num].innerHTML += arr[num][i]
-                    console.log(arr[num][i], linkSpan[num].innerHTML)
                     i++
                 }, 15)
             }
             activeElements[num] = 1
-            // linkSpan[num].innerHTML = arr[num]
         }
     })
     item.addEventListener('mouseleave', e => {
         if (e.target.closest('.link') && width <= 1100 && width > 690) {
             let num = +e.target.closest('.link').id - 1
-            console.log(num)
+  
             let removeInterval = setInterval(() => {
                 if (linkSpan[num].innerHTML.length == 0) {
                     clearInterval(removeInterval)
                 }
-                console.log(linkSpan[num].innerHTML)
+
                 linkSpan[num].innerHTML = linkSpan[num].innerHTML.slice(0, linkSpan[num].innerHTML.length - 1)
             }, 15)
             activeElements[num] = 0
-            // linkSpan[num].innerHTML = ''
             linkSvg[num].style.marginRight = '0px'
         }
     })
 })
+
 window.addEventListener('resize', e => {
     width = document.documentElement.clientWidth
-    console.log(width)
+
     if (width <= 1100 && width > 690) {
         linkSpan.forEach(item => {
             item.innerHTML = ''
         })
         
-
-
     } else {
         for (let i = 0; i < link.length; i++) {
             linkSpan[i].innerHTML = arr[i]

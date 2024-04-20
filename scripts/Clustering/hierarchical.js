@@ -1,47 +1,40 @@
 import {heuristics} from "./drawingFunctions.js"
 
-function  getDistanceBetweenClusters (clusters) {
-    let distances = [];
-    
-    for (let i = 0; i < clusters.length - 1; i++) {
-        for (let j = i + 1; j < clusters.length; j++) {
-            let distance = 0;
+function calculateDistance(firstCluster, secondCluster) {
+    let totalDistance = 0;
 
-            for (let x of clusters[i]) {
-                for (let y of clusters[j]) {
-                    distance += heuristics(x, y);
-                }           
-            }
-            
-            distance /= (clusters[i].length * clusters[j].length);
-            distances.push({distance, i, j});
+    for (let firstPoint of firstCluster) {
+        for (let secondPoint of secondCluster) {
+            totalDistance += heuristics(firstPoint, secondPoint);
         }
     }
 
-    return distances;
+    return totalDistance / (firstCluster.length * secondCluster.length);
 }
 
 export function hierarchicalClustering(pointCoordinates, countClusters) {
     let clusters = pointCoordinates.map(coord => [coord]);
 
-    while (clusters.length >  countClusters) {
-        let distances =  getDistanceBetweenClusters(clusters);
-  
+    while (clusters.length > countClusters) {
         let minDistance = Infinity;
-        let index;
+        let minDistanceIndexes;
 
-        for (let i = 0; i < distances.length; ++i) {
-            if (distances[i].distance < minDistance) {
-                minDistance = distances[i].distance;
-                index = i;
+        for (let i = 0; i < clusters.length - 1; ++i) {
+            for (let j = i + 1; j < clusters.length; ++j) {
+                let distance = calculateDistance(clusters[i], clusters[j]);
+
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    minDistanceIndexes = [i, j];
+                }
             }
         }
-  
-        let merged = clusters[distances[index].i].concat(clusters[distances[index].j]);
-        clusters.push(merged);
 
-        clusters.splice(distances[index].j, 1);
-        clusters.splice(distances[index].i, 1);
+        let newCluster = [...clusters[minDistanceIndexes[0]], ...clusters[minDistanceIndexes[1]]];
+        clusters.push(newCluster);
+
+        clusters.splice(Math.max(minDistanceIndexes[0], minDistanceIndexes[1]), 1);
+        clusters.splice(Math.min(minDistanceIndexes[0], minDistanceIndexes[1]), 1);
     }
 
     return clusters;
