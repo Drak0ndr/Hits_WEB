@@ -11,7 +11,7 @@ export class Ant{
     genPaths(matrix, dirs) {
         let path = []
         let sm = 0
-        let alfa = 1.3
+        let alfa = 1
         let beta = 0
         dirs.forEach(item => {
             let y = item[0]
