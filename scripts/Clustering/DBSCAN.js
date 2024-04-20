@@ -5,26 +5,31 @@ function findNeighbors(point, points, radius) {
 }
 
 export function dbscan(pointCoordinates, radius, minCountNeighbors) {
-    let visitedMap = new Map();
+    let visitedSet = new Set();
     let wastes = new Set();
     let allClusters = [];
 
-    function expandCluster(cluster, point) {
+    function expandCluster(cluster, point, neighbors) {
         cluster.push(point);
-        let neighbors = findNeighbors(point, pointCoordinates, radius);
-        
+     
         neighbors.forEach(neighbor => {
-            if (!visitedMap.has(neighbor)) {
-                visitedMap.set(neighbor, true);
-                cluster.push(neighbor);
-                expandCluster(cluster, neighbor);
+            if (!visitedSet.has(neighbor)) {
+                visitedSet.add(neighbor);
+
+                let newNeighbors = findNeighbors(neighbor, pointCoordinates, radius);
+
+                if (newNeighbors.length >= minCountNeighbors) {
+                    neighbors = neighbors.concat(newNeighbors);
+                }
+
+                expandCluster(cluster, neighbor, neighbors);
             }
         });
     }
 
     pointCoordinates.forEach(point => {
-        if (!visitedMap.has(point)) {
-            visitedMap.set(point, true);
+        if (!visitedSet.has(point)) {
+            visitedSet.add(point);
 
             let neighbors = findNeighbors(point, pointCoordinates, radius);
 
@@ -34,7 +39,7 @@ export function dbscan(pointCoordinates, radius, minCountNeighbors) {
             } else {
                 let newCluster = [];
                 allClusters.push(newCluster);
-                expandCluster(newCluster, point);
+                expandCluster(newCluster, point, neighbors);
             }
         }
     });

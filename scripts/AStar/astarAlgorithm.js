@@ -59,8 +59,6 @@ export async function aStar() {
             ++count; 
         }
 
-        
-
         let directions = [];
 
         if (current.posX > 0) {
