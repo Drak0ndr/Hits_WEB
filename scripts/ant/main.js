@@ -9,6 +9,7 @@ let drawCanvas = new Draw(canvas)
 startBtn.addEventListener('click', (e) => {
     drawCanvas.clearPaths()
     drawCanvas.drawPaths()
+    ansSpan.style.color = 'whitesmoke'
     let graph = drawCanvas.buildGraph()
     let ant = new AntAlg(graph)
     let count = 0
@@ -19,23 +20,24 @@ startBtn.addEventListener('click', (e) => {
     
     let bestCost = Infinity
     let bestPath = []
-    animate(ant, bestPath, bestCost, drawCanvas, ansSpan, count)
+    animate(ant, bestPath, bestCost, drawCanvas, ansSpan, count, 2)
 })
 
 clearBtn.addEventListener('click', (e) => {
     drawCanvas.clear()
 })
 
-function animate(ant,bestPath, bestCost, drawCanvas, ansSpan, count) {
+function animate(ant,bestPath, bestCost, drawCanvas, ansSpan, count, numIterations) {
     if (count < 0) {
         drawCanvas.clearPaths()
         drawCanvas.drawPaths()
         drawCanvas.drawAns(bestPath)
         ansSpan.innerHTML = bestCost.toFixed(2)
+        ansSpan.style.color = 'green'
         return
     }
     
-    let data = ant.start(2)
+    let data = ant.start(numIterations)
     if (data[0] < bestCost) {
         bestPath = data[1]
         bestCost = data[0]
@@ -45,7 +47,7 @@ function animate(ant,bestPath, bestCost, drawCanvas, ansSpan, count) {
     drawCanvas.drawAns(data[1])
     ansSpan.innerHTML = data[0].toFixed(2)
     setTimeout(() => {
-        animate(ant,bestPath, bestCost, drawCanvas, ansSpan, count-1)
+        animate(ant,bestPath, bestCost, drawCanvas, ansSpan, count-1, numIterations)
     },10)
     
 }

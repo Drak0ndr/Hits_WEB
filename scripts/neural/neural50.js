@@ -163,116 +163,116 @@ fetch('../scripts/neural/fixmnist.json')
         })
         // console.log(train_data.length)
     })
-fetch('../scripts/neural/mnist0.json')
-    .then(response => {
-        return response.json()
-    })
-    .then(data => {
-        console.log(data)
-        data.forEach(item => {
-            train_data.push(item)
-        })
-        console.log(train_data.length)
-    })
-fetch('../scripts/neural/mnist1.json')
-    .then(response => {
-        return response.json()
-    })
-    .then(data => {
-        console.log(data)
-        data.forEach(item => {
-            train_data.push(item)
-        })
-        console.log(train_data.length)
-    })
-fetch('../scripts/neural/mnist2.json')
-    .then(response => {
-        return response.json()
-    })
-    .then(data => {
-        console.log(data)
-        data.forEach(item => {
-            train_data.push(item)
-        })
-        console.log(train_data.length)
-    })
-fetch('../scripts/neural/mnist3.json')
-    .then(response => {
-        return response.json()
-    })
-    .then(data => {
-        console.log(data)
-        data.forEach(item => {
-            train_data.push(item)
-        })
-        console.log(train_data.length)
-    })
-fetch('../scripts/neural/mnist4.json')
-    .then(response => {
-        return response.json()
-    })
-    .then(data => {
-        console.log(data)
-        data.forEach(item => {
-            train_data.push(item)
-        })
-        console.log(train_data.length)
-    })
-fetch('../scripts/neural/mnist5.json')
-    .then(response => {
-        return response.json()
-    })
-    .then(data => {
-        console.log(data)
-        data.forEach(item => {
-            train_data.push(item)
-        })
-        console.log(train_data.length)
-    })
-fetch('../scripts/neural/mnist6.json')
-    .then(response => {
-        return response.json()
-    })
-    .then(data => {
-        console.log(data)
-        data.forEach(item => {
-            train_data.push(item)
-        })
-        console.log(train_data.length)
-    })
-fetch('../scripts/neural/mnist7.json')
-    .then(response => {
-        return response.json()
-    })
-    .then(data => {
-        console.log(data)
-        data.forEach(item => {
-            train_data.push(item)
-        })
-        console.log(train_data.length)
-    })
-fetch('../scripts/neural/mnist8.json')
-    .then(response => {
-        return response.json()
-    })
-    .then(data => {
-        console.log(data)
-        data.forEach(item => {
-            train_data.push(item)
-        })
-        console.log(train_data.length)
-    })
-fetch('../scripts/neural/mnist9.json')
-    .then(response => {
-        return response.json()
-    })
-    .then(data => {
-        console.log(data)
-        data.forEach(item => {
-            train_data.push(item)
-        })
-        console.log(train_data.length)
-    })
+// fetch('../scripts/neural/mnist0.json')
+//     .then(response => {
+//         return response.json()
+//     })
+//     .then(data => {
+//         console.log(data)
+//         data.forEach(item => {
+//             train_data.push(item)
+//         })
+//         console.log(train_data.length)
+//     })
+// fetch('../scripts/neural/mnist1.json')
+//     .then(response => {
+//         return response.json()
+//     })
+//     .then(data => {
+//         console.log(data)
+//         data.forEach(item => {
+//             train_data.push(item)
+//         })
+//         console.log(train_data.length)
+//     })
+// fetch('../scripts/neural/mnist2.json')
+//     .then(response => {
+//         return response.json()
+//     })
+//     .then(data => {
+//         console.log(data)
+//         data.forEach(item => {
+//             train_data.push(item)
+//         })
+//         console.log(train_data.length)
+//     })
+// fetch('../scripts/neural/mnist3.json')
+//     .then(response => {
+//         return response.json()
+//     })
+//     .then(data => {
+//         console.log(data)
+//         data.forEach(item => {
+//             train_data.push(item)
+//         })
+//         console.log(train_data.length)
+//     })
+// fetch('../scripts/neural/mnist4.json')
+//     .then(response => {
+//         return response.json()
+//     })
+//     .then(data => {
+//         console.log(data)
+//         data.forEach(item => {
+//             train_data.push(item)
+//         })
+//         console.log(train_data.length)
+//     })
+// fetch('../scripts/neural/mnist5.json')
+//     .then(response => {
+//         return response.json()
+//     })
+//     .then(data => {
+//         console.log(data)
+//         data.forEach(item => {
+//             train_data.push(item)
+//         })
+//         console.log(train_data.length)
+//     })
+// fetch('../scripts/neural/mnist6.json')
+//     .then(response => {
+//         return response.json()
+//     })
+//     .then(data => {
+//         console.log(data)
+//         data.forEach(item => {
+//             train_data.push(item)
+//         })
+//         console.log(train_data.length)
+//     })
+// fetch('../scripts/neural/mnist7.json')
+//     .then(response => {
+//         return response.json()
+//     })
+//     .then(data => {
+//         console.log(data)
+//         data.forEach(item => {
+//             train_data.push(item)
+//         })
+//         console.log(train_data.length)
+//     })
+// fetch('../scripts/neural/mnist8.json')
+//     .then(response => {
+//         return response.json()
+//     })
+//     .then(data => {
+//         console.log(data)
+//         data.forEach(item => {
+//             train_data.push(item)
+//         })
+//         console.log(train_data.length)
+//     })
+// fetch('../scripts/neural/mnist9.json')
+//     .then(response => {
+//         return response.json()
+//     })
+//     .then(data => {
+//         console.log(data)
+//         data.forEach(item => {
+//             train_data.push(item)
+//         })
+//         console.log(train_data.length)
+//     })
 let neuralData = {
     inputSlise: [],
     inputSliseWeights: [],

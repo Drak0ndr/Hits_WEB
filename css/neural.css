@@ -113,10 +113,18 @@ nav {
 a:nth-child(6) .link{
     background-color: #4c49ea;
 }
+
 @media (max-width: 1900px) {
     .field canvas {
         width: 650px;
         height: 650px;
+    }
+
+}
+@media (max-width: 1600px) {
+    .field canvas {
+        width: 600px;
+        height: 600px;
     }
 
 }
