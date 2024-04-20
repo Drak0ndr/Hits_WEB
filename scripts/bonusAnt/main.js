@@ -15,6 +15,7 @@ const inputRange = document.querySelector('#rangeAnts')
 const spanRange = document.querySelector('#rangeValue')
 const inputSpeed = document.querySelector('#speed')
 const buttonMaze = document.querySelector('.genMaze')
+const buttonClear = document.querySelector('.clearField')
 let numAnts = inputRange.value
 let matrix = []
 canvas.width = Math.floor(canvas.offsetWidth / pixel) * pixel
@@ -39,7 +40,9 @@ inputRange.addEventListener('mousemove', e => {
     spanRange.innerHTML = inputRange.value
     numAnts = inputRange.value
 })
-
+buttonClear.addEventListener('click', e => {
+    location.reload()
+})
 buttonMaze.addEventListener('click', e => {
     let width = matrixWidth
     let height = matrixHeight
@@ -99,7 +102,7 @@ canvas.addEventListener('mousemove', e => {
             // draw.drawField(matrix)
             
         }
-        if (inputRemWall.checked && matrix[matrixY][matrixX].build !== 1) {
+        if (inputRemWall.checked && matrix[matrixY][matrixX].build === 3) {
             isBuilding = true
             ctx.beginPath()
             ctx.fillStyle = '#c79030'
@@ -136,13 +139,13 @@ canvas.addEventListener('click', e => {
             colony.isFindPath = false
         }
     }
-    if (inputWall.checked) {
+    if (inputWall.checked &&  matrix[matrixY][matrixX].build === 0) {
         matrix[matrixY][matrixX].build = 3
         if (isColony) {
             colony.isFindPath = false
         }
     }
-    if (inputRemWall.checked && matrix[matrixY][matrixX].build !== 1) {
+    if (inputRemWall.checked && matrix[matrixY][matrixX].build === 3) {
         matrix[matrixY][matrixX].build = 0
         if (isColony) {
             colony.isFindPath = false

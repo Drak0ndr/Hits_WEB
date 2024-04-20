@@ -67,6 +67,7 @@ export class Ant{
         let vectorDownLeft = [[1,-1],[1,0],[0,-1]]
         let vectorLeft = [[1,-1], [0,-1], [-1, -1]]
         let vectorUpLeft = [[0,-1], [-1,-1], [-1,0]]
+        let vectorAllDir = [[-1,-1],[-1,0],[-1,1],[1,-1], [1,0], [1,1], [0,1],[0,-1]]
         if (this.dir === 0) {
             let temp = this.genPaths(matrix, vectorUp)
             path = temp[0]
@@ -108,10 +109,9 @@ export class Ant{
             sm = temp[1]
         }
         if (path.length === 0) {
-            this.dir+=180
-            if (this.dir >= 360) {
-                this.dir-=360
-            }
+            let temp = this.genPaths(matrix, vectorAllDir)
+            path = temp[0]
+            sm = temp[1]
         }
         let probabilitys = []
         path.forEach(item => {
